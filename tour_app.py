@@ -19,32 +19,12 @@ col_info = {
             "테마" : "0월 0일 배정된 테마입니다.",
            }
 
-# 커스텀 CSS 적용
-st.markdown(
-    """
-    <style>
-    .custom-columns {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        margin: -10px;
-    }
-    .custom-column {
-        width: calc(50% - 20px);
-        margin: 10px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 
 st.subheader("행복투어 배정표")
 # 검색어 입력
 
-name_list = st.multiselect('성함을 입력해주십시오', names,format_func=lambda x: 'Hello' if x == 'Choose an option' else x)
+name_list = st.multiselect('성함을 입력해주십시오', names)
 
 # 초기 흐름 제어 : 검색하면 처리하도록
 if len(name_list) > 0:
@@ -70,7 +50,13 @@ if len(name_list) > 0:
             result = df[df.index == name]
             with st.expander("8월 13일(첫날)", expanded = True):
                 col1, col2 = st.columns(2)
-                col1.width = 50; col2.width= 50
+                st.write('''<style>
+                    [data-testid="column"] {
+                        width: calc(50% - 1rem) !important;
+                        flex: 1 1 calc(50% - 1rem) !important;
+                        min-width: calc(50% - 1rem) !important;
+                    }
+                    </style>''', unsafe_allow_html=True)
                 with col1:
                     col1.metric("대전 → 청주공항", f"{result['버스 좌석 1'].values[0]}", "버스좌석")
                     col1.metric("제주공항 → 제주숙소", f"{result['버스 좌석 2'].values[0]}", "버스좌석")
