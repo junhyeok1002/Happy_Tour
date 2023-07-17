@@ -23,8 +23,15 @@ col_info = {
 
 st.subheader("행복투어 배정표")
 # 검색어 입력
+change_text = """
+<style>
+div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx {visibility: hidden;}
+div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx:before {content: ""; visibility: visible;}
+</style>
+"""
+st.markdown(change_text, unsafe_allow_html=True)
 
-name_list = st.multiselect('성함을 입력해주십시오', names)
+name_list = st.multiselect('성함을 입력해주세요(한번에 최대 4분까지 검색가능합니다.)', names)
 
 # 초기 흐름 제어 : 검색하면 처리하도록
 if len(name_list) > 0:
@@ -37,7 +44,7 @@ if len(name_list) > 0:
         with tabs[i]:
             if (name not in df.index) or (list(df.index).count(name) > 1) :
                 # 유사한 결과 찾기
-                matches = process.extract(name, names, scorer=fuzz.token_set_ratio, limit=500)
+                matches = process.extract(name, names, scorer=fuzz.token_set_ratio, limit=4)
 
                 # 뒤의 숫자가 0인 요소 제거 후 내림차순으로 정렬하여 연관도 Top 5만 선정
                 matches = [(name, score) for name, score in matches if score != 0]
