@@ -3,10 +3,8 @@ import streamlit as st
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
-
-
 # XLS 파일 읽기
-df = pd.read_excel('행복투어 샘플.xls', index_col = 0 )
+df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
 
 # 이름 목록
 names = list(df.index)
