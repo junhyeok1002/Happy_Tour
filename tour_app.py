@@ -31,7 +31,7 @@ div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx:before {content: ""; visibility: visible
 """
 st.markdown(change_text, unsafe_allow_html=True)
 
-name_list = st.multiselect('성함을 입력해주세요(한번에 최대 4분까지 검색가능합니다.)', names,max_selections=4)
+name_list = st.multiselect('성함을 입력해주세요(한번에 여러 명 검색가능합니다.)', names,max_selections=None)
 
 # 초기 흐름 제어 : 검색하면 처리하도록
 if len(name_list) > 0:
