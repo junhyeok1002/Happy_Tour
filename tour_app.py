@@ -19,6 +19,26 @@ col_info = {
             "테마" : "0월 0일 배정된 테마입니다.",
            }
 
+# 커스텀 CSS 적용
+st.markdown(
+    """
+    <style>
+    .custom-columns {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin: -10px;
+    }
+    .custom-column {
+        width: calc(50% - 20px);
+        margin: 10px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 st.subheader("행복투어 배정표")
