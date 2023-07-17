@@ -50,11 +50,13 @@ if len(name_list) > 0:
             result = df[df.index == name]
             with st.expander("8월 13일(첫날)", expanded = True):
                 col1, col2 = st.columns(2)
-                
-                col1.metric("대전 → 청주공항", f"{result['버스 좌석 1'].values[0]}", "버스좌석")
-                col2.metric("청주공항 → 제주공항", f"{result['비행기 좌석'].values[0]}", "비행기좌석")
-                col1.metric("제주공항 → 제주숙소", f"{result['버스 좌석 2'].values[0]}", "버스좌석")
-                col2.metric("숙소배정", f"{result['숙소 호수'].values[0]}", "방 호수")
+                col1.width = 50; col2.width= 50
+                with col1:
+                    col1.metric("대전 → 청주공항", f"{result['버스 좌석 1'].values[0]}", "버스좌석")
+                    col1.metric("제주공항 → 제주숙소", f"{result['버스 좌석 2'].values[0]}", "버스좌석")
+                with col2:
+                    col2.metric("청주공항 → 제주공항", f"{result['비행기 좌석'].values[0]}", "비행기좌석")
+                    col2.metric("숙소배정", f"{result['숙소 호수'].values[0]}", "방 호수")
                 
             with st.expander("8월 14일(테마활동 둘째날이 맞나요?? ㅎㅎ)", expanded = True):
                 col1, col2 = st.columns(2)
