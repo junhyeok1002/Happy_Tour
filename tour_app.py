@@ -31,16 +31,31 @@ st.markdown(
     """
         <style>
             .appview-container .main .block-container {{
+                max-width: 100%;
                 padding-top: {padding_top}rem;
                 padding-left: {padding_left}rem;
                 padding-right: {padding_right}rem;
+                padding-bottom: {padding_bottom}rem;
                 }}
 
         </style>""".format(
-        padding_top=0, padding_left=0, padding_right=0
+        padding_top=0, padding_left=0, padding_right=0, padding_bottom=0
     ),
     unsafe_allow_html=True,
 )
+
+# 툴바 없애기
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
 
 
 # 이미지 확대 버튼 숨기기 -> 자연스러운 UI/UX를 위함 : 확대 버튼이 width layout을 해치는 문제가 있었음
