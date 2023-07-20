@@ -10,6 +10,19 @@ df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
 names = list(df.index)
 
 
+st.code(f"""
+[theme]
+base="light"
+primaryColor="#F0A23D"
+backgroundColor="#FFFFFF"
+secondaryBackgroundColor="#F0F2F6"
+textColor="#31333F"
+""", language="toml")
+
+
+
+
+
 with open('style.css')as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
 
