@@ -50,9 +50,18 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+hide_img_fs = '''
+<style>
+button[title="View fullscreen"]{
+    visibility: hidden;}
+</style>
+'''
+st.markdown(hide_img_fs, unsafe_allow_html=True)
+
 image_path = './image/design.jpg'
 image = Image.open(image_path)
-st.image(image)# caption='Sunrise by the mountains')
+st.image(image,use_column_width  = True)# caption='Sunrise by the mountains')
+
 
 
 side_gap = 0.75
@@ -96,6 +105,9 @@ with C2:
                     name = st.radio(f"찾으시는 성함을 클릭해주세요. 아래에도 없을 경우 이주노 전도사님께 문의부탁드립니다", matches_list)
 
                 result = df[df.index == name]
+                
+                st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중 </div>', unsafe_allow_html=True)
+                
                 with st.expander("8월 13일(첫날)", expanded = True):
                     col1, col2 = st.columns(2)
 #                     st.write('''<style>
@@ -106,12 +118,9 @@ with C2:
 #                         }
 #                         </style>''', unsafe_allow_html=True)
 
-
+                    
                     with col1:
                         # 모서리가 둥근 텍스트 박스 안에서 작업
-                        st.markdown('<div class="rounded-text-box"> 모서리가 둥근 텍스트 박스 </div>', unsafe_allow_html=True)
-  
-                        
                         col1.metric(":green:[🛧 대전 → 청주공항]", f"{result['버스 좌석 1'].values[0]}")
                         col1.metric(":green[🛧 제주공항 → 숙소]", f"{result['버스 좌석 2'].values[0]}")
                     with col2:
