@@ -66,6 +66,7 @@ st.write('''<style>
     width: calc(7.5% - 1rem) !important;
     flex: 1 1 calc(7.5% - 1rem) !important;
     max-width: calc(7.5% - 1rem) !important;
+    min-width: calc(7% - 1rem) !important;
 }
 </style>''', unsafe_allow_html=True)
 
@@ -83,6 +84,7 @@ st.write('''<style>
     width: calc(7.5% - 1rem) !important;
     flex: 1 1 calc(7.5% - 1rem) !important;
     max-width: calc(7.5% - 1rem) !important;
+    min-width: calc(7% - 1rem) !important;
 }
 </style>''', unsafe_allow_html=True)
 
