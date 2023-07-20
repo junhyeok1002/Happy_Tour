@@ -6,25 +6,13 @@ from PIL import Image
 
 # XLS 파일 읽기
 df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
-
 # 이름 목록
 names = list(df.index)
-
-# 열 정보 설명
-col_info = {
-            "비행기 좌석" : "0월 0일(첫날) 청주 -> 제주 비행기 좌석입니다.",
-            "버스 좌석 1" : "0월 0일(첫날) 대전 -> 청주 버스 좌석입니다.",
-            "버스 좌석 2" : "0월 0일(첫날) 제주공항 -> 숙소 버스 좌석입니다.",
-            "버스 좌석 3" : "0월 0일(~날) 숙소 -> 테마장소 버스 좌석입니다.",
-            "숙소 호수" : "0월 0일 ~ 0월 0일동안 사용하실 숙소 호수입니다",
-            "테마" : "0월 0일 배정된 테마입니다.",
-           }
 
 
 with open('style.css')as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
 
-    
     
 custom_style = """
     <style>
@@ -33,13 +21,20 @@ custom_style = """
             border-radius: 10px;
             padding: 10px;
         }
+        .streamlit-layout .C1 {
+            max-width: 7.5%;
+        }
+        .streamlit-layout .C3 {
+            max-width: 7.5%;
+        }
+        .streamlit-layout .C2 {
+            max-width: 85%;
+        }
     </style>
 """
-
 # 커스텀 스타일을 적용
 st.markdown(custom_style, unsafe_allow_html=True)
-    
-    
+
     
 st.markdown("""
 <style>
@@ -66,6 +61,31 @@ st.image(image,use_column_width  = True)# caption='Sunrise by the mountains')
 
 side_gap = 0.75
 body_gap = 10-2*side_gap
+
+st.write('''<style>
+[data-testid="column"]:nth-child(1){
+    width: calc(7.5% - 1rem) !important;
+    flex: 1 1 calc(7.5% - 1rem) !important;
+    max-width: calc(7.5% - 1rem) !important;
+}
+</style>''', unsafe_allow_html=True)
+
+st.write('''<style>
+[data-testid="column"]:nth-child(2){
+    width: calc(85% - 1rem) !important;
+    flex: 1 1 calc(85% - 1rem) !important;
+    min-width: calc(85% - 1rem) !important;
+}
+</style>''', unsafe_allow_html=True)
+
+st.write('''<style>
+[data-testid="column"]:nth-child(3){
+    width: calc(7.5% - 1rem) !important;
+    flex: 1 1 calc(7.5% - 1rem) !important;
+    max-width: calc(7.5% - 1rem) !important;
+}
+</style>''', unsafe_allow_html=True)
+
 
 C1, C2, C3 = st.columns([side_gap, body_gap ,side_gap])
 with C1: st.empty()
@@ -108,29 +128,31 @@ with C2:
                 
                 st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중 </div>', unsafe_allow_html=True)
                 
+                epsilon = 0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
                 with st.expander("8월 13일(첫날)", expanded = True):
-                    col1, col2 = st.columns(2)
-#                     st.write('''<style>
-#                         [data-testid="column"] {
-#                             width: calc(50% - 1rem) !important;
-#                             flex: 1 1 calc(50% - 1rem) !important;
-#                             min-width: calc(50% - 1rem) !important;
-#                         }
-#                         </style>''', unsafe_allow_html=True)
-
+                    col1, col2, col3, col4, col5 = st.columns([epsilon,epsilon,epsilon,5,5])
                     
-                    with col1:
+#                     st.write('''<style>
+#                     [data-testid="column"]:nth-child(4){
+#                         width: calc(42.5% - 1rem) !important;
+#                         flex: 1 1 calc(42.5% - 1rem) !important;
+#                         min-width: calc(42.5% - 1rem) !important;
+#                     }
+#                     </style>''', unsafe_allow_html=True)
+                    
+                    
+                    with col4:
                         # 모서리가 둥근 텍스트 박스 안에서 작업
-                        col1.metric(":green:[🛧 대전 → 청주공항]", f"{result['버스 좌석 1'].values[0]}")
-                        col1.metric(":green[🛧 제주공항 → 숙소]", f"{result['버스 좌석 2'].values[0]}")
-                    with col2:
-                        col2.metric(":green[🛧 청주공항 → 제주공항]", f"{result['비행기 좌석'].values[0]}")
-                        col2.metric("숙소배정", f"{result['숙소 호수'].values[0]}")
+                        col4.metric(":green[🛧 대전 → 청주공항]", f"{result['버스 좌석 1'].values[0]}")
+                        col4.metric(":green[🛧 제주공항 → 숙소]", f"{result['버스 좌석 2'].values[0]}")
+                    with col5:
+                        col5.metric(":green[🛧 청주공항 → 제주공항]", f"{result['비행기 좌석'].values[0]}")
+                        col5.metric("숙소배정", f"{result['숙소 호수'].values[0]}")
 
                 with st.expander("8월 14일(테마활동 둘째날이 맞나요?? ㅎㅎ)", expanded = True):
-                    col1, col2 = st.columns(2)
+                    col1, col2, col3, col4, col5 = st.columns([epsilon,epsilon,epsilon,5,5])
 
-                    col1.metric("@테마장소이름넣기@", f"{result['테마'].values[0]}", "테마")
-                    col2.metric("제주숙소 → 테마장소", f"{result['버스 좌석 3'].values[0]}", "버스좌석")
+                    col4.metric("@테마장소이름넣기@", f"{result['테마'].values[0]}", "테마")
+                    col5.metric("제주숙소 → 테마장소", f"{result['버스 좌석 3'].values[0]}", "버스좌석")
     else :
         pass 
