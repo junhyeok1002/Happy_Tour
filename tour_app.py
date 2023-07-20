@@ -74,6 +74,7 @@ st.write('''<style>
     width: calc(85% - 1rem) !important;
     flex: 1 1 calc(85% - 1rem) !important;
     min-width: calc(85% - 1rem) !important;
+    max-width: calc(90% - 1rem) !important;
 }
 </style>''', unsafe_allow_html=True)
 
@@ -92,16 +93,16 @@ with C3: st.empty() # C3: right blank
 with C2:            #C2: body
 
 # 이게 무슨 코드일까 나중에 지우자 
-#     # 검색어 입력
-#     change_text = """
-#     <style>
-#     div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx {visibility: hidden;}
-#     div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx:before {content: ""; visibility: visible;}
-#     </style>
-#     """
-#     st.markdown(change_text, unsafe_allow_html=True)
+    # 검색어 입력
+    change_text = """
+    <style>
+    div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx {visibility: hidden;}
+    div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx:before {content: ""; visibility: visible;}
+    </style>
+    """
+    st.markdown(change_text, unsafe_allow_html=True)
 
-    name_list = st.multiselect('성함을 입력해주세요(한번에 여러 명 검색가능합니다.)-> 이 멘트 좀 구린데 뭐로바꾸지', names,max_selections=None)
+    name_list = st.multiselect('성함을 입력해주세요(한번에 여러 명 검색가능합니다.)->멘트 구림', names,max_selections=None)
 
     # 초기 흐름 제어 : 검색하면 처리하도록
     if len(name_list) > 0:
