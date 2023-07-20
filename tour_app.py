@@ -9,20 +9,6 @@ df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
 # 이름 목록
 names = list(df.index)
 
-
-st.code(f"""
-[theme]
-base="light"
-primaryColor="#F0A23D"
-backgroundColor="#FFFFFF"
-secondaryBackgroundColor="#F0F2F6"
-textColor="#31333F"
-""", language="toml")
-
-
-
-
-
 with open('style.css')as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
 
@@ -34,30 +20,30 @@ custom_style = """
             border-radius: 10px;
             padding: 10px;
         }
-        .streamlit-layout .C1 {
-            max-width: 7.5%;
-        }
-        .streamlit-layout .C3 {
-            max-width: 7.5%;
-        }
-        .streamlit-layout .C2 {
-            max-width: 85%;
-        }
     </style>
 """
 # 커스텀 스타일을 적용
 st.markdown(custom_style, unsafe_allow_html=True)
 
-    
-st.markdown("""
-<style>
-    body {
-        backgroundColor: blue;
-        #F0A23D
-    }
-</style>
-""", unsafe_allow_html=True)
 
+
+st.markdown(
+    """
+        <style>
+            .appview-container .main .block-container {{
+                padding-top: {padding_top}rem;
+                padding-left: {padding_left}rem;
+                padding-right: {padding_right}rem;
+                }}
+
+        </style>""".format(
+        padding_top=0, padding_left=0, padding_right=0
+    ),
+    unsafe_allow_html=True,
+)
+
+
+# 이미지 확대 버튼 숨기기 -> 자연스러운 UI/UX를 위함 : 확대 버튼이 width layout을 해치는 문제가 있었음
 hide_img_fs = '''
 <style>
 button[title="View fullscreen"]{
@@ -66,15 +52,17 @@ button[title="View fullscreen"]{
 '''
 st.markdown(hide_img_fs, unsafe_allow_html=True)
 
+# 디자인 이미지 호출하여 삽입
 image_path = './image/design.jpg'
 image = Image.open(image_path)
 st.image(image,use_column_width  = True)# caption='Sunrise by the mountains')
 
 
-
+# 디자인 이미지 layout에 맞게 좌우 여백 추가 7.5%, 85%, 7.5% 
 side_gap = 0.75
 body_gap = 10-2*side_gap
 
+# 화면 너비의 비율%설정으로 모바일에서 깨지는 현상 해결하기  
 st.write('''<style>
 [data-testid="column"]:nth-child(1){
     width: calc(7.5% - 1rem) !important;
@@ -99,22 +87,23 @@ st.write('''<style>
 }
 </style>''', unsafe_allow_html=True)
 
-
+# C1: left blank, C2: body, C3: right blank
 C1, C2, C3 = st.columns([side_gap, body_gap ,side_gap])
-with C1: st.empty()
-with C3: st.empty()   
-with C2:
+with C1: st.empty() # C1: left blank
+with C3: st.empty() # C3: right blank
+with C2:            #C2: body
 
-    # 검색어 입력
-    change_text = """
-    <style>
-    div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx {visibility: hidden;}
-    div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx:before {content: ""; visibility: visible;}
-    </style>
-    """
-    st.markdown(change_text, unsafe_allow_html=True)
+# 이게 무슨 코드일까 나중에 지우자 
+#     # 검색어 입력
+#     change_text = """
+#     <style>
+#     div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx {visibility: hidden;}
+#     div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx:before {content: ""; visibility: visible;}
+#     </style>
+#     """
+#     st.markdown(change_text, unsafe_allow_html=True)
 
-    name_list = st.multiselect('성함을 입력해주세요(한번에 여러 명 검색가능합니다.)', names,max_selections=None)
+    name_list = st.multiselect('성함을 입력해주세요(한번에 여러 명 검색가능합니다.)-> 이 멘트 좀 구린데 뭐로바꾸지', names,max_selections=None)
 
     # 초기 흐름 제어 : 검색하면 처리하도록
     if len(name_list) > 0:
@@ -125,7 +114,9 @@ with C2:
         tabs= st.tabs(name_list)
         for i, name in enumerate(name_list):
             with tabs[i]:
-                if (name not in df.index) or (list(df.index).count(name) > 1) :
+                # 이름에 오타가 났을때 db저장된 이름과 유사도를 확인하여 찾으시는 이름을 제시해주는 코드 
+                # multiselect search 방식을 바꾸면서 아래의 if문 블럭은 현재 필요없는 코드임
+                if (name not in df.index) or (list(df.index).count(name) > 1) : #이름이 DB목록에 없을 경우 발동
                     # 유사한 결과 찾기
                     matches = process.extract(name, names, scorer=fuzz.token_set_ratio, limit=500)
 
@@ -136,9 +127,12 @@ with C2:
 
                     wrong_name = name[:]
                     name = st.radio(f"찾으시는 성함을 클릭해주세요. 아래에도 없을 경우 이주노 전도사님께 문의부탁드립니다", matches_list)
-
+                
+                # 검색된 name을 가진 사람의 정보를 1행 DataFrame으로 만든 변수 : result
                 result = df[df.index == name]
                 
+              
+                # 아래 대형 공사중 : metric 사용하지 않고, html/css로 디자인하기
                 st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중 </div>', unsafe_allow_html=True)
                 
                 epsilon = 0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
