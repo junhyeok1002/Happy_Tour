@@ -134,7 +134,7 @@ with C2:            #C2: body
                 
               
                 # 아래 대형 공사중 : metric 사용하지 않고, html/css로 디자인하기
-                st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중 </div>', unsafe_allow_html=True)
+                st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중, 글짜 크기키우기, 배치 디자인 다시, 이모지 너무 유치해보이는데 고급스럽게 바꿀 방법찾기, 등등.... </div>', unsafe_allow_html=True)
                 
                 epsilon = 0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
                 with st.expander("8월 13일(첫날)", expanded = True):
@@ -142,29 +142,29 @@ with C2:            #C2: body
                     
                     st.write('''<style>
                     [data-testid="column"]:nth-child(4){
-                        width: calc(40% - 1rem) !important;
-                        flex: 1 1 calc(40% - 1rem) !important;
-                        min-width: calc(40% - 1rem) !important;
-                        max-width: calc(40% - 1rem) !important;
+                        width: calc(49% - 1rem) !important;
+                        flex: 1 1 calc(49% - 1rem) !important;
+                        min-width: calc(49% - 1rem) !important;
+                        max-width: calc(49% - 1rem) !important;
                     }
                     </style>''', unsafe_allow_html=True)
                     
                     st.write('''<style>
                     [data-testid="column"]:nth-child(5){
-                        width: calc(40% - 1rem) !important;
-                        flex: 1 1 calc(40% - 1rem) !important;
-                        min-width: calc(40% - 1rem) !important;
-                        max-width: calc(40% - 1rem) !important;
+                        width: calc(49% - 1rem) !important;
+                        flex: 1 1 calc(49% - 1rem) !important;
+                        min-width: calc(49% - 1rem) !important;
+                        max-width: calc(49% - 1rem) !important;
                     }
                     </style>''', unsafe_allow_html=True)
                     
                     with col4:
                         # 모서리가 둥근 텍스트 박스 안에서 작업
-                        col4.metric(":green[🛧 대전 → 청주공항]", f"{result['버스 좌석 1'].values[0]}")
-                        col4.metric(":green[🛧 제주공항 → 숙소]", f"{result['버스 좌석 2'].values[0]}")
+                        col4.metric(":bus: :green[대전 → 청주공항]", f"{result['버스 좌석 1'].values[0]}")
+                        col4.metric(":bus: :green[제주공항 → 숙소]", f"{result['버스 좌석 2'].values[0]}")
                     with col5:
-                        col5.metric(":green[🛧 청주공항 → 제주공항]", f"{result['비행기 좌석'].values[0]}")
-                        col5.metric("숙소배정", f"{result['숙소 호수'].values[0]}")
+                        col5.metric(":airplane: :green[청주공항 → 제주공항]", f"{result['비행기 좌석'].values[0]}")
+                        col5.metric(":house: :green[숙소배정]", f"{result['숙소 호수'].values[0]}")
 
                 with st.expander("8월 14일(테마활동 둘째날이 맞나요?? ㅎㅎ)", expanded = True):
                     col1, col2, col3, col4, col5 = st.columns([epsilon,epsilon,epsilon,5,5])
