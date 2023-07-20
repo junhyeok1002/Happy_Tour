@@ -140,14 +140,23 @@ with C2:            #C2: body
                 with st.expander("8월 13일(첫날)", expanded = True):
                     col1, col2, col3, col4, col5 = st.columns([epsilon,epsilon,epsilon,5,5])
                     
-#                     st.write('''<style>
-#                     [data-testid="column"]:nth-child(4){
-#                         width: calc(42.5% - 1rem) !important;
-#                         flex: 1 1 calc(42.5% - 1rem) !important;
-#                         min-width: calc(42.5% - 1rem) !important;
-#                     }
-#                     </style>''', unsafe_allow_html=True)
+                    st.write('''<style>
+                    [data-testid="column"]:nth-child(4){
+                        width: calc(40% - 1rem) !important;
+                        flex: 1 1 calc(40% - 1rem) !important;
+                        min-width: calc(40% - 1rem) !important;
+                        max-width: calc(40% - 1rem) !important;
+                    }
+                    </style>''', unsafe_allow_html=True)
                     
+                    st.write('''<style>
+                    [data-testid="column"]:nth-child(5){
+                        width: calc(40% - 1rem) !important;
+                        flex: 1 1 calc(40% - 1rem) !important;
+                        min-width: calc(40% - 1rem) !important;
+                        max-width: calc(40% - 1rem) !important;
+                    }
+                    </style>''', unsafe_allow_html=True)
                     
                     with col4:
                         # 모서리가 둥근 텍스트 박스 안에서 작업
