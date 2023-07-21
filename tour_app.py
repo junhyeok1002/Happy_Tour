@@ -24,7 +24,8 @@ C1, C2, C3 = st.columns([side_gap, body_gap ,side_gap])
 with C1: pass # C1: left blank
 with C3: pass # C3: right blank
 with C2:            #C2: body
-    name_list = st.multiselect('성함을 입력해주세요(한번에 여러 명 검색가능합니다.)->멘트 구림', names,max_selections=None)
+    name_list = st.multiselect('찾으시는 성함들을 입력해주세요.',\
+                               names,max_selections=None,label_visibility = 'collapsed')
 
     # 초기 흐름 제어 : 검색하면 처리하도록
     if len(name_list) > 0:
@@ -134,6 +135,9 @@ st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적�
 # 이미지 확대 버튼 숨기기 -> 자연스러운 UI/UX를 위함 : 확대 버튼이 width layout을 해치는 문제가 있었음 
 # button[title="View fullscreen"]{visibility: hidden;}
 
+# multibox 내부 글자 숨기거나, 설정하기
+# div.st-cw st-cd st-bk st-cx st-cy st-cz
+
 # 화면 너비의 비율%설정으로 모바일에서 깨지는 현상 해결하기  
 # [data-testid="column"]:nth-child(1,2,3.....)
 
@@ -150,6 +154,9 @@ st.markdown('''
 #MainMenu, header , footer {visibility: hidden;}
 
 button[title="View fullscreen"]{visibility: hidden;}
+
+div.st-cw st-cd st-bk st-cx st-cy st-cz {visibility: hidden;}
+div.st-cw st-cd st-bk st-cx st-cy st-cz:before {content: "찾으시는 성함들을 입력해주세요."; visibility: visible;}
 
 [data-testid="column"]:nth-child(1){
     width: calc(7.5% - 1rem) !important;
