@@ -9,63 +9,9 @@ df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
 # 이름 목록
 names = list(df.index)
 
-with open('style.css')as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
+# with open('style.css')as f:
+#     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
 
-    
-custom_style = """
-    <style>
-        .rounded-text-box {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 10px;
-        }
-    </style>
-"""
-# 커스텀 스타일을 적용
-st.markdown(custom_style, unsafe_allow_html=True)
-
-
-
-st.markdown(
-    """
-        <style>
-            .appview-container .main .block-container {{
-                max-width: 100%;
-                padding-top: {padding_top}rem;
-                padding-left: {padding_left}rem;
-                padding-right: {padding_right}rem;
-                padding-bottom: {padding_bottom}rem;
-                }}
-
-        </style>""".format(
-        padding_top=0, padding_left=0, padding_right=0, padding_bottom=0
-    ),
-    unsafe_allow_html=True,
-)
-
-# 툴바 없애기
-st.markdown(
-    """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-
-
-
-# 이미지 확대 버튼 숨기기 -> 자연스러운 UI/UX를 위함 : 확대 버튼이 width layout을 해치는 문제가 있었음
-hide_img_fs = '''
-<style>
-button[title="View fullscreen"]{
-    visibility: hidden;}
-</style>
-'''
-st.markdown(hide_img_fs, unsafe_allow_html=True)
 
 # 디자인 이미지 호출하여 삽입
 image_path = './image/design.jpg'
@@ -77,49 +23,41 @@ st.image(image,use_column_width  = True)# caption='Sunrise by the mountains')
 side_gap = 0.75
 body_gap = 10-2*side_gap
 
-# 화면 너비의 비율%설정으로 모바일에서 깨지는 현상 해결하기  
-st.write('''<style>
-[data-testid="column"]:nth-child(1){
-    width: calc(7.5% - 1rem) !important;
-    flex: 1 1 calc(7.5% - 1rem) !important;
-    max-width: calc(7.5% - 1rem) !important;
-    min-width: calc(7% - 1rem) !important;
-}
-</style>''', unsafe_allow_html=True)
 
-st.write('''<style>
-[data-testid="column"]:nth-child(2){
-    width: calc(85% - 1rem) !important;
-    flex: 1 1 calc(85% - 1rem) !important;
-    min-width: calc(85% - 1rem) !important;
-    max-width: calc(90% - 1rem) !important;
-}
-</style>''', unsafe_allow_html=True)
 
-st.write('''<style>
-[data-testid="column"]:nth-child(3){
-    width: calc(7.5% - 1rem) !important;
-    flex: 1 1 calc(7.5% - 1rem) !important;
-    max-width: calc(7.5% - 1rem) !important;
-    min-width: calc(7% - 1rem) !important;
-}
-</style>''', unsafe_allow_html=True)
+# st.markdown('''<style>
+# [data-testid="column"]:nth-child(2){
+#     width: calc(85% - 1rem) !important;
+#     flex: 1 1 calc(85% - 1rem) !important;
+#     min-width: calc(85% - 1rem) !important;
+#     max-width: calc(90% - 1rem) !important;
+# }
+# </style>''', unsafe_allow_html=True)
+
+# st.markdown('''<style>
+# [data-testid="column"]:nth-child(3){
+#     width: calc(7.5% - 1rem) !important;
+#     flex: 1 1 calc(7.5% - 1rem) !important;
+#     max-width: calc(7.5% - 1rem) !important;
+#     min-width: calc(7% - 1rem) !important;
+# }
+# </style>''', unsafe_allow_html=True)
 
 # C1: left blank, C2: body, C3: right blank
 C1, C2, C3 = st.columns([side_gap, body_gap ,side_gap])
-with C1: st.empty() # C1: left blank
-with C3: st.empty() # C3: right blank
+with C1: pass # C1: left blank
+with C3: pass # C3: right blank
 with C2:            #C2: body
 
 # 이게 무슨 코드일까 나중에 지우자 
     # 검색어 입력
-    change_text = """
-    <style>
-    div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx {visibility: hidden;}
-    div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx:before {content: ""; visibility: visible;}
-    </style>
-    """
-    st.markdown(change_text, unsafe_allow_html=True)
+#     change_text = """
+#     <style>
+#     div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx {visibility: hidden;}
+#     div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx:before {content: ""; visibility: visible;}
+#     </style>
+#     """
+#     st.markdown(change_text, unsafe_allow_html=True)
 
     name_list = st.multiselect('성함을 입력해주세요(한번에 여러 명 검색가능합니다.)->멘트 구림', names,max_selections=None)
 
@@ -190,3 +128,85 @@ with C2:            #C2: body
                     col5.metric("제주숙소 → 테마장소", f"{result['버스 좌석 3'].values[0]}", "버스좌석")
     else :
         pass 
+
+    
+    
+
+# STYLE 지정
+
+custom_style = """
+    <style>
+        .rounded-text-box {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+"""
+# 커스텀 스타일을 적용
+st.markdown(custom_style, unsafe_allow_html=True)
+
+
+#max-width: 100% 뺴면 PC버전에서도 알맞게 보임
+st.markdown(
+    """
+        <style>
+            .appview-container .main .block-container {
+                padding-top: 0rem;
+                padding-left: 0rem;
+                padding-right: 0rem;
+                padding-bottom: 0rem;
+                }
+        </style>""",
+    unsafe_allow_html=True,
+)
+
+hide_streamlit_style = """
+<style>
+    #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
+</style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+# 툴바 없애기
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# 이미지 확대 버튼 숨기기 -> 자연스러운 UI/UX를 위함 : 확대 버튼이 width layout을 해치는 문제가 있었음
+hide_img_fs = '''
+<style>
+button[title="View fullscreen"]{
+    visibility: hidden;}
+</style>
+'''
+st.markdown(hide_img_fs, unsafe_allow_html=True)
+
+
+# 화면 너비의 비율%설정으로 모바일에서 깨지는 현상 해결하기  
+st.markdown('''<style>
+[data-testid="column"]:nth-child(1){
+    width: calc(7.5% - 1rem) !important;
+    flex: 1 1 calc(7.5% - 1rem) !important;
+    max-width: calc(7.5% - 1rem) !important;
+    min-width: calc(7% - 1rem) !important;
+}
+[data-testid="column"]:nth-child(2){
+    width: calc(85% - 1rem) !important;
+    flex: 1 1 calc(85% - 1rem) !important;
+    min-width: calc(85% - 1rem) !important;
+    max-width: calc(90% - 1rem) !important;
+}
+[data-testid="column"]:nth-child(3){
+    width: calc(7.5% - 1rem) !important;
+    flex: 1 1 calc(7.5% - 1rem) !important;
+    max-width: calc(7.5% - 1rem) !important;
+    min-width: calc(7% - 1rem) !important;
+}
+</style>''', unsafe_allow_html=True)
