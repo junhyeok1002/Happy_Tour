@@ -6,59 +6,24 @@ from PIL import Image
 
 # XLS 파일 읽기
 df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
+
 # 이름 목록
 names = list(df.index)
-
-# with open('style.css')as f:
-#     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
-
 
 # 디자인 이미지 호출하여 삽입
 image_path = './image/design.jpg'
 image = Image.open(image_path)
 st.image(image,use_column_width  = True)# caption='Sunrise by the mountains')
 
-
 # 디자인 이미지 layout에 맞게 좌우 여백 추가 7.5%, 85%, 7.5% 
 side_gap = 0.75
 body_gap = 10-2*side_gap
-
-
-
-# st.markdown('''<style>
-# [data-testid="column"]:nth-child(2){
-#     width: calc(85% - 1rem) !important;
-#     flex: 1 1 calc(85% - 1rem) !important;
-#     min-width: calc(85% - 1rem) !important;
-#     max-width: calc(90% - 1rem) !important;
-# }
-# </style>''', unsafe_allow_html=True)
-
-# st.markdown('''<style>
-# [data-testid="column"]:nth-child(3){
-#     width: calc(7.5% - 1rem) !important;
-#     flex: 1 1 calc(7.5% - 1rem) !important;
-#     max-width: calc(7.5% - 1rem) !important;
-#     min-width: calc(7% - 1rem) !important;
-# }
-# </style>''', unsafe_allow_html=True)
 
 # C1: left blank, C2: body, C3: right blank
 C1, C2, C3 = st.columns([side_gap, body_gap ,side_gap])
 with C1: pass # C1: left blank
 with C3: pass # C3: right blank
 with C2:            #C2: body
-
-# 이게 무슨 코드일까 나중에 지우자 
-    # 검색어 입력
-#     change_text = """
-#     <style>
-#     div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx {visibility: hidden;}
-#     div.st-cu.st-cb.st-bi.st-cv.st-cw.st-cx:before {content: ""; visibility: visible;}
-#     </style>
-#     """
-#     st.markdown(change_text, unsafe_allow_html=True)
-
     name_list = st.multiselect('성함을 입력해주세요(한번에 여러 명 검색가능합니다.)->멘트 구림', names,max_selections=None)
 
     # 초기 흐름 제어 : 검색하면 처리하도록
@@ -134,6 +99,8 @@ with C2:            #C2: body
 
 # STYLE 지정
 
+
+# 커스텀 component 만들기 위한 코드
 custom_style = """
     <style>
         .rounded-text-box {
@@ -143,70 +110,63 @@ custom_style = """
         }
     </style>
 """
-# 커스텀 스타일을 적용
-st.markdown(custom_style, unsafe_allow_html=True)
+st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적용
 
 
-#max-width: 100% 뺴면 PC버전에서도 알맞게 보임
-st.markdown(
-    """
-        <style>
-            .appview-container .main .block-container {
-                padding-top: 0rem;
-                padding-left: 0rem;
-                padding-right: 0rem;
-                padding-bottom: 0rem;
-                }
-        </style>""",
-    unsafe_allow_html=True,
-)
 
-hide_streamlit_style = """
-<style>
-    #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
-</style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+# hide_streamlit_style = """
+# <style>
+#     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
+# </style>
+# """
+# st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+
+
+### @ 아래코드는 HTML, CSS를 이용해 디테일한 스타일을 지정하기 위함
+
+# 상하좌우 여백 제거 + max-width: 100% 뺴면 PC버전에서도 알맞게 보임
+# .appview-container .main .block-container {.....}
 
 # 툴바 없애기
-st.markdown(
-    """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+# #MainMenu {visibility: hidden;} footer {visibility: hidden;}
 
-# 이미지 확대 버튼 숨기기 -> 자연스러운 UI/UX를 위함 : 확대 버튼이 width layout을 해치는 문제가 있었음
-hide_img_fs = '''
-<style>
-button[title="View fullscreen"]{
-    visibility: hidden;}
-</style>
-'''
-st.markdown(hide_img_fs, unsafe_allow_html=True)
-
+# 이미지 확대 버튼 숨기기 -> 자연스러운 UI/UX를 위함 : 확대 버튼이 width layout을 해치는 문제가 있었음 
+# button[title="View fullscreen"]{visibility: hidden;}
 
 # 화면 너비의 비율%설정으로 모바일에서 깨지는 현상 해결하기  
-st.markdown('''<style>
+# [data-testid="column"]:nth-child(1,2,3.....)
+
+st.markdown('''
+<style>
+
+.appview-container .main .block-container {
+    padding-top: 0rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    padding-bottom: 0rem;
+}
+
+#MainMenu, header , footer {visibility: hidden;}
+
+button[title="View fullscreen"]{visibility: hidden;}
+
 [data-testid="column"]:nth-child(1){
     width: calc(7.5% - 1rem) !important;
     flex: 1 1 calc(7.5% - 1rem) !important;
     max-width: calc(7.5% - 1rem) !important;
-    min-width: calc(7% - 1rem) !important;
-}
+    min-width: calc(7% - 1rem) !important;}
 [data-testid="column"]:nth-child(2){
     width: calc(85% - 1rem) !important;
     flex: 1 1 calc(85% - 1rem) !important;
     min-width: calc(85% - 1rem) !important;
-    max-width: calc(90% - 1rem) !important;
-}
+    max-width: calc(90% - 1rem) !important;}
 [data-testid="column"]:nth-child(3){
     width: calc(7.5% - 1rem) !important;
     flex: 1 1 calc(7.5% - 1rem) !important;
     max-width: calc(7.5% - 1rem) !important;
-    min-width: calc(7% - 1rem) !important;
-}
+    min-width: calc(7% - 1rem) !important;}
 </style>''', unsafe_allow_html=True)
+
+# with open('style.css')as f:
+#     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
