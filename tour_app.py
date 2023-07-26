@@ -55,10 +55,16 @@ with C2:            #C2: body
                 
               
                 # 아래 대형 공사중 : metric 사용하지 않고, html/css로 디자인하기
-                st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중, 글짜 크기키우기, 배치 디자인 다시, 이모지 너무 유치해보이는데 고급스럽게 바꿀 방법찾기, 등등.... </div>', unsafe_allow_html=True)
+                # st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중, 글짜 크기키우기, 배치 디자인 다시, 이모지 너무 유치해보이는데 고급스럽게 바꿀 방법찾기, 등등.... </div>', unsafe_allow_html=True)
+                
+                with st.expander("Day 1, 08/13", expanded = True):
+                    st.write(" ddd")
+                    # 폰트 사이즈 20으로 "안녕하세요" 출력
+                    st.markdown('<span class="custom-font">대전 → 청주공항</span>', unsafe_allow_html=True)
+                
                 
                 epsilon = 0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
-                with st.expander("8월 13일(첫날)", expanded = True):
+                with st.expander("Day 1, 08/13", expanded = True):
                     col1, col2, col3, col4, col5 = st.columns([epsilon,epsilon,epsilon,5,5])
                     
                     st.write('''<style>
@@ -87,14 +93,49 @@ with C2:            #C2: body
                         col5.metric(":airplane: :green[청주공항 → 제주공항]", f"{result['비행기 좌석'].values[0]}")
                         col5.metric(":house: :green[숙소배정]", f"{result['숙소 호수'].values[0]}")
 
-                with st.expander("8월 14일(테마활동 둘째날이 맞나요?? ㅎㅎ)", expanded = True):
+                with st.expander("Day 2, 08/14", expanded = True):
                     col1, col2, col3, col4, col5 = st.columns([epsilon,epsilon,epsilon,5,5])
 
                     col4.metric("@테마장소이름넣기@", f"{result['테마'].values[0]}", "테마")
                     col5.metric("제주숙소 → 테마장소", f"{result['버스 좌석 3'].values[0]}", "버스좌석")
+                    
+                with st.expander("Day 3, 08/15", expanded = True):
+                    st.write("????????")
     else :
         pass 
 
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
     
     
 
@@ -109,18 +150,12 @@ custom_style = """
             border-radius: 10px;
             padding: 10px;
         }
+        .custom-font {
+            font-size: 20px;
+        }
     </style>
 """
 st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적용
-
-
-
-# hide_streamlit_style = """
-# <style>
-#     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
-# </style>
-# """
-# st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
 
@@ -134,6 +169,9 @@ st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적�
 
 # 이미지 확대 버튼 숨기기 -> 자연스러운 UI/UX를 위함 : 확대 버튼이 width layout을 해치는 문제가 있었음 
 # button[title="View fullscreen"]{visibility: hidden;}
+
+# expander fontsize 수정
+# div[data-testid="stExpander"] div[role="button"]
 
 # multibox 내부 글자 숨기거나, 설정하기
 # div.st-cw st-cd st-bk st-cx st-cy st-cz
@@ -154,6 +192,10 @@ st.markdown('''
 #MainMenu, header , footer {visibility: hidden;}
 
 button[title="View fullscreen"]{visibility: hidden;}
+
+div[data-testid="stExpander"] div[role="button"] p {
+    font-size: 1.5rem;
+}
 
 div.st-cw st-cd st-bk st-cx st-cy st-cz {visibility: hidden;}
 div.st-cw st-cd st-bk st-cx st-cy st-cz:before {content: "찾으시는 성함들을 입력해주세요."; visibility: visible;}
