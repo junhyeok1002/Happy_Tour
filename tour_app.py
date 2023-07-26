@@ -107,11 +107,6 @@ with C2:            #C2: body
     
     
     
-    
-    
-    
-    
-    
 
     
     
@@ -174,7 +169,7 @@ st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적�
 # div[data-testid="stExpander"] div[role="button"]
 
 # multibox 내부 글자 숨기거나, 설정하기
-# div.st-cw st-cd st-bk st-cx st-cy st-cz
+# div[class="row-widget stMultiSelect"]
 
 # 화면 너비의 비율%설정으로 모바일에서 깨지는 현상 해결하기  
 # [data-testid="column"]:nth-child(1,2,3.....)
@@ -197,8 +192,12 @@ div[data-testid="stExpander"] div[role="button"] p {
     font-size: 1.5rem;
 }
 
-div.st-cw st-cd st-bk st-cx st-cy st-cz {visibility: hidden;}
-div.st-cw st-cd st-bk st-cx st-cy st-cz:before {content: "찾으시는 성함들을 입력해주세요."; visibility: visible;}
+div[class="row-widget stMultiSelect"]:nth-child(1) div:nth-child(2) div:nth-child(1) div:nth-child(1) div:nth-child(1) div:nth-child(2) {
+    visibility: hidden;
+}
+div[class="row-widget stMultiSelect"]:nth-child(1) div:nth-child(2) div:nth-child(1) div:nth-child(1) div:nth-child(1) div:nth-child(1):before {
+    content: "성함을 입력해주세요."; visibility: visible;
+}
 
 [data-testid="column"]:nth-child(1){
     width: calc(7.5% - 1rem) !important;
