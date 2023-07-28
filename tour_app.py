@@ -19,12 +19,27 @@ st.image(image,use_column_width  = True)# caption='Sunrise by the mountains')
 side_gap = 0.75
 body_gap = 10-2*side_gap
 
+
+
+# multibox_control
+multibox_blank_case = """
+<style>
+div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2){
+    visibility: hidden;
+}
+div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2):before {
+    content: "성함을 입력해주세요."; visibility: visible;
+}    
+</style>
+"""    
+
 # C1: left blank, C2: body, C3: right blank
 C1, C2, C3 = st.columns([side_gap, body_gap ,side_gap])
 with C1: pass # C1: left blank
 with C3: pass # C3: right blank
 with C2:            #C2: body
-    name_list = st.multiselect('찾으시는 성함들을 입력해주세요.',\
+
+    name_list = st.multiselect('검색',\
                                names,max_selections=None,label_visibility = 'collapsed')
 
     # 초기 흐름 제어 : 검색하면 처리하도록
@@ -58,10 +73,11 @@ with C2:            #C2: body
                 # st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중, 글짜 크기키우기, 배치 디자인 다시, 이모지 너무 유치해보이는데 고급스럽게 바꿀 방법찾기, 등등.... </div>', unsafe_allow_html=True)
                 
                 with st.expander("Day 1, 08/13", expanded = True):
-                    st.write(" ddd")
                     # 폰트 사이즈 20으로 "안녕하세요" 출력
-                    st.markdown('<span class="custom-font">대전 → 청주공항</span>', unsafe_allow_html=True)
-                
+                    st.markdown('<span class="custom-font">대전 → 청주공항</span>', unsafe_allow_html=True) 
+                    st.markdown('<span class="custom-font">청주공항 → 제주공항</span>', unsafe_allow_html=True)
+                    st.markdown('<span class="custom-font">제주공항 → 숙소</span>', unsafe_allow_html=True)
+                    st.markdown('<span class="custom-font">숙소 배정</span>', unsafe_allow_html=True)
                 
                 epsilon = 0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
                 with st.expander("Day 1, 08/13", expanded = True):
@@ -100,27 +116,23 @@ with C2:            #C2: body
                     col5.metric("제주숙소 → 테마장소", f"{result['버스 좌석 3'].values[0]}", "버스좌석")
                     
                 with st.expander("Day 3, 08/15", expanded = True):
-                    st.write("????????")
+                    st.write("업데이트 중")
     else :
-        pass 
+        st.markdown(multibox_blank_case, unsafe_allow_html=True)
+        pass
 
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 
@@ -192,13 +204,6 @@ div[data-testid="stExpander"] div[role="button"] p {
     font-size: 1.5rem;
 }
 
-div[class="row-widget stMultiSelect"]:nth-child(1) div:nth-child(2) div:nth-child(1) div:nth-child(1) div:nth-child(1) div:nth-child(2) {
-    visibility: hidden;
-}
-div[class="row-widget stMultiSelect"]:nth-child(1) div:nth-child(2) div:nth-child(1) div:nth-child(1) div:nth-child(1) div:nth-child(1):before {
-    content: "성함을 입력해주세요."; visibility: visible;
-}
-
 [data-testid="column"]:nth-child(1){
     width: calc(7.5% - 1rem) !important;
     flex: 1 1 calc(7.5% - 1rem) !important;
@@ -218,3 +223,11 @@ div[class="row-widget stMultiSelect"]:nth-child(1) div:nth-child(2) div:nth-chil
 
 # with open('style.css')as f:
 #     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
+
+
+
+
+
+
+
+
