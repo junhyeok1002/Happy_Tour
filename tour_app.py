@@ -158,7 +158,7 @@ custom_style = """
             padding: 10px;
         }
         .custom-font {
-            font-size: 20px;
+            font-size: 1.1rem;
         }
     </style>
 """
