@@ -212,13 +212,13 @@ ul.streamlit-expander {
 .streamlit-expanderHeader {
     background-color: white;
     color: black;
-    padding: 8px, 8px;
+    padding: 8px 8px;
 
 }
 .streamlit-expanderContent {
     background-color: white;
     color: black; 
-    padding: 0px, 8px, 8px; 8px
+    padding: 0px 8px 8px 8px;
 }
 
 [data-testid="column"]:nth-child(1){
@@ -249,14 +249,14 @@ st.markdown("""
     table {
         width: 100%;
         border: 0.1rem solid #F0A23D;
-        border-spacing; 0;
+        border-spacing: 0;
         padding:0; margin:0;
     }
 
     td, th {
         text-align: center;
-        border-spacing; 0;
-        padding:0; margin:0;
+        border-spacing: 0;
+        padding:0px 0px; margin:0;
     }
     
     td:nth-child(1),th:nth-child(1) { 
