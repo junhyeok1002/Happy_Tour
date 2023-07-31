@@ -22,7 +22,7 @@ body_gap = 10-2*side_gap
 # 티켓 생성 함수
 def ticket(emoji,first,second,third,fourth):
     st.markdown(f"""
-    <table cellpadding="0" cellspacing="0">
+    <table>
       <tr>
         <td><span class="custom-ticket-font">{first[0]}</span><br><span class="custom-ticket-small-font">{first[1]}</span></td>
         <td><span class="custom-ticket-font">🚌</span></td>
@@ -247,10 +247,11 @@ st.markdown("""
 <style>
     table {
         width: 100%;
+        border-spacing: 0;
         border: 0.1rem solid #F0A23D;
     }
 
-    td {
+    td, th {
         text-align: center;
         padding: 0px 0px 0px 0px;
     }
