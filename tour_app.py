@@ -25,15 +25,13 @@ def ticket(emoji,first,second,third,fourth):
         st.markdown(f"""
         <table>
           <tr>
-            <td><span class="custom-ticket-font">{first[0]}<br>{first[1]}</span></td>
+            <td><span class="custom-ticket-font">{first[0]}</span><br><span class="custom-ticket-small-font">{first[1]}</span></td>
             <td><span class="custom-ticket-font">🚌</span></td>
-            <td><span class="custom-ticket-font">{third[0]}<br>{third[1]}</span></td>
+            <td><span class="custom-ticket-font">{third[0]}</span><br><span class="custom-ticket-small-font">{third[1]}</span></td>
             <td><span class="custom-ticket-font">{fourth}</span></td>
           </tr>
         </table>
         """, unsafe_allow_html=True)
-
-
 
 # multibox_control
 multibox_blank_case = """
@@ -176,6 +174,10 @@ custom_style = """
         }
         .custom-ticket-font {
             font-size: 1rem;
+            text-align: center;
+        }
+        .custom-ticket-small-font {
+            font-size: 0.7rem;
             text-align: center;
         }
     </style>
