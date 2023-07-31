@@ -28,7 +28,7 @@ def ticket(emoji,first,second,third,fourth):
             <td><span class="custom-ticket-font">{first[0]}</span><br><span class="custom-ticket-small-font">{first[1]}</span></td>
             <td><span class="custom-ticket-font">🚌</span></td>
             <td><span class="custom-ticket-font">{third[0]}</span><br><span class="custom-ticket-small-font">{third[1]}</span></td>
-            <td><span class="custom-ticket-font">{fourth}</span></td>
+            <td><span class="custom-ticket-small-font">{fourth}</span></td>
           </tr>
         </table>
         """, unsafe_allow_html=True)
@@ -131,10 +131,10 @@ with C2:            #C2: body
 custom_style = """
     <style>
         .custom-font {
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         .custom-ticket-font {
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-align: center;
         }
         .custom-ticket-small-font {
