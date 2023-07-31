@@ -176,7 +176,7 @@ custom_style = """
             font-size: 1rem;
         }
         .custom-ticket-font {
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-align: center;
         }
     </style>
@@ -316,7 +316,7 @@ st.markdown("""
         border-top: 0.1rem solid #F0A23D;
     }
     td:nth-child(2) { 
-        width: 7%; 
+        width: 5%; 
         border-right: 0.1rem solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
@@ -327,7 +327,7 @@ st.markdown("""
         border-right: 0.1rem dashed #F0A23D;
     }
     td:nth-child(4) { 
-        width: 7%; 
+        width: 5%; 
         border-right: 0.1rem dashed #F0A23D;
     }
     td:nth-child(5) { 
