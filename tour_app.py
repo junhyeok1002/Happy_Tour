@@ -173,10 +173,10 @@ with C2:            #C2: body
 custom_style = """
     <style>
         .custom-font {
-            font-size: 1rem;
+            font-size: 0.8rem;
         }
         .custom-ticket-font {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-align: center;
         }
     </style>
