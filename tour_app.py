@@ -188,8 +188,7 @@ st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적�
 # 폰트 지정
 streamlit_style = """
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@100&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200&display=swap');
 
     html, body, [class*="css"]  {
     font-family: Noto Sans KR, sans-serif;
@@ -325,7 +324,7 @@ st.markdown("""
     }
     td:nth-child(3) { 
         width: 30%; 
-        border-right: 0.1rem dashed #F0A23D;
+        border-right: 2px dashed #F0A23D;
     }
     td:nth-child(5) { 
         width: 30%;
