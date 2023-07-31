@@ -25,10 +25,9 @@ def ticket(emoji,first,second,third,fourth):
         st.markdown(f"""
         <table>
           <tr>
-            <td><span class="custom-ticket-font">{first[0]}</span><br>{first[1]}</td>
-            <td><span class="custom-ticket-font">{second}</span></td>
-            <td><span class="custom-ticket-font">{third[0]}</span><br>{third[1]}</td>
+            <td><span class="custom-ticket-font">{first[0]}<br>{first[1]}</span></td>
             <td><span class="custom-ticket-font">🚌</span></td>
+            <td><span class="custom-ticket-font">{third[0]}<br>{third[1]}</span></td>
             <td><span class="custom-ticket-font">{fourth}</span></td>
           </tr>
         </table>
@@ -309,29 +308,25 @@ st.markdown("""
     }
     
     td:nth-child(1) { 
-        width: 25%; 
+        width: 30%; 
         border-left: 0.3rem solid #F0A23D;
         border-right: 0.1rem solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
     }
+
     td:nth-child(2) { 
         width: 5%; 
         border-right: 0.1rem solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
     }
-
     td:nth-child(3) { 
-        width: 25%; 
-        border-right: 0.1rem dashed #F0A23D;
-    }
-    td:nth-child(4) { 
-        width: 5%; 
+        width: 30%; 
         border-right: 0.1rem dashed #F0A23D;
     }
     td:nth-child(5) { 
-        width: 25%;
+        width: 30%;
     }
 </style>
 """, unsafe_allow_html=True)
