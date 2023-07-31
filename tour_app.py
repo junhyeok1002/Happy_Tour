@@ -21,18 +21,18 @@ body_gap = 10-2*side_gap
 
 # 티켓 생성 함수
 def ticket(emoji,first,second,third,fourth):
-    st.markdown(f"""
-    <table>
-      <tr>
-        <td><span class="custom-ticket-font"></span></td>
-        <td><span class="custom-ticket-font">{first[0]}</span><br>{first[1]}</td>
-        <td><span class="custom-ticket-font">{second}</span></td>
-        <td><span class="custom-ticket-font">{third[0]}</span><br>{third[1]}</td>
-        <td><span class="custom-ticket-font">🚌</span></td>
-        <td><span class="custom-ticket-font">{fourth}</span></td>
-      </tr>
-    </table>
-    """, unsafe_allow_html=True)
+    with st.container():
+        st.markdown(f"""
+        <table>
+          <tr>
+            <td><span class="custom-ticket-font">{first[0]}</span><br>{first[1]}</td>
+            <td><span class="custom-ticket-font">{second}</span></td>
+            <td><span class="custom-ticket-font">{third[0]}</span><br>{third[1]}</td>
+            <td><span class="custom-ticket-font">🚌</span></td>
+            <td><span class="custom-ticket-font">{fourth}</span></td>
+          </tr>
+        </table>
+        """, unsafe_allow_html=True)
 
 
 
@@ -89,6 +89,8 @@ with C2:            #C2: body
                 
                 with st.expander("Day 1, 08/13(일)", expanded = True):
                     ticket('bus',['대전','DNCC'],'···',['청주공항','CJAP'],'3호차')
+                    ticket('bus',['대전','DNCC'],'···',['청주공항','CJAP'],'3호차')
+                    
                     # 폰트 사이즈 20으로 "안녕하세요" 출력
                     st.markdown('<span class="custom-font"></span>', unsafe_allow_html=True)
                     st.markdown('<span class="custom-font">대전 ··· 청주공항</span>', unsafe_allow_html=True) 
@@ -307,33 +309,28 @@ st.markdown("""
     }
     
     td:nth-child(1) { 
-        width: 1.5%; 
-        border-right: 0.1rem solid #F0A23D;
-        background-color: #F0A23D;
+        width: 25%; 
+        border-left: 0.3rem solid #F0A23D;
+        border-right: 0.1rem solid #ffffff; 
+        border-bottom: 0.1rem solid #F0A23D;
+        border-top: 0.1rem solid #F0A23D;
     }
-
     td:nth-child(2) { 
-        width: 23%; 
-        border-right: 0.1rem solid #ffffff; 
-        border-bottom: 0.1rem solid #F0A23D;
-        border-top: 0.1rem solid #F0A23D;
-    }
-    td:nth-child(3) { 
-        width: 7.5%; 
+        width: 7%; 
         border-right: 0.1rem solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
     }
 
+    td:nth-child(3) { 
+        width: 25%; 
+        border-right: 0.1rem dashed #F0A23D;
+    }
     td:nth-child(4) { 
-        width: 23%; 
+        width: 7%; 
         border-right: 0.1rem dashed #F0A23D;
     }
     td:nth-child(5) { 
-        width: 10%; 
-        border-right: 0.1rem dashed #F0A23D;
-    }
-    td:nth-child(6) { 
         width: 25%;
     }
 </style>
