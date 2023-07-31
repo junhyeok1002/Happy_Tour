@@ -272,23 +272,23 @@ st.markdown("""
     td:nth-child(1) { 
         width: 30%; 
         border-left: 0.3rem solid #F0A23D;
-        border-right: 0.1px solid #ffffff; 
+        border-right: 1px solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
     }
 
     td:nth-child(2) { 
-        width: 5%; 
-        border-right: 0.1px solid #ffffff; 
+        width: 3%; 
+        border-right: 1px solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
     }
     td:nth-child(3) { 
         width: 30%; 
-        border-right: 1.5px dashed #F0A23D;
+        border-right: 2px dashed #F0A23D;
     }
     td:nth-child(5) { 
-        width: 30%;
+        width: 35%;
     }
 </style>
 """, unsafe_allow_html=True)
