@@ -23,7 +23,7 @@ body_gap = 10-2*side_gap
 def ticket(emoji,first,second,third,fourth):
     with st.container():
         st.markdown(f"""
-        <table>
+        <table cellpadding="0" cellspacing="0">
           <tr>
             <td><span class="custom-ticket-font">{first[0]}</span><br><span class="custom-ticket-small-font">{first[1]}</span></td>
             <td><span class="custom-ticket-font">🚌</span></td>
