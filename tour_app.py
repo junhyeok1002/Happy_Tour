@@ -28,7 +28,7 @@ def ticket(emoji,first,second,third,fourth):
             <td><span class="custom-ticket-font">{first[0]}</span><br><span class="custom-ticket-small-font">{first[1]}</span></td>
             <td><span class="custom-ticket-font">🚌</span></td>
             <td><span class="custom-ticket-font">{third[0]}</span><br><span class="custom-ticket-small-font">{third[1]}</span></td>
-            <td><span class="custom-ticket-small-font">{fourth}</span></td>
+            <td><span class="custom-ticket-font">{fourth}</span><br><span class="custom-ticket-small-font">{000}</span></td>
           </tr>
         </table>
         """, unsafe_allow_html=True)
