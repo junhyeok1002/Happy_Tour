@@ -279,7 +279,7 @@ st.markdown("""
     }
 
     td:nth-child(2) { 
-        width: 3%; 
+        width: 10%; 
         border-right: 1px solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
@@ -289,7 +289,7 @@ st.markdown("""
         border-right: 2px dashed #F0A23D;
     }
     td:nth-child(5) { 
-        width: 35%;
+        width: 30%;
     }
 </style>
 """, unsafe_allow_html=True)
