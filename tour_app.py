@@ -87,8 +87,8 @@ with C2:            #C2: body
                 with st.expander("Day 1, 08/13(일)", expanded = True):
                     ticket('bus',['대전','DNCC'],'···',['청주공항','CJJ'],result['버스 좌석 1'].values[0])
                     ticket('bus',['청주공항','CJJ'],'···',['제주공항','CJU'],'아시아나')
-                    ticket('bus',['제주공항','CJU'],'···',['숙소','HOME'],result['버스 좌석 2'].values[0])
-                    ticket('bus',['숙소배정','HOME'],'···',['방번호','ROOM'],result['숙소 호수'].values[0])
+                    ticket('bus',['제주공항','CJU'],'···',['숙소','ROOM'],result['버스 좌석 2'].values[0])
+                    ticket('bus',['숙소배정','ROOM'],'···',['방번호','NO.'],result['숙소 호수'].values[0])
                 
                 with st.expander("Day 2, 08/14(월)", expanded = True):
                     st.write("업데이트 중")
@@ -279,7 +279,7 @@ st.markdown("""
     }
 
     td:nth-child(2) { 
-        width: 10%; 
+        width: 7%; 
         border-right: 1px solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
