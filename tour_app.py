@@ -136,7 +136,7 @@ custom_style = """
         .custom-ticket-font {
             font-size: 1rem;
             text-align: center;
-            letter-spacing:-0.05rem;
+            letter-spacing:-0.08rem;
         }
         .custom-ticket-small-font {
             font-size: 0.7rem;
@@ -241,22 +241,6 @@ with open('style.css')as f:
     style = f.read()
 st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
 
-
-
-ticket = """
-    <div class="ticketObject ticketObject--notassign" draggable>
-            <div class="ticketObject__line ticketObject__line--second">
-        <p class="ticketObject__ticket">대전새중앙교회</p>
-    </div>
-    <div class="ticketObject__actionbar">
-        <div class="actionbar__button"></div>
-        <div class="actionbar__button"></div>
-        <div class="actionbar__button"></div>
-        <div class="actionbar__button"></div>
-    </div>
-</div>
-"""
-st.markdown(ticket, unsafe_allow_html=True)
 
 st.markdown("""
 <style>
