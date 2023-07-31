@@ -271,7 +271,7 @@ st.markdown("""
     }
     
     td:nth-child(1) { 
-        width: 25%; 
+        width: 27%; 
         border-left: 0.3rem solid #F0A23D;
         border-right: 1px solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
@@ -285,11 +285,11 @@ st.markdown("""
         border-top: 0.1rem solid #F0A23D;
     }
     td:nth-child(3) { 
-        width: 25%; 
+        width: 27%; 
         border-right: 2px dashed #F0A23D;
     }
     td:nth-child(5) { 
-        width: 30%;
+        width: 27%;
     }
 </style>
 """, unsafe_allow_html=True)
