@@ -218,7 +218,7 @@ ul.streamlit-expander {
 .streamlit-expanderContent {
     background-color: white;
     color: black; 
-    padding: 0px 8px 8px 8px;
+    padding: 0px 8px 8px;
 }
 
 [data-testid="column"]:nth-child(1){
@@ -255,8 +255,7 @@ st.markdown("""
 
     td, th {
         text-align: center;
-        border-spacing: 0;
-        padding:0px 0px; margin:0;
+        padding: 0px;
     }
     
     td:nth-child(1),th:nth-child(1) { 
