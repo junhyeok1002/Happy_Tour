@@ -288,7 +288,7 @@ st.markdown("""
         width: 27%; 
         border-right: 2px dashed #F0A23D;
     }
-    td:nth-child(5) { 
+    td:nth-child(4) { 
         width: 27%;
     }
 </style>
