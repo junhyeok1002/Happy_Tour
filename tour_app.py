@@ -172,10 +172,10 @@ with C2:            #C2: body
 custom_style = """
     <style>
         .custom-font {
-            font-size: 0.8rem;
+            font-size: 1rem;
         }
         .custom-ticket-font {
-            font-size: 0.8rem;
+            font-size: 1rem;
             text-align: center;
         }
     </style>
@@ -310,14 +310,14 @@ st.markdown("""
     td:nth-child(1) { 
         width: 30%; 
         border-left: 0.3rem solid #F0A23D;
-        border-right: 0.1rem solid #ffffff; 
+        border-right: 0.01rem solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
     }
 
     td:nth-child(2) { 
         width: 5%; 
-        border-right: 0.1rem solid #ffffff; 
+        border-right: 0.01rem solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
     }
