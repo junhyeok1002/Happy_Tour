@@ -274,7 +274,7 @@ st.markdown("""
     }
     
     td:nth-child(1) { 
-        width: 31% !important;
+        min-width: 31% !important;
         border-left: 0.3rem solid #F0A23D;
         border-right: 1px solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
@@ -288,11 +288,11 @@ st.markdown("""
         border-top: 0.1rem solid #F0A23D;
     }
     td:nth-child(3) { 
-        width: 31% !important;
+        min-width: 31% !important;
         border-right: 2px dashed #F0A23D; 
     }
     td:nth-child(4) { 
-        width: 31% !important;
+        min-width: 31% !important;
     }
 </style>
 """, unsafe_allow_html=True)
