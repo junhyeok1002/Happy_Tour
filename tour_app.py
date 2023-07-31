@@ -85,52 +85,17 @@ with C2:            #C2: body
                 # st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중, 글짜 크기키우기, 배치 디자인 다시, 이모지 너무 유치해보이는데 고급스럽게 바꿀 방법찾기, 등등.... </div>', unsafe_allow_html=True)
                 
                 with st.expander("Day 1, 08/13(일)", expanded = True):
-                    ticket('bus',['대전','DNCC'],'···',['청주공항','CJAP'],'3호차')
-                    ticket('bus',['대전','DNCC'],'···',['청주공항','CJAP'],'3호차')
-                    
-                    # 폰트 사이즈 20으로 "안녕하세요" 출력
-                    st.markdown('<span class="custom-font"></span>', unsafe_allow_html=True)
-                    st.markdown('<span class="custom-font">대전 ··· 청주공항</span>', unsafe_allow_html=True) 
-                    st.markdown('<span class="custom-font">청주공항 → 제주공항</span>', unsafe_allow_html=True)
-                    st.markdown('<span class="custom-font">제주공항 → 숙소</span>', unsafe_allow_html=True)
-                    st.markdown('<span class="custom-font">숙소 배정</span>', unsafe_allow_html=True)
+                    ticket('bus',['대전','DNCC'],'···',['청주공항','CJIA'],result['버스 좌석 1'].values[0])
+                    ticket('bus',['청주공항','CJIA'],'···',['제주공항','JJIA'],'아시아나')
+                    ticket('bus',['제주공항','JJIA'],'···',['숙소','HOME'],result['버스 좌석 2'].values[0])
+                    ticket('bus',['숙소배정','HOME'],'···',['방번호','ROOM'],result['숙소 호수'].values[0])
                 
-                epsilon = 0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
-                with st.expander("Day 1, 08/13(일)", expanded = True):
-                    ticket('bus',['대전','DNCC'],'···',['test','test'],'3호차')
-                    col1, col2, col3, col4, col5 = st.columns([epsilon,epsilon,epsilon,5,5])
+             
                     
-                    st.write('''<style>
-                    [data-testid="column"]:nth-child(4){
-                        width: calc(49% - 1rem) !important;
-                        flex: 1 1 calc(49% - 1rem) !important;
-                        min-width: calc(49% - 1rem) !important;
-                        max-width: calc(49% - 1rem) !important;
-                    }
-                    </style>''', unsafe_allow_html=True)
-                    
-                    st.write('''<style>
-                    [data-testid="column"]:nth-child(5){
-                        width: calc(49% - 1rem) !important;
-                        flex: 1 1 calc(49% - 1rem) !important;
-                        min-width: calc(49% - 1rem) !important;
-                        max-width: calc(49% - 1rem) !important;
-                    }
-                    </style>''', unsafe_allow_html=True)
-                    
-                    with col4:
-                        # 모서리가 둥근 텍스트 박스 안에서 작업
-                        col4.metric(":bus: :green[대전 → 청주공항]", f"{result['버스 좌석 1'].values[0]}")
-                        col4.metric(":bus: :green[제주공항 → 숙소]", f"{result['버스 좌석 2'].values[0]}")
-                    with col5:
-                        col5.metric(":airplane: :green[청주공항 → 제주공항]", f"{result['비행기 좌석'].values[0]}")
-                        col5.metric(":house: :green[숙소배정]", f"{result['숙소 호수'].values[0]}")
+                  
 
                 with st.expander("Day 2, 08/14(월)", expanded = True):
-                    col1, col2, col3, col4, col5 = st.columns([epsilon,epsilon,epsilon,5,5])
-
-                    col4.metric("@테마장소이름넣기@", f"{result['테마'].values[0]}", "테마")
-                    col5.metric("제주숙소 → 테마장소", f"{result['버스 좌석 3'].values[0]}", "버스좌석")
+                    st.write("업데이트 중")
                     
                 with st.expander("Day 3, 08/15(화)", expanded = True):
                     st.write("업데이트 중")
