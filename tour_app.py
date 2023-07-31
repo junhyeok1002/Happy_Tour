@@ -262,7 +262,8 @@ st.markdown("""
     table {
         width: 100%;
         border: 0.1rem solid #F0A23D;
-        border-spacing; 1px;
+        border-spacing; 0px;
+        padding :0px;
     }
 
     td {
