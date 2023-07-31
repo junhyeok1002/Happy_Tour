@@ -131,10 +131,10 @@ with C2:            #C2: body
 custom_style = """
     <style>
         .custom-font {
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         .custom-ticket-font {
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-align: center;
         }
         .custom-ticket-small-font {
