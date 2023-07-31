@@ -249,13 +249,11 @@ st.markdown("""
     table {
         width: 100%;
         border: 0.1rem solid #F0A23D;
-        border-spacing: 0;
-        padding:0; margin:0;
     }
 
-    td, th {
+    td {
         text-align: center;
-        padding: 0px;
+        padding: 0px 0px 0px 0px;
     }
     
     td:nth-child(1),th:nth-child(1) { 
