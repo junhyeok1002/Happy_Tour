@@ -88,6 +88,7 @@ with C2:            #C2: body
                     with st.container(): ticket('bus',['청주공항','CJJ'],'···',['제주공항','CJU'],'아시아나')
                     with st.container(): ticket('bus',['제주공항','CJU'],'···',['숙소','ROOM'],result['버스 좌석 2'].values[0])
                     with st.container(): ticket('bus',['숙소','ROOM'],'···',['방 번호','NO.'],result['숙소 호수'].values[0])
+                    st.write('')
                 
                 with st.expander("Day 2, 08/14(월)", expanded = True):
                     st.write("업데이트 중")
@@ -135,7 +136,6 @@ custom_style = """
         .custom-ticket-font {
             font-size: 1rem;
             text-align: center;
-            letter-spacing:-0.07rem;
         }
         .custom-ticket-small-font {
             font-size: 0.7rem;
@@ -211,13 +211,13 @@ ul.streamlit-expander {
 .streamlit-expanderHeader {
     background-color: white;
     color: black;
-    padding: 8px 8px;
+    padding: 8px;
 
 }
 .streamlit-expanderContent {
     background-color: white;
     color: black; 
-    padding: 0px 8px 8px;
+    padding: 0px 8px 8px 8px;
 }
 
 [data-testid="column"]:nth-child(1){
@@ -250,10 +250,11 @@ st.markdown("""
         border-spacing: 0;
         border: 0.1rem solid #F0A23D;
     }
-
+    .css-5rimss th, .css-5rimss td{
+        padding: 0px 0px 0px 0px;
+    }
     td, th {
         text-align: center;
-        padding: 0px 0px 0px 0px;
     }
     
     td:nth-child(1),th:nth-child(1) { 
