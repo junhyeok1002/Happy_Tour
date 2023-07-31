@@ -262,12 +262,14 @@ st.markdown("""
     table {
         width: 100%;
         border: 0.1rem solid #F0A23D;
-        border-spacing; 0px;
+        border-spacing; 0;
         padding:0; margin:0;
     }
 
     td {
         text-align: center;
+        border-spacing; 0;
+        padding:0; margin:0;
     }
     
     td:nth-child(1) { 
