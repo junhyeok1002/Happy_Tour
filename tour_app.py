@@ -174,7 +174,7 @@ custom_style = """
             font-size: 1rem;
         }
         .custom-ticket-font {
-            font-size: 1.5rem;
+            font-size: 1rem;
             text-align: center;
         }
     </style>
@@ -307,26 +307,26 @@ st.markdown("""
     }
     
     td:nth-child(1) { 
-        width: 5%; 
+        width: 1.5%; 
         border-right: 0.1rem solid #F0A23D;
         background-color: #F0A23D;
     }
 
     td:nth-child(2) { 
-        width: 20%; 
+        width: 23%; 
         border-right: 0.1rem solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
     }
     td:nth-child(3) { 
-        width: 10%; 
+        width: 7.5%; 
         border-right: 0.1rem solid #ffffff; 
         border-bottom: 0.1rem solid #F0A23D;
         border-top: 0.1rem solid #F0A23D;
     }
 
     td:nth-child(4) { 
-        width: 20%; 
+        width: 23%; 
         border-right: 0.1rem dashed #F0A23D;
     }
     td:nth-child(5) { 
