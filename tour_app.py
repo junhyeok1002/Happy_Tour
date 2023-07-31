@@ -136,11 +136,11 @@ custom_style = """
         .custom-ticket-font {
             font-size: 1rem;
             text-align: center;
+            letter-spacing:-0.05rem;
         }
         .custom-ticket-small-font {
             font-size: 0.7rem;
             text-align: center;
-            letter-spacing:-0.1rem;
         }
     </style>
 """
