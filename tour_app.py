@@ -21,17 +21,16 @@ body_gap = 10-2*side_gap
 
 # 티켓 생성 함수
 def ticket(emoji,first,second,third,fourth):
-    with st.container():
-        st.markdown(f"""
-        <table cellpadding="0" cellspacing="0">
-          <tr>
-            <td><span class="custom-ticket-font">{first[0]}</span><br><span class="custom-ticket-small-font">{first[1]}</span></td>
-            <td><span class="custom-ticket-font">🚌</span></td>
-            <td><span class="custom-ticket-font">{third[0]}</span><br><span class="custom-ticket-small-font">{third[1]}</span></td>
-            <td><span class="custom-ticket-font">{fourth}</span><br><span class="custom-ticket-small-font">{'???'}</span></td>
-          </tr>
-        </table>
-        """, unsafe_allow_html=True)
+    st.markdown(f"""
+    <table cellpadding="0" cellspacing="0">
+      <tr>
+        <td><span class="custom-ticket-font">{first[0]}</span><br><span class="custom-ticket-small-font">{first[1]}</span></td>
+        <td><span class="custom-ticket-font">🚌</span></td>
+        <td><span class="custom-ticket-font">{third[0]}</span><br><span class="custom-ticket-small-font">{third[1]}</span></td>
+        <td><span class="custom-ticket-font">{fourth}</span><br><span class="custom-ticket-small-font">{'???'}</span></td>
+      </tr>
+    </table>
+    """, unsafe_allow_html=True)
 
 # multibox_control
 multibox_blank_case = """
@@ -85,10 +84,10 @@ with C2:            #C2: body
                 # st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중, 글짜 크기키우기, 배치 디자인 다시, 이모지 너무 유치해보이는데 고급스럽게 바꿀 방법찾기, 등등.... </div>', unsafe_allow_html=True)
                 
                 with st.expander("Day 1, 08/13(일)", expanded = True):
-                    ticket('bus',['대전','DNCC'],'···',['청주공항','CJJ'],result['버스 좌석 1'].values[0])
-                    ticket('bus',['청주공항','CJJ'],'···',['제주공항','CJU'],'아시아나')
-                    ticket('bus',['제주공항','CJU'],'···',['숙소','ROOM'],result['버스 좌석 2'].values[0])
-                    ticket('bus',['숙소','ROOM'],'···',['방 번호','NO.'],result['숙소 호수'].values[0])
+                    with st.container(): ticket('bus',['대전','DNCC'],'···',['청주공항','CJJ'],result['버스 좌석 1'].values[0])
+                    with st.container(): ticket('bus',['청주공항','CJJ'],'···',['제주공항','CJU'],'아시아나')
+                    with st.container(): ticket('bus',['제주공항','CJU'],'···',['숙소','ROOM'],result['버스 좌석 2'].values[0])
+                    with st.container(): ticket('bus',['숙소','ROOM'],'···',['방 번호','NO.'],result['숙소 호수'].values[0])
                 
                 with st.expander("Day 2, 08/14(월)", expanded = True):
                     st.write("업데이트 중")
