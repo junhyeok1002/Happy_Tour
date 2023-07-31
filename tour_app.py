@@ -140,6 +140,7 @@ custom_style = """
         .custom-ticket-small-font {
             font-size: 0.7rem;
             text-align: center;
+            letter-spacing:-0.1rem;
         }
     </style>
 """
