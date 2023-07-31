@@ -19,6 +19,21 @@ st.image(image,use_column_width  = True)# caption='Sunrise by the mountains')
 side_gap = 0.75
 body_gap = 10-2*side_gap
 
+# 티켓 생성 함수
+def ticket(emoji,first,second,third,fourth):
+    st.markdown(f"""
+    <table>
+      <tr>
+        <td><span class="custom-ticket-font"></span></td>
+        <td><span class="custom-ticket-font">{first[0]}</span><br>{first[1]}</td>
+        <td><span class="custom-ticket-font">{second}</span></td>
+        <td><span class="custom-ticket-font">{third[0]}</span><br>{third[1]}</td>
+        <td><span class="custom-ticket-font">🚌</span></td>
+        <td><span class="custom-ticket-font">{fourth}</span></td>
+      </tr>
+    </table>
+    """, unsafe_allow_html=True)
+
 
 
 # multibox_control
@@ -72,15 +87,18 @@ with C2:            #C2: body
                 # 아래 대형 공사중 : metric 사용하지 않고, html/css로 디자인하기
                 # st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중, 글짜 크기키우기, 배치 디자인 다시, 이모지 너무 유치해보이는데 고급스럽게 바꿀 방법찾기, 등등.... </div>', unsafe_allow_html=True)
                 
-                with st.expander("Day 1, 08/13", expanded = True):
+                with st.expander("Day 1, 08/13(일)", expanded = True):
+                    ticket('bus',['대전','DNCC'],'···',['청주공항','CJAP'],'3호차')
                     # 폰트 사이즈 20으로 "안녕하세요" 출력
-                    st.markdown('<span class="custom-font">대전 → 청주공항</span>', unsafe_allow_html=True) 
+                    st.markdown('<span class="custom-font"></span>', unsafe_allow_html=True)
+                    st.markdown('<span class="custom-font">대전 ··· 청주공항</span>', unsafe_allow_html=True) 
                     st.markdown('<span class="custom-font">청주공항 → 제주공항</span>', unsafe_allow_html=True)
                     st.markdown('<span class="custom-font">제주공항 → 숙소</span>', unsafe_allow_html=True)
                     st.markdown('<span class="custom-font">숙소 배정</span>', unsafe_allow_html=True)
                 
                 epsilon = 0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
-                with st.expander("Day 1, 08/13", expanded = True):
+                with st.expander("Day 1, 08/13(일)", expanded = True):
+                    ticket('bus',['대전','DNCC'],'···',['test','test'],'3호차')
                     col1, col2, col3, col4, col5 = st.columns([epsilon,epsilon,epsilon,5,5])
                     
                     st.write('''<style>
@@ -109,13 +127,13 @@ with C2:            #C2: body
                         col5.metric(":airplane: :green[청주공항 → 제주공항]", f"{result['비행기 좌석'].values[0]}")
                         col5.metric(":house: :green[숙소배정]", f"{result['숙소 호수'].values[0]}")
 
-                with st.expander("Day 2, 08/14", expanded = True):
+                with st.expander("Day 2, 08/14(월)", expanded = True):
                     col1, col2, col3, col4, col5 = st.columns([epsilon,epsilon,epsilon,5,5])
 
                     col4.metric("@테마장소이름넣기@", f"{result['테마'].values[0]}", "테마")
                     col5.metric("제주숙소 → 테마장소", f"{result['버스 좌석 3'].values[0]}", "버스좌석")
                     
-                with st.expander("Day 3, 08/15", expanded = True):
+                with st.expander("Day 3, 08/15(화)", expanded = True):
                     st.write("업데이트 중")
     else :
         st.markdown(multibox_blank_case, unsafe_allow_html=True)
@@ -152,17 +170,32 @@ with C2:            #C2: body
 # 커스텀 component 만들기 위한 코드
 custom_style = """
     <style>
-        .rounded-text-box {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 10px;
-        }
         .custom-font {
-            font-size: 1.1rem;
+            font-size: 1rem;
+        }
+        .custom-ticket-font {
+            font-size: 1.5rem;
+            text-align: center;
         }
     </style>
 """
 st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적용
+
+
+# 폰트 지정
+streamlit_style = """
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@100&display=swap');
+
+    html, body, [class*="css"]  {
+    font-family: Noto Sans KR, sans-serif;
+    }
+</style>
+"""
+st.markdown(streamlit_style, unsafe_allow_html=True)
+
+
 
 
 
@@ -183,6 +216,9 @@ st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적�
 # multibox 내부 글자 숨기거나, 설정하기
 # div[class="row-widget stMultiSelect"]
 
+# expander 스타일 설정
+# .streamlit-expander
+
 # 화면 너비의 비율%설정으로 모바일에서 깨지는 현상 해결하기  
 # [data-testid="column"]:nth-child(1,2,3.....)
 
@@ -201,7 +237,22 @@ st.markdown('''
 button[title="View fullscreen"]{visibility: hidden;}
 
 div[data-testid="stExpander"] div[role="button"] p {
-    font-size: 1.5rem;
+    font-size: 1rem;
+}
+
+ul.streamlit-expander {
+    border-top-left-radius: 1rem solid #F0F2F6;
+    border-top-right-radius: 1rem solid #F0F2F6;
+    border: 0.1rem solid #F0F2F6;
+}
+.streamlit-expanderHeader {
+    background-color: white;
+    color: black;
+
+}
+.streamlit-expanderContent {
+    background-color: white;
+    color: black; 
 }
 
 [data-testid="column"]:nth-child(1){
@@ -221,10 +272,72 @@ div[data-testid="stExpander"] div[role="button"] p {
     min-width: calc(7% - 1rem) !important;}
 </style>''', unsafe_allow_html=True)
 
-# with open('style.css')as f:
-#     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
+style = ''
+with open('style.css')as f:
+    style = f.read()
+st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
 
 
+
+ticket = """
+    <div class="ticketObject ticketObject--notassign" draggable>
+            <div class="ticketObject__line ticketObject__line--second">
+        <p class="ticketObject__ticket">대전새중앙교회</p>
+    </div>
+    <div class="ticketObject__actionbar">
+        <div class="actionbar__button"></div>
+        <div class="actionbar__button"></div>
+        <div class="actionbar__button"></div>
+        <div class="actionbar__button"></div>
+    </div>
+</div>
+"""
+st.markdown(ticket, unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+    table {
+        width: 100%;
+        border: 0.1rem solid #F0A23D;
+        border-radius: 1000px;
+    }
+
+    td {
+        text-align: center;
+    }
+    
+    td:nth-child(1) { 
+        width: 5%; 
+        border-right: 0.1rem solid #F0A23D;
+        background-color: #F0A23D;
+    }
+
+    td:nth-child(2) { 
+        width: 20%; 
+        border-right: 0.1rem solid #ffffff; 
+        border-bottom: 0.1rem solid #F0A23D;
+        border-top: 0.1rem solid #F0A23D;
+    }
+    td:nth-child(3) { 
+        width: 10%; 
+        border-right: 0.1rem solid #ffffff; 
+        border-bottom: 0.1rem solid #F0A23D;
+        border-top: 0.1rem solid #F0A23D;
+    }
+
+    td:nth-child(4) { 
+        width: 20%; 
+        border-right: 0.1rem dashed #F0A23D;
+    }
+    td:nth-child(5) { 
+        width: 10%; 
+        border-right: 0.1rem dashed #F0A23D;
+    }
+    td:nth-child(6) { 
+        width: 25%;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 
 
