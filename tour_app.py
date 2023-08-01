@@ -327,7 +327,7 @@ st.markdown("""
     table {
         width: 100%;
         border-spacing: 0;
-        border-right : 0.15rem dashed #F0F2F6;
+        border-right : 0.2rem solid #F0F2F6;
     }
     .css-5rimss th, .css-5rimss td{
         padding: 0px 0px 0px 0px;
