@@ -124,8 +124,8 @@ with C2:            #C2: body
                                 <td><span class="custom-ticket-font">제주공항</span><br>
                                     <span class="custom-ticket-small-font">CJU</span></td>
                                 <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
-                                <td><span class="custom-ticket-font">식당/숙소</span><br>
-                                    <span class="custom-ticket-small-font">MEAL</span></td>
+                                <td><span class="custom-ticket-font" style="letter-spacing: -0.1rem;>식당,숙소</span><br>
+                                    <span class="custom-ticket-small-font" style="letter-spacing: -0.1rem;>MEAL/ROOM</span></td>
                                 <td><span class="custom-ticket-font">{result['제주공항-숙소 (버스)'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font">오후 7:00</span></td>
                               </tr>                              
@@ -353,7 +353,7 @@ st.markdown("""
     }
     .first-day td:nth-child(3), .first-day th:nth-child(3) { 
         width: 30% ;
-        border-right: 0.1rem dashed #F0A23D; 
+        border-right: 0.15rem dashed #F0A23D; 
         border-bottom: 0.1rem dashed #F0F2F6;
         border-top: 0.1rem dashed #F0F2F6;   
     }
@@ -362,7 +362,7 @@ st.markdown("""
         color: #D67D3E;
         font-weight: bold;
         background-color: #ffffff;
-        border-right : 0.3rem solid #F0A23D;
+        border-right : 0.1rem dashed #F0F2F6;
     }
 </style>
 """, unsafe_allow_html=True)
