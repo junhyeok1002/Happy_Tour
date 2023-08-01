@@ -124,8 +124,8 @@ with C2:            #C2: body
                                 <td><span class="custom-ticket-font">제주공항</span><br>
                                     <span class="custom-ticket-small-font">CJU</span></td>
                                 <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
-                                <td><span class="custom-ticket-font" style="letter-spacing: -0.1rem;">식당/숙소</span><br>
-                                    <span class="custom-ticket-small-font" style="letter-spacing: -0.1rem;">MEAL/ROOM</span></td>
+                                <td><span class="custom-ticket-font">식당/숙소</span><br>
+                                    <span class="custom-ticket-small-font">MEAL/ROOM</span></td>
                                 <td><span class="custom-ticket-font">{result['제주공항-숙소 (버스)'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font">오후 7:00</span></td>
                               </tr>                              
@@ -324,45 +324,41 @@ st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
 # firstday - table
 st.markdown("""
 <style>
-    .first-day table {
+    table {
         width: 100%;
         border-spacing: 0;
         border-top : 0.1rem dashed #F0F2F6;
         border-bottom : 0.1rem dashed #F0F2F6;
+        border-right : 0.2rem dashed #F0F2F6;
     }
-    .first-day.css-5rimss th, .first-day .css-5rimss td{
+    .css-5rimss th, .css-5rimss td{
         padding: 0px 0px 0px 0px;
     }
     .first-day td, .first-day th {
         text-align: center;
+        border-bottom: 0.2rem dashed #F0F2F6;
+        border-top: 0.2rem dashed #F0F2F6;
     }
     
     .first-day td:nth-child(1), .first-day th:nth-child(1) { 
         width: 30% ;
         border-left: 0.3rem solid #F0A23D;
         border-right: 1px solid #ffffff; 
-        border-bottom: 0.1rem dashed #F0F2F6;
-        border-top: 0.1rem dashed #F0F2F6;
     }
 
     .first-day td:nth-child(2), .first-day th:nth-child(2) { 
         width: 6%; 
         border-right: 1px solid #ffffff; 
-        border-bottom: 0.1rem dashed #F0F2F6;
-        border-top: 0.1rem dashed #F0F2F6;
     }
     .first-day td:nth-child(3), .first-day th:nth-child(3) { 
         width: 30% ;
-        border-right: 0.15rem dashed #F0A23D; 
-        border-bottom: 0.1rem dashed #F0F2F6;
-        border-top: 0.1rem dashed #F0F2F6;   
+        border-right: 0.2rem dashed #F0A23D; 
     }
     .first-day td:nth-child(4), .first-day th:nth-child(4) { 
         width: 30%;
         color: #D67D3E;
         font-weight: bold;
         background-color: #ffffff;
-        border-right : 0.1rem dashed #F0F2F6;
     }
 </style>
 """, unsafe_allow_html=True)
