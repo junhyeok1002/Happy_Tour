@@ -125,7 +125,7 @@ with C2:            #C2: body
                                     <span class="custom-ticket-small-font">CJU</span></td>
                                 <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
                                 <td><span class="custom-ticket-font">식당/숙소</span><br>
-                                    <span class="custom-ticket-small-font"  style="letter-spacing: -0.1rem;">MEAL/ROOM</span></td>
+                                    <span class="custom-ticket-small-font"  style="letter-spacing: -0.05rem;">MEAL/ROOM</span></td>
                                 <td><span class="custom-ticket-font">{result['제주공항-숙소 (버스)'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font">오후 7:00</span></td>
                               </tr>                              
@@ -136,7 +136,7 @@ with C2:            #C2: body
                                 <td><span class="custom-ticket-font">방 번호</span><br>
                                     <span class="custom-ticket-small-font">NO.</span></td>
                                 <td><span class="custom-ticket-font">{result['숙소 동 호수'].values[0].split()[0]}</span><br>
-                                    <span class="custom-ticket-small-font">{result['숙소 동 호수'].values[0].split()[1]}</span></td>
+                                    <span class="custom-ticket-small-font"  style="font-size: 1rem;">{result['숙소 동 호수'].values[0].split()[1]}</span></td>
                               </tr>                              
                             </table>
                             """, unsafe_allow_html=True)
