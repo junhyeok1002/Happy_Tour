@@ -162,12 +162,16 @@ st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적�
 streamlit_style = """
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200&display=swap');
-
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300&display=swap');
+    
     html, body, [class*="css"]  {
-    font-family: Noto Sans KR, sans-serif;
+    font-family: Noto Sans KR,sans-serif;
     }
+    
+   
+    
     @font-face {
-      font-family: 'Symbola';
+      font-family: Symbola;
       
       src: 
       url('./fonts/symbola-font.ttf') format('truetype'),
@@ -175,14 +179,14 @@ streamlit_style = """
       url('path/to/Symbola-Emoji.eot?#iefix') format('embedded-opentype');
     }
     .flipped-symbola-emoji {
-      font-family: 'Symbola', sans-serif;
+      font-family: Symbola, sans-serif;
       text-align: center;
       font-size: 1.5rem;
       margin: 0;
       transform: scaleX(-1);
     }
     .symbola-emoji {
-      font-family: 'Symbola', sans-serif;
+      font-family: Symbola, sans-serif;
       text-align: center;
       font-size: 1.5rem;
       margin: 0;
