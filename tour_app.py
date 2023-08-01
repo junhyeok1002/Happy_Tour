@@ -124,8 +124,8 @@ with C2:            #C2: body
                                 <td><span class="custom-ticket-font">제주공항</span><br>
                                     <span class="custom-ticket-small-font">CJU</span></td>
                                 <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
-                                <td><span class="custom-ticket-font" style="letter-spacing: -0.1rem;>식당,숙소</span><br>
-                                    <span class="custom-ticket-small-font" style="letter-spacing: -0.1rem;>MEAL/ROOM</span></td>
+                                <td><span class="custom-ticket-font" style="letter-spacing: -0.1rem;">식당/숙소</span><br>
+                                    <span class="custom-ticket-small-font" style="letter-spacing: -0.1rem;">MEAL/ROOM</span></td>
                                 <td><span class="custom-ticket-font">{result['제주공항-숙소 (버스)'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font">오후 7:00</span></td>
                               </tr>                              
