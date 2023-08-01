@@ -321,6 +321,7 @@ with open('style.css')as f:
 st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
 
 
+
 # firstday - table
 st.markdown("""
 <style>
@@ -337,20 +338,18 @@ st.markdown("""
         border-bottom: 0.15rem dashed #F0F2F6;
         border-top: 0.15rem dashed #F0F2F6;
     }
-    
     .first-day td:nth-child(1), .first-day th:nth-child(1) { 
         width: 30% ;
         border-left: 0.3rem solid #F0A23D;
         border-right: 1px solid #ffffff; 
     }
-
     .first-day td:nth-child(2), .first-day th:nth-child(2) { 
         width: 6%; 
         border-right: 1px solid #ffffff; 
     }
     .first-day td:nth-child(3), .first-day th:nth-child(3) { 
         width: 30% ;
-        border-right: 0.2rem dashed #F0A23D; 
+        border-right: 0.2rem double #F0A23D; 
     }
     .first-day td:nth-child(4), .first-day th:nth-child(4) { 
         width: 30%;
