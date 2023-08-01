@@ -24,6 +24,7 @@ def ticket(emoji,first,second,third,fourth):
     if emoji == 'bus' : 
         emoji = '#x1F68C'
         emoji_type = "flipped-symbola-emoji"
+ 
     elif emoji == 'airplane' :
         emoji = '#x1F6EB'
         emoji_type = 'symbola-emoji'
@@ -150,6 +151,7 @@ custom_style = """
         .custom-ticket-small-font {
             font-size: 0.7rem;
             text-align: center;
+            color: #F97602;
         }
     </style>
 """
@@ -279,7 +281,8 @@ st.markdown("""
     table {
         width: 100%;
         border-spacing: 0;
-        border: 0.1rem solid #F0A23D;
+        border-top : 0.1rem dashed #F0F2F6;
+        border-bottom : 0.1rem dashed #F0F2F6;
     }
     .css-5rimss th, .css-5rimss td{
         padding: 0px 0px 0px 0px;
@@ -292,29 +295,31 @@ st.markdown("""
         width: 30% ;
         border-left: 0.3rem solid #F0A23D;
         border-right: 1px solid #ffffff; 
-        border-bottom: 0.1rem solid #F0A23D;
-        border-top: 0.1rem solid #F0A23D;
+        border-bottom: 0.1rem dashed #F0F2F6;
+        border-top: 0.1rem dashed #F0F2F6;
     }
 
     td:nth-child(2),th:nth-child(2) { 
         width: 6%; 
         border-right: 1px solid #ffffff; 
-        border-bottom: 0.1rem solid #F0A23D;
-        border-top: 0.1rem solid #F0A23D;
+        border-bottom: 0.1rem dashed #F0F2F6;
+        border-top: 0.1rem dashed #F0F2F6;
     }
     td:nth-child(3),th:nth-child(3) { 
         width: 30% ;
         border-right: 2px dashed #F0A23D; 
+        border-bottom: 0.1rem dashed #F0F2F6;
+        border-top: 0.1rem dashed #F0F2F6;   
     }
     td:nth-child(4),th:nth-child(4) { 
         width: 30%;
-        background-color: #F0F2F6;
+        color: #FF6701;
+        font-weight: bold;
+        background-color: #ffffff;
+        border-right : 0.3rem solid #F0A23D;
     }
 </style>
 """, unsafe_allow_html=True)
-
-
-
 
 
 
