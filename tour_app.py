@@ -179,14 +179,14 @@ streamlit_style = """
       url('path/to/Symbola-Emoji.eot?#iefix') format('embedded-opentype');
     }
     .flipped-symbola-emoji {
-      font-family: Symbola, sans-serif;
+      font-family: Noto Emoji, sans-serif;
       text-align: center;
       font-size: 1.5rem;
       margin: 0;
       transform: scaleX(-1);
     }
     .symbola-emoji {
-      font-family: Symbola, sans-serif;
+      font-family: Noto Emoji, sans-serif;
       text-align: center;
       font-size: 1.5rem;
       margin: 0;
