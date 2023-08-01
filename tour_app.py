@@ -108,8 +108,8 @@ with C2:            #C2: body
                                 <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
                                 <td><span class="custom-ticket-font">청주공항</span><br>
                                     <span class="custom-ticket-small-font">CJJ</span></td>
-                                <td><span class="custom-ticket-font">{result['교회-청주공항 (버스)'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font">오후 2:30</span></td>
+                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['교회-청주공항 (버스)'].values[0]}</span><br>
+                                    <span class="custom-ticket-small-font" style="color: black;">오후 2:30</span></td>
                               </tr>
                               <tr>
                                 <td><span class="custom-ticket-font">청주공항</span><br>
@@ -117,8 +117,8 @@ with C2:            #C2: body
                                 <td><p class="symbola-emoji">&#x2708;</p></td>
                                 <td><span class="custom-ticket-font">제주공항</span><br>
                                     <span class="custom-ticket-small-font">CJU</span></td>
-                                <td><span class="custom-ticket-font">{result['청주공항-제주공항 (비행기)'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font">오후 5:00</span></td>
+                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['청주공항-제주공항 (비행기)'].values[0]}</span><br>
+                                    <span class="custom-ticket-small-font" style="color: black;">오후 5:00</span></td>
                               </tr>                              
                               <tr>
                                 <td><span class="custom-ticket-font">제주공항</span><br>
@@ -126,8 +126,8 @@ with C2:            #C2: body
                                 <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
                                 <td><span class="custom-ticket-font">식당/숙소</span><br>
                                     <span class="custom-ticket-small-font"  style="letter-spacing: -0.05rem;">MEAL/ROOM</span></td>
-                                <td><span class="custom-ticket-font">{result['제주공항-숙소 (버스)'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font">오후 7:00</span></td>
+                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['제주공항-숙소 (버스)'].values[0]}</span><br>
+                                    <span class="custom-ticket-small-font" style="color: black;">오후 7:00</span></td>
                               </tr>                              
                               <tr>
                                 <td><span class="custom-ticket-font">숙소</span><br>
@@ -135,8 +135,8 @@ with C2:            #C2: body
                                 <td><p class="flipped-symbola-emoji">&#x1F3E0;</p></td>
                                 <td><span class="custom-ticket-font">방 번호</span><br>
                                     <span class="custom-ticket-small-font">NO.</span></td>
-                                <td><span class="custom-ticket-font">{result['숙소 동 호수'].values[0].split()[0]}</span><br>
-                                    <span class="custom-ticket-small-font"  style="font-size: 1rem;">{result['숙소 동 호수'].values[0].split()[1]}</span></td>
+                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['숙소 동 호수'].values[0].split()[0]}</span><br>
+                                    <span class="custom-ticket-small-font" style="font-size: 1rem; color: black;">{result['숙소 동 호수'].values[0].split()[1]}</span></td>
                               </tr>                              
                             </table>
                             """, unsafe_allow_html=True)
