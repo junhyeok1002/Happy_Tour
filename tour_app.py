@@ -21,11 +21,21 @@ body_gap = 10-2*side_gap
 
 # 티켓 생성 함수
 def ticket(emoji,first,second,third,fourth):
+    if emoji == 'bus' : 
+        emoji = '#x1F68C'
+        emoji_type = "flipped-symbola-emoji"
+    elif emoji == 'airplane' :
+        emoji = '#x1F6EB'
+        emoji_type = 'symbola-emoji'
+    elif emoji == 'home' : 
+        emoji = '#x1F3E0'
+        emoji_type = 'symbola-emoji'
+    
     st.markdown(f"""
     <table>
       <tr>
         <td><span class="custom-ticket-font">{first[0]}</span><br><span class="custom-ticket-small-font">{first[1]}</span></td>
-        <td><span class="custom-ticket-font">🚌</span></td>
+        <td><p class="{emoji_type}">&{emoji};</p></td>
         <td><span class="custom-ticket-font">{third[0]}</span><br><span class="custom-ticket-small-font">{third[1]}</span></td>
         <td><span class="custom-ticket-font">{fourth}</span><br><span class="custom-ticket-small-font">{'???'}</span></td>
       </tr>
@@ -85,9 +95,9 @@ with C2:            #C2: body
                 
                 with st.expander("Day 1, 08/13(일)", expanded = True):
                     with st.container(): ticket('bus',['대전','DNCC'],'···',['청주공항','CJJ'],result['버스 좌석 1'].values[0])
-                    with st.container(): ticket('bus',['청주공항','CJJ'],'···',['제주공항','CJU'],'아시아나')
+                    with st.container(): ticket('airplane',['청주공항','CJJ'],'···',['제주공항','CJU'],'아시아나')
                     with st.container(): ticket('bus',['제주공항','CJU'],'···',['숙소','ROOM'],result['버스 좌석 2'].values[0])
-                    with st.container(): ticket('bus',['숙소','ROOM'],'···',['방 번호','NO.'],result['숙소 호수'].values[0])
+                    with st.container(): ticket('home',['숙소','ROOM'],'···',['방 번호','NO.'],result['숙소 호수'].values[0])
                     st.write('')
                 
                 with st.expander("Day 2, 08/14(월)", expanded = True):
@@ -154,6 +164,23 @@ streamlit_style = """
     html, body, [class*="css"]  {
     font-family: Noto Sans KR, sans-serif;
     }
+    @font-face {
+      font-family: 'Symbola';
+      src: url('./fonts/symbola-font.ttf') format('truetype');
+    }
+    .flipped-symbola-emoji {
+      font-family: 'Symbola', sans-serif;
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 0;
+      transform: scaleX(-1);
+    }
+    .symbola-emoji {
+      font-family: 'Symbola', sans-serif;
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 0;
+    }    
 </style>
 """
 st.markdown(streamlit_style, unsafe_allow_html=True)
@@ -277,6 +304,7 @@ st.markdown("""
     }
     td:nth-child(4),th:nth-child(4) { 
         width: 30%;
+        background-color: #F0F2F6;
     }
 </style>
 """, unsafe_allow_html=True)
