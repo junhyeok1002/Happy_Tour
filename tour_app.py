@@ -125,7 +125,7 @@ with C2:            #C2: body
                                     <span class="custom-ticket-small-font">CJU</span></td>
                                 <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
                                 <td><span class="custom-ticket-font">식당/숙소</span><br>
-                                    <span class="custom-ticket-small-font">MEAL/ROOM</span></td>
+                                    <span class="custom-ticket-small-font"  style="letter-spacing: -0.1rem;">MEAL/ROOM</span></td>
                                 <td><span class="custom-ticket-font">{result['제주공항-숙소 (버스)'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font">오후 7:00</span></td>
                               </tr>                              
@@ -327,17 +327,15 @@ st.markdown("""
     table {
         width: 100%;
         border-spacing: 0;
-        border-top : 0.1rem dashed #F0F2F6;
-        border-bottom : 0.1rem dashed #F0F2F6;
-        border-right : 0.2rem dashed #F0F2F6;
+        border-right : 0.15rem dashed #F0F2F6;
     }
     .css-5rimss th, .css-5rimss td{
         padding: 0px 0px 0px 0px;
     }
     .first-day td, .first-day th {
         text-align: center;
-        border-bottom: 0.2rem dashed #F0F2F6;
-        border-top: 0.2rem dashed #F0F2F6;
+        border-bottom: 0.15rem dashed #F0F2F6;
+        border-top: 0.15rem dashed #F0F2F6;
     }
     
     .first-day td:nth-child(1), .first-day th:nth-child(1) { 
@@ -352,7 +350,7 @@ st.markdown("""
     }
     .first-day td:nth-child(3), .first-day th:nth-child(3) { 
         width: 30% ;
-        border-right: 0.2rem dashed #F0A23D; 
+        border-right: 0.15rem dashed #F0A23D; 
     }
     .first-day td:nth-child(4), .first-day th:nth-child(4) { 
         width: 30%;
