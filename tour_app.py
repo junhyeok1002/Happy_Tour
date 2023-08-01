@@ -96,7 +96,7 @@ with C2:            #C2: body
                 
                 with st.expander("Day 1, 08/13(일)", expanded = True):
                     with st.container(): ticket('bus',['대전','DNCC'],'···',['청주공항','CJJ'],result['버스 좌석 1'].values[0])
-                    with st.container(): ticket('airplane',['청주공항','CJJ'],'···',['제주공항','CJU'],'아시아나')
+                    with st.container(): ticket('airplane',['청주공항','CJJ'],'···',['제주공항','CJU'],'아시아나B')
                     with st.container(): ticket('bus',['제주공항','CJU'],'···',['숙소','ROOM'],result['버스 좌석 2'].values[0])
                     with st.container(): ticket('home',['숙소','ROOM'],'···',['방 번호','NO.'],result['숙소 호수'].values[0])
                     st.write('')
@@ -311,7 +311,7 @@ st.markdown("""
     }
     td:nth-child(3),th:nth-child(3) { 
         width: 30% ;
-        border-right: 2px dashed #F0A23D; 
+        border-right: 0.2rem dashed #F0A23D; 
         border-bottom: 0.1rem dashed #F0F2F6;
         border-top: 0.1rem dashed #F0F2F6;   
     }
