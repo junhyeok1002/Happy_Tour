@@ -26,7 +26,7 @@ def ticket(emoji,first,second,third,fourth):
         emoji_type = "flipped-symbola-emoji"
  
     elif emoji == 'airplane' :
-        emoji = '#x1F6EB'
+        emoji = '#x2708'
         emoji_type = 'symbola-emoji'
     elif emoji == 'home' : 
         emoji = '#x1F3E0'
@@ -162,7 +162,7 @@ st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적�
 streamlit_style = """
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700&display=swap');
     
     html, body, [class*="css"]  {
     font-family: Noto Sans KR,sans-serif;
