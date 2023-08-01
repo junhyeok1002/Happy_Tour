@@ -350,7 +350,7 @@ st.markdown("""
     }
     .first-day td:nth-child(3), .first-day th:nth-child(3) { 
         width: 30% ;
-        border-right: 0.15rem dashed #F0A23D; 
+        border-right: 0.2rem dashed #F0A23D; 
     }
     .first-day td:nth-child(4), .first-day th:nth-child(4) { 
         width: 30%;
