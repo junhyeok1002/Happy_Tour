@@ -167,6 +167,9 @@ streamlit_style = """
     @font-face {
       font-family: 'Symbola';
       src: url('./fonts/symbola-font.ttf') format('truetype');
+      src: url('./fonts/Symbola-Emoji.woff') format('woff');
+      src: url('path/to/Symbola-Emoji.eot');
+      src: url('path/to/Symbola-Emoji.eot?#iefix') format('embedded-opentype');
     }
     .flipped-symbola-emoji {
       font-family: 'Symbola', sans-serif;
