@@ -7,6 +7,10 @@ from PIL import Image
 # XLS 파일 읽기
 df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
 
+# 바뀐 엑셀 형식에 맞추어 전처리
+df = df.T.set_index('이름').T
+df
+
 # 이름 목록
 names = list(df.index)
 
@@ -33,7 +37,7 @@ def ticket(emoji,first,second,third,fourth):
         emoji_type = 'symbola-emoji'
     
     st.markdown(f"""
-    <table>
+    <table class = "first-day">
       <tr>
         <td><span class="custom-ticket-font">{first[0]}</span><br><span class="custom-ticket-small-font">{first[1]}</span></td>
         <td><p class="{emoji_type}">&{emoji};</p></td>
@@ -95,10 +99,47 @@ with C2:            #C2: body
                 # st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중, 글짜 크기키우기, 배치 디자인 다시, 이모지 너무 유치해보이는데 고급스럽게 바꿀 방법찾기, 등등.... </div>', unsafe_allow_html=True)
                 
                 with st.expander("Day 1, 08/13(일)", expanded = True):
-                    with st.container(): ticket('bus',['대전','DNCC'],'···',['청주공항','CJJ'],result['버스 좌석 1'].values[0])
-                    with st.container(): ticket('airplane',['청주공항','CJJ'],'···',['제주공항','CJU'],'아시아나B')
-                    with st.container(): ticket('bus',['제주공항','CJU'],'···',['숙소','ROOM'],result['버스 좌석 2'].values[0])
-                    with st.container(): ticket('home',['숙소','ROOM'],'···',['방 번호','NO.'],result['숙소 호수'].values[0])
+                    with st.container():
+                            st.markdown(f"""
+                            <table class = "first-day">
+                              <tr>
+                                <td><span class="custom-ticket-font">대전</span><br>
+                                    <span class="custom-ticket-small-font">DNCC</span></td>
+                                <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
+                                <td><span class="custom-ticket-font">청주공항</span><br>
+                                    <span class="custom-ticket-small-font">CJJ</span></td>
+                                <td><span class="custom-ticket-font">{result['교회-청주공항 (버스)'].values[0]}</span><br>
+                                    <span class="custom-ticket-small-font">오후 2:30</span></td>
+                              </tr>
+                              <tr>
+                                <td><span class="custom-ticket-font">청주공항</span><br>
+                                    <span class="custom-ticket-small-font">CJJ</span></td>
+                                <td><p class="symbola-emoji">&#x2708;</p></td>
+                                <td><span class="custom-ticket-font">제주공항</span><br>
+                                    <span class="custom-ticket-small-font">CJU</span></td>
+                                <td><span class="custom-ticket-font">{result['청주공항-제주공항 (비행기)'].values[0]}</span><br>
+                                    <span class="custom-ticket-small-font">오후 5:00</span></td>
+                              </tr>                              
+                              <tr>
+                                <td><span class="custom-ticket-font">제주공항</span><br>
+                                    <span class="custom-ticket-small-font">CJU</span></td>
+                                <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
+                                <td><span class="custom-ticket-font">식당/숙소</span><br>
+                                    <span class="custom-ticket-small-font">MEAL/ROOM</span></td>
+                                <td><span class="custom-ticket-font">{result['제주공항-숙소 (버스)'].values[0]}</span><br>
+                                    <span class="custom-ticket-small-font">오후 7:00</span></td>
+                              </tr>                              
+                              <tr>
+                                <td><span class="custom-ticket-font">숙소</span><br>
+                                    <span class="custom-ticket-small-font">ROOM</span></td>
+                                <td><p class="flipped-symbola-emoji">&#x1F3E0;</p></td>
+                                <td><span class="custom-ticket-font">방 번호</span><br>
+                                    <span class="custom-ticket-small-font">NO.</span></td>
+                                <td><span class="custom-ticket-font">{result['숙소 동 호수'].values[0].split()[0]}</span><br>
+                                    <span class="custom-ticket-small-font">{result['숙소 동 호수'].values[0].split()[1]}</span></td>
+                              </tr>                              
+                            </table>
+                            """, unsafe_allow_html=True)
                     st.write('')
                 
                 with st.expander("Day 2, 08/14(월)", expanded = True):
@@ -280,22 +321,23 @@ with open('style.css')as f:
 st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
 
 
+# firstday - table
 st.markdown("""
 <style>
-    table {
+    .first-day table {
         width: 100%;
         border-spacing: 0;
         border-top : 0.1rem dashed #F0F2F6;
         border-bottom : 0.1rem dashed #F0F2F6;
     }
-    .css-5rimss th, .css-5rimss td{
+    .first-day.css-5rimss th, .first-day .css-5rimss td{
         padding: 0px 0px 0px 0px;
     }
-    td, th {
+    .first-day td, .first-day th {
         text-align: center;
     }
     
-    td:nth-child(1),th:nth-child(1) { 
+    .first-day td:nth-child(1), .first-day th:nth-child(1) { 
         width: 30% ;
         border-left: 0.3rem solid #F0A23D;
         border-right: 1px solid #ffffff; 
@@ -303,19 +345,19 @@ st.markdown("""
         border-top: 0.1rem dashed #F0F2F6;
     }
 
-    td:nth-child(2),th:nth-child(2) { 
+    .first-day td:nth-child(2), .first-day th:nth-child(2) { 
         width: 6%; 
         border-right: 1px solid #ffffff; 
         border-bottom: 0.1rem dashed #F0F2F6;
         border-top: 0.1rem dashed #F0F2F6;
     }
-    td:nth-child(3),th:nth-child(3) { 
+    .first-day td:nth-child(3), .first-day th:nth-child(3) { 
         width: 30% ;
         border-right: 0.2rem dashed #F0A23D; 
         border-bottom: 0.1rem dashed #F0F2F6;
         border-top: 0.1rem dashed #F0F2F6;   
     }
-    td:nth-child(4),th:nth-child(4) { 
+    .first-day td:nth-child(4), .first-day th:nth-child(4) { 
         width: 30%;
         color: #D67D3E;
         font-weight: bold;
