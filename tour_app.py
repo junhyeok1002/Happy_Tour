@@ -313,7 +313,7 @@ st.markdown("""
     }
     td:nth-child(4),th:nth-child(4) { 
         width: 30%;
-        color: #F0A23D;
+        color: #D67D3E;
         font-weight: bold;
         background-color: #ffffff;
         border-right : 0.3rem solid #F0A23D;
