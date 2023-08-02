@@ -156,7 +156,7 @@ with C2:            #C2: body
                     st.markdown(
                     f"""
                     <div style="padding: 0px 0px 8px 0px;">
-                        <a href="{url}" target="_blank">
+                        <a href="{url}" target="_blank" rel="noopener noreferrer">
                             <div style="
                                 width :100%;
                                 display: inline-block;
@@ -174,10 +174,10 @@ with C2:            #C2: body
                     """,
                     unsafe_allow_html=True)    
                     
-                    
-                    st.button(f"{theme} Tip !" ,use_container_width=True)
-                    st.write('위 버튼 클릭하면 모바일에서 아래 링크가 열리도록')  
-                    st.markdown(f'<a href="{url}" target="_blank" rel="noopener noreferrer">{theme} Tip !</a>', unsafe_allow_html=True)
+                    # 삭제 요망
+#                     st.button(f"{theme} Tip !" ,use_container_width=True)
+#                     st.write('위 버튼 클릭하면 모바일에서 아래 링크가 열리도록')  
+#                     st.markdown(f'<a href="{url}" target="_blank" rel="noopener noreferrer">{theme} Tip !</a>', unsafe_allow_html=True)
 
                     with st.container():
                             st.markdown(f"""
