@@ -177,8 +177,7 @@ with C2:            #C2: body
                     
                     st.button(f"{theme} Tip !" ,use_container_width=True)
                     st.write('위 버튼 클릭하면 모바일에서 아래 링크가 열리도록')  
-                    st.write(url)    
-                    st.markdown(f'<a href="{url}" target="_blank" rel="noopener noreferrer">Click here to open link</a>', unsafe_allow_html=True)
+                    st.markdown(f'<a href="{url}" target="_blank" rel="noopener noreferrer">{theme} Tip !</a>', unsafe_allow_html=True)
 
                     with st.container():
                             st.markdown(f"""
