@@ -5,14 +5,6 @@ from fuzzywuzzy import process
 from PIL import Image
 
 
-
-
-
-
-
-
-
-
 # XLS 파일 읽기
 df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
 
@@ -31,48 +23,51 @@ st.image(image,use_column_width  = True)# caption='Sunrise by the mountains')
 side_gap = 0.75
 body_gap = 10-2*side_gap
 
-# 티켓 생성 함수
-def ticket(emoji,first,second,third,fourth):
-    if emoji == 'bus' : 
-        emoji = '#x1F68C'
-        emoji_type = "flipped-symbola-emoji"
- 
-    elif emoji == 'airplane' :
-        emoji = '#x2708'
-        emoji_type = 'symbola-emoji'
-    elif emoji == 'home' : 
-        emoji = '#x1F3E0'
-        emoji_type = 'symbola-emoji'
-    
-    st.markdown(f"""
-    <table class = "first-day">
-      <tr>
-        <td><span class="custom-ticket-font">{first[0]}</span><br><span class="custom-ticket-small-font">{first[1]}</span></td>
-        <td><p class="{emoji_type}">&{emoji};</p></td>
-        <td><span class="custom-ticket-font">{third[0]}</span><br><span class="custom-ticket-small-font">{third[1]}</span></td>
-        <td><span class="custom-ticket-font">{fourth}</span><br><span class="custom-ticket-small-font">{'???'}</span></td>
-      </tr>
-    </table>
-    """, unsafe_allow_html=True)
 
-# multibox_control
-multibox_blank_case = """
-<style>
-div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2){
-    visibility: hidden;
-}
-div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2):before {
-    content: "성함을 입력해주세요."; visibility: visible;
-}    
-</style>
-"""    
 
 # C1: left blank, C2: body, C3: right blank
 C1, C2, C3 = st.columns([side_gap, body_gap ,side_gap])
 with C1: pass # C1: left blank
 with C3: pass # C3: right blank
 with C2:            #C2: body
-
+    
+    # 가이드북
+    url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4"
+    st.markdown(
+    f"""
+    <div style="padding: 0px 0px 8px 0px;">
+        <a href="{url}" target="_blank" rel="noopener noreferrer">
+            <div style="
+                width :100%;
+                display: inline-block;
+                padding: 0.3rem;
+                color: #ffffff;
+                background-color: #F0A23D;
+                border-radius: 0.5rem;
+                border: 0.07rem solid #F0A23D;
+                text-decoration: none;
+                text-align: center;
+                font-weight: bold;">
+                Tour 가이드 북
+            </div>
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True)  
+    
+    # 멀티셀렉트 박스
+    # multibox_control
+    multibox_blank_case = """
+    <style>
+    div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2){
+        visibility: hidden;
+    }
+    div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2):before {
+        content: "성함을 입력해주세요."; visibility: visible;
+    }    
+    </style>
+    """    
+    
     name_list = st.multiselect('검색',\
                                names,max_selections=None,label_visibility = 'collapsed')
 
@@ -155,8 +150,15 @@ with C2:            #C2: body
                     st.write('')
                 
                 with st.expander("Day 2, 08/14(월)", expanded = True):
+                    theme_url = {'물놀이' : 'https://sandy-ear-231.notion.site/c8730b2e5d2f4636962550f876747bee?pvs=4',
+                                 '액티비티' : 'https://sandy-ear-231.notion.site/92670ed2db424e8089bb93d68eed64d4?pvs=4',
+                                 '인생샷' : 'https://sandy-ear-231.notion.site/9ca017fc6f9c40f1badab4192e2ce4a1?pvs=4',
+                                 '자연' : 'https://sandy-ear-231.notion.site/6a061529159d467587eab7a90d2c1896?pvs=4',
+                                 '힐링' : 'https://sandy-ear-231.notion.site/becd45dddbee435aacecf49ba776a8ed?pvs=4'
+                                }
+                    
                     theme = result.loc[name,'테마']                    
-                    url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4"
+                    url = theme_url[theme]
                     st.markdown(
                     f"""
                     <div style="padding: 0px 0px 8px 0px;">
@@ -165,12 +167,13 @@ with C2:            #C2: body
                                 width :100%;
                                 display: inline-block;
                                 padding: 0.3rem;
-                                color: #B57200;
-                                background-color: #ffffff;
+                                color: #ffffff;
+                                background-color: #B57200;
                                 border-radius: 0.5rem;
                                 border: 0.07rem solid #B57200;
                                 text-decoration: none;
-                                text-align: center;">
+                                text-align: center;
+                                font-weight: bold;">
                                 {theme} Tip !
                             </div>
                         </a>
@@ -248,11 +251,6 @@ with C2:            #C2: body
                             """, unsafe_allow_html=True)
                     st.write('')                    
                     
-                    
-                    
-                    
-                    
-                    result
                     
                 st.write("메모 : 같은 차에 누구누구타고 누가 책임자인지 비상연락망 등등 정보, 대략적인 일정표와 플랜? 정보, 테마여행 장소별 안내사항/멤버/즐길거리 정보 등등, 전체 여행일정 중요한 사전 공지 및 안내사항, 캡쳐 이미지 버튼 ")
     else :
