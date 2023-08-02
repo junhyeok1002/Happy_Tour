@@ -156,7 +156,7 @@ with C2:            #C2: body
                     st.markdown(
                     f"""
                     <div style="padding: 0px 0px 8px 0px;">
-                        <a href="{url}" target="_self">
+                        <a href="{url}" target="_blank">
                             <div style="
                                 width :100%;
                                 display: inline-block;
