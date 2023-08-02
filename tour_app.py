@@ -467,7 +467,7 @@ st.markdown("""
         background-color: #ffffff;
     }
     .first-day td:nth-child(2):first-line {
-      line-height: 0.3rem;
+      line-height: 0.5rem;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -510,7 +510,7 @@ st.markdown("""
         line-height: 0.75rem;
     }
     .second-day td:nth-child(2):first-line {
-      line-height: 0rem;
+      line-height: 0.2rem;
     }
     .second-day td:nth-child(4):first-line {
       line-height: 1.5rem;
@@ -555,7 +555,7 @@ st.markdown("""
         background-color: #ffffff;
     }
     .third-day td:nth-child(2):first-line {
-      line-height: 0.3rem;
+      line-height: 0.5rem;
     }
 </style>
 """, unsafe_allow_html=True)
