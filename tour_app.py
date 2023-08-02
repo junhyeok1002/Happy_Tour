@@ -153,35 +153,32 @@ with C2:            #C2: body
                 with st.expander("Day 2, 08/14(월)", expanded = True):
                     theme = result.loc[name,'테마']                    
                     url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4"
-                    st.markdown(
-                    f"""
-                    <div style="padding: 0px 0px 8px 0px;">
-                        <a href="{url}" target="_self">
-                            <div style="
-                                width :100%;
-                                display: inline-block;
-                                padding: 0.3rem;
-                                color: #B57200;
-                                background-color: #ffffff;
-                                border-radius: 0.5rem;
-                                border: 0.07rem solid #B57200;
-                                text-decoration: none;
-                                text-align: center;">
-                                {theme} Tip !
-                            </div>
-                        </a>
-                    </div>
-                    """,
-                    unsafe_allow_html=True)    
+#                     st.markdown(
+#                     f"""
+#                     <div style="padding: 0px 0px 8px 0px;">
+#                         <a href="{url}" target="_self">
+#                             <div style="
+#                                 width :100%;
+#                                 display: inline-block;
+#                                 padding: 0.3rem;
+#                                 color: #B57200;
+#                                 background-color: #ffffff;
+#                                 border-radius: 0.5rem;
+#                                 border: 0.07rem solid #B57200;
+#                                 text-decoration: none;
+#                                 text-align: center;">
+#                                 {theme} Tip !
+#                             </div>
+#                         </a>
+#                     </div>
+#                     """,
+#                     unsafe_allow_html=True)    
                     
-                    st.markdown(
-                    f"""
-                        <a href="{url}" target="_self">
-                                {theme} Tip !
-                        </a>
-      
-                    """,
-                    unsafe_allow_html=True)
+                    
+                    st.button(f"{theme} Tip !" ,use_container_width=True)
+                    st.write('위 버튼 클릭하면 모바일에서 아래 링크가 열리도록')  
+                    st.write(url)    
+                    
 
                     with st.container():
                             st.markdown(f"""
