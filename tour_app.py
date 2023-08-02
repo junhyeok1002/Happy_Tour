@@ -454,7 +454,7 @@ st.markdown("""
     .first-day td:nth-child(2), .first-day th:nth-child(2) { 
         width: 6%; 
         border-right: 1px solid #ffffff; 
-        line-height: 0.6rem;
+        line-height: 0.75rem;
     }
     .first-day td:nth-child(3), .first-day th:nth-child(3) { 
         width: 30% ;
@@ -493,7 +493,7 @@ st.markdown("""
     .second-day td:nth-child(2), .second-day th:nth-child(2) { 
         width: 6%; 
         border-right: 1px solid #ffffff; 
-        line-height: 0.6rem;
+        line-height: 0.75rem;
     }
     .second-day td:nth-child(3), .second-day th:nth-child(3) { 
         width: 30% ;
@@ -532,7 +532,7 @@ st.markdown("""
     .third-day td:nth-child(2), .third-day th:nth-child(2) { 
         width: 6%; 
         border-right: 1px solid #ffffff;
-        line-height: 0.6rem;
+        line-height: 0.75rem;
     }
     .third-day td:nth-child(3), .third-day th:nth-child(3) { 
         width: 30% ;
