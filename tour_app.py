@@ -173,6 +173,15 @@ with C2:            #C2: body
                     </div>
                     """,
                     unsafe_allow_html=True)    
+                    
+                    st.markdown(
+                    f"""
+                        <a href="{url}" target="_self">
+                                {theme} Tip !
+                        </a>
+      
+                    """,
+                    unsafe_allow_html=True)
 
                     with st.container():
                             st.markdown(f"""
