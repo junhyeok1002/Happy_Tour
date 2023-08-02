@@ -113,8 +113,8 @@ with C2:            #C2: body
                               <tr>
                                 <td><span class="custom-ticket-font">대전</span><br>
                                     <span class="custom-ticket-small-font">DNCC</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;">&#x1F68C;</p><br>
-                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#x21C4;</p></td>
+                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
+                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
                                 <td><span class="custom-ticket-font">청주공항</span><br>
                                     <span class="custom-ticket-small-font">CJJ</span></td>
                                 <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['교회-청주공항 (버스)'].values[0]}</span><br>
@@ -123,7 +123,7 @@ with C2:            #C2: body
                               <tr>
                                 <td><span class="custom-ticket-font">청주공항</span><br>
                                     <span class="custom-ticket-small-font">CJJ</span></td>
-                                <td ><p class="symbola-emoji" style = "font-size:1.4rem;">&#x2708;</p><br>
+                                <td ><p class="symbola-emoji" style = "font-size:1.4rem;"><br>&#x2708;</p><br>
                                     <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td> 
                                 <td><span class="custom-ticket-font">제주공항</span><br>
                                     <span class="custom-ticket-small-font">CJU</span></td>
@@ -133,8 +133,8 @@ with C2:            #C2: body
                               <tr>
                                 <td><span class="custom-ticket-font">제주공항</span><br>
                                     <span class="custom-ticket-small-font">CJU</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;">&#x1F68C;</p><br>
-                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#x21C4;</p></td>
+                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
+                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
                                 <td><span class="custom-ticket-font">식당/숙소</span><br>
                                     <span class="custom-ticket-small-font"  style="letter-spacing: -0.05rem;">MEAL/ROOM</span></td>
                                 <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['제주공항-숙소 (버스)'].values[0]}</span><br>
@@ -143,7 +143,7 @@ with C2:            #C2: body
                               <tr>
                                 <td><span class="custom-ticket-font">숙소</span><br>
                                     <span class="custom-ticket-small-font">ROOM</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;">&#x1F3E0;</p><br>
+                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F3E0;</p><br>
                                     <span class="custom-ticket-small-font" style="color:black">{result['숙소 동 호수'].values[0].split()[1]}</span></td>                                
                                 <td><span class="custom-ticket-font">방 번호</span><br>
                                     <span class="custom-ticket-small-font">NO.</span></td>
@@ -189,12 +189,12 @@ with C2:            #C2: body
                               <tr>
                                 <td><span class="custom-ticket-font">숙소</span><br>
                                     <span class="custom-ticket-small-font">ROOM</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;">&#x1F68C;</p><br>
+                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
                                     <p class="symbola-emoji" style = "font-size:1.2rem;">&#x21C4;</p></td>
                                 <td><span class="custom-ticket-font">{theme}</span><br>
                                     <span class="custom-ticket-small-font">THEME</span></td>
                                 <td><span class="custom-ticket-font" style="color: #B57200;">{result['테마별 버스'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font" style="color: black; line-height: 0.1;">오후 12:00<br>오후 17:00</span></td>
+                                    <span class="custom-ticket-small-font" style="color: black;">오후 12:00<br>오후 17:00</span></td>
                               </tr>                           
                             </table> 
                             """, unsafe_allow_html=True)
@@ -207,7 +207,7 @@ with C2:            #C2: body
                               <tr>
                                 <td><span class="custom-ticket-font">숙소</span><br>
                                     <span class="custom-ticket-small-font">ROOM</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;">&#x1F68C;</p><br>
+                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
                                     <p class="symbola-emoji" style = "font-size:1.2rem;">&#x21C4;</p></td>
                                 <td><span class="custom-ticket-font">단체관광</span><br>
                                     <span class="custom-ticket-small-font">TOUR</span></td>
@@ -217,7 +217,7 @@ with C2:            #C2: body
                               <tr>
                                 <td><span class="custom-ticket-font">숙소</span><br>
                                     <span class="custom-ticket-small-font">ROOM</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;">&#x1F68C;</p><br>
+                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
                                     <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
                                 <td><span class="custom-ticket-font">제주공항</span><br>
                                     <span class="custom-ticket-small-font">CJU</span></td>
@@ -227,7 +227,7 @@ with C2:            #C2: body
                               <tr>
                                 <td><span class="custom-ticket-font">제주공항</span><br>
                                     <span class="custom-ticket-small-font">CJU</span></td>
-                                <td ><p class="symbola-emoji" style = "font-size:1.4rem;">&#x2708;</p><br>
+                                <td ><p class="symbola-emoji" style = "font-size:1.4rem;"><br>&#x2708;</p><br>
                                     <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>                                
                                 <td><span class="custom-ticket-font">청주공항</span><br>
                                     <span class="custom-ticket-small-font">CJJ</span></td>
@@ -237,7 +237,7 @@ with C2:            #C2: body
                               <tr>
                                 <td><span class="custom-ticket-font">청주공항</span><br>
                                     <span class="custom-ticket-small-font">CJJ</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;">&#x1F68C;</p><br>
+                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
                                     <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
                                 <td><span class="custom-ticket-font">대전</span><br>
                                     <span class="custom-ticket-small-font">DNCC</span></td>
@@ -454,7 +454,7 @@ st.markdown("""
     .first-day td:nth-child(2), .first-day th:nth-child(2) { 
         width: 6%; 
         border-right: 1px solid #ffffff; 
-        line-height: 0.75rem;
+        line-height: 0.5rem;
     }
     .first-day td:nth-child(3), .first-day th:nth-child(3) { 
         width: 30% ;
@@ -465,6 +465,9 @@ st.markdown("""
         color: #D67D3E;
         font-weight: bold;
         background-color: #ffffff;
+    }
+    .first-day td:nth-child(2):first-line {
+      line-height: 0.3rem;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -493,7 +496,7 @@ st.markdown("""
     .second-day td:nth-child(2), .second-day th:nth-child(2) { 
         width: 6%; 
         border-right: 1px solid #ffffff; 
-        line-height: 0.75rem;
+        line-height: 0.5rem;
     }
     .second-day td:nth-child(3), .second-day th:nth-child(3) { 
         width: 30% ;
@@ -504,6 +507,13 @@ st.markdown("""
         color: #D67D3E;
         font-weight: bold;
         background-color: #ffffff;
+        line-height: 0.75rem;
+    }
+    .second-day td:nth-child(2):first-line {
+      line-height: 0rem;
+    }
+    .second-day td:nth-child(4):first-line {
+      line-height: 1.5rem;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -532,7 +542,7 @@ st.markdown("""
     .third-day td:nth-child(2), .third-day th:nth-child(2) { 
         width: 6%; 
         border-right: 1px solid #ffffff;
-        line-height: 0.75rem;
+        line-height: 0.5rem;
     }
     .third-day td:nth-child(3), .third-day th:nth-child(3) { 
         width: 30% ;
@@ -543,6 +553,9 @@ st.markdown("""
         color: #D67D3E;
         font-weight: bold;
         background-color: #ffffff;
+    }
+    .third-day td:nth-child(2):first-line {
+      line-height: 0.3rem;
     }
 </style>
 """, unsafe_allow_html=True)
