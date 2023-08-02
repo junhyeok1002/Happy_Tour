@@ -9,7 +9,6 @@ df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
 
 # 바뀐 엑셀 형식에 맞추어 전처리
 df = df.T.set_index('이름').T
-df
 
 # 이름 목록
 names = list(df.index)
@@ -147,6 +146,8 @@ with C2:            #C2: body
                     
                 with st.expander("Day 3, 08/15(화)", expanded = True):
                     st.write("업데이트 중")
+                    
+                st.write("메모 : 같은 차에 누구누구타고 누가 책임자인지 비상연락망 등등 정보, 대략적인 일정표와 플랜? 정보, 테마여행 장소별 안내사항/멤버/즐길거리 정보 등등, 전체 여행일정 중요한 사전 공지 및 안내사항 ")
     else :
         st.markdown(multibox_blank_case, unsafe_allow_html=True)
         pass
