@@ -3,6 +3,7 @@ import streamlit as st
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from PIL import Image
+import webbrowser
 
 # XLS 파일 읽기
 df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
@@ -144,8 +145,14 @@ with C2:            #C2: body
                 with st.expander("Day 2, 08/14(월)", expanded = True):
                     theme = result.loc[name,'테마']
                     url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4"  
-                    st.markdown(f'<a href="{url}" target="_blank" style ="color : black;text-decoration: none; text-align: center; border: 1px solid black;width: 100%;">{theme} 더 즐기기</a>', unsafe_allow_html=True)
+                    st.markdown(f'<a href="{url}" target="_blank" style ="color : black;text-decoration: none; text-align: center; border: 1px solid black;width: 100%;">{theme} Tip !</a>', unsafe_allow_html=True)
                     
+                    def theme_page() :
+                        url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4"  
+                        webbrowser.open(url)
+                        
+                    st.button('Say hello', on_click=theme_page, use_container_width = True)
+                            
                     
                     
                     with st.container():
@@ -165,28 +172,23 @@ with C2:            #C2: body
                             """, unsafe_allow_html=True)
                     st.write('')                    
                     
-
-                    
-                    st.write("업데이트 중")
-                    
                 with st.expander("Day 3, 08/15(화)", expanded = True):
-                    result
-                    
                     with st.container():
                             st.markdown(f"""
                             <table class = "third-day">
                               <tr>
                                 <td><span class="custom-ticket-font">숙소</span><br>
                                     <span class="custom-ticket-small-font">ROOM</span></td>
-                                <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
+                                <td><p class="flipped-symbola-emoji" style = "font-size:1.2rem;">&#x1F68C;</p>
+                                    <p class="symbola-emoji" style = "font-size:1rem;">&#x21C4;</p></td>
                                 <td><span class="custom-ticket-font">단체관광</span><br>
                                     <span class="custom-ticket-small-font">TOUR</span></td>
                                 <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['단체 활동 버스'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font" style="color: black;">???</span></td>
                               </tr>
                               <tr>
-                                <td><span class="custom-ticket-font">단체관광</span><br>
-                                    <span class="custom-ticket-small-font">TOUR</span></td>
+                                <td><span class="custom-ticket-font">숙소</span><br>
+                                    <span class="custom-ticket-small-font">ROOM</span></td>
                                 <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
                                 <td><span class="custom-ticket-font">제주공항</span><br>
                                     <span class="custom-ticket-small-font">CJU</span></td>
@@ -219,9 +221,9 @@ with C2:            #C2: body
                     
                     
                     
-                    st.write("업데이트 중")
+                    result
                     
-                st.write("메모 : 같은 차에 누구누구타고 누가 책임자인지 비상연락망 등등 정보, 대략적인 일정표와 플랜? 정보, 테마여행 장소별 안내사항/멤버/즐길거리 정보 등등, 전체 여행일정 중요한 사전 공지 및 안내사항 ")
+                st.write("메모 : 같은 차에 누구누구타고 누가 책임자인지 비상연락망 등등 정보, 대략적인 일정표와 플랜? 정보, 테마여행 장소별 안내사항/멤버/즐길거리 정보 등등, 전체 여행일정 중요한 사전 공지 및 안내사항, 캡쳐 이미지 버튼 ")
     else :
         st.markdown(multibox_blank_case, unsafe_allow_html=True)
         pass
