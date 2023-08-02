@@ -3,7 +3,15 @@ import streamlit as st
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from PIL import Image
-import webbrowser
+
+
+
+
+
+
+
+
+
 
 # XLS 파일 읽기
 df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
@@ -143,18 +151,29 @@ with C2:            #C2: body
                     st.write('')
                 
                 with st.expander("Day 2, 08/14(월)", expanded = True):
-                    theme = result.loc[name,'테마']
-                    url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4"  
-                    st.markdown(f'<a href="{url}" target="_blank" style ="color : black;text-decoration: none; text-align: center; border: 1px solid black;width: 100%;">{theme} Tip !</a>', unsafe_allow_html=True)
-                    
-                    def theme_page() :
-                        url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4"  
-                        webbrowser.open(url)
-                        
-                    st.button('Say hello', on_click=theme_page, use_container_width = True)
-                            
-                    
-                    
+                    theme = result.loc[name,'테마']                    
+                    url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4"
+                    st.markdown(
+                    f"""
+                    <div style="padding: 0px 0px 8px 0px;">
+                        <a href="{url}" target="_self">
+                            <div style="
+                                width :100%;
+                                display: inline-block;
+                                padding: 0.3rem;
+                                color: #B57200;
+                                background-color: #ffffff;
+                                border-radius: 0.5rem;
+                                border: 0.07rem solid #B57200;
+                                text-decoration: none;
+                                text-align: center;">
+                                {theme} Tip !
+                            </div>
+                        </a>
+                    </div>
+                    """,
+                    unsafe_allow_html=True)    
+
                     with st.container():
                             st.markdown(f"""
                             <table class = "second-day">
@@ -165,10 +184,10 @@ with C2:            #C2: body
                                     <p class="symbola-emoji" style = "font-size:1rem;">&#x21C4;</p></td>
                                 <td><span class="custom-ticket-font">{theme}</span><br>
                                     <span class="custom-ticket-small-font">THEME</span></td>
-                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['테마별 버스'].values[0]}</span><br>
+                                <td><span class="custom-ticket-font" style="color: #B57200;">{result['테마별 버스'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font" style="color: black; line-height: 0.1;">오후 12:00<br>오후 17:00</span></td>
                               </tr>                           
-                            </table>
+                            </table> 
                             """, unsafe_allow_html=True)
                     st.write('')                    
                     
@@ -183,7 +202,7 @@ with C2:            #C2: body
                                     <p class="symbola-emoji" style = "font-size:1rem;">&#x21C4;</p></td>
                                 <td><span class="custom-ticket-font">단체관광</span><br>
                                     <span class="custom-ticket-small-font">TOUR</span></td>
-                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['단체 활동 버스'].values[0]}</span><br>
+                                <td><span class="custom-ticket-font" style="color: #8B4600;">{result['단체 활동 버스'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font" style="color: black;">???</span></td>
                               </tr>
                               <tr>
@@ -192,7 +211,7 @@ with C2:            #C2: body
                                 <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
                                 <td><span class="custom-ticket-font">제주공항</span><br>
                                     <span class="custom-ticket-small-font">CJU</span></td>
-                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['단체 활동 버스'].values[0]}</span><br>
+                                <td><span class="custom-ticket-font" style="color: #8B4600;">{result['단체 활동 버스'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font" style="color: black;">???</span></td>
                               </tr>                              
                               <tr>
@@ -201,7 +220,7 @@ with C2:            #C2: body
                                 <td><p class="symbola-emoji">&#x2708;</p></td>
                                 <td><span class="custom-ticket-font">청주공항</span><br>
                                     <span class="custom-ticket-small-font">CJJ</span></td>
-                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['제주공항-청주공항 (비행기)'].values[0]}</span><br>
+                                <td><span class="custom-ticket-font" style="color: #8B4600;">{result['제주공항-청주공항 (비행기)'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font" style="color: black;">???</span></td>
                               </tr>                              
                               <tr>
@@ -210,7 +229,7 @@ with C2:            #C2: body
                                 <td><p class="flipped-symbola-emoji">&#x1F68C;</p></td>
                                 <td><span class="custom-ticket-font">대전</span><br>
                                     <span class="custom-ticket-small-font">DNCC</span></td>
-                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['청주공항-교회 (버스)'].values[0]}</span><br>
+                                <td><span class="custom-ticket-font" style="color: #8B4600;">{result['청주공항-교회 (버스)'].values[0]}</span><br>
                                     <span class="custom-ticket-small-font" style="color: black;">???</span></td>
                               </tr>                           
                             </table>
@@ -464,7 +483,7 @@ st.markdown("""
     }
     .second-day td:nth-child(3), .second-day th:nth-child(3) { 
         width: 30% ;
-        border-right: 0.2rem double #D08523; 
+        border-right: 0.2rem double #B57200; 
     }
     .second-day td:nth-child(4), .second-day th:nth-child(4) { 
         width: 30%;
@@ -502,7 +521,7 @@ st.markdown("""
     }
     .third-day td:nth-child(3), .third-day th:nth-child(3) { 
         width: 30% ;
-        border-right: 0.2rem double #F0A23D; 
+        border-right: 0.2rem double #8B4600; 
     }
     .third-day td:nth-child(4), .third-day th:nth-child(4) { 
         width: 30%;
