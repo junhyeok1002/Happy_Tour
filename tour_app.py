@@ -129,8 +129,8 @@ with C2:            #C2: body
 
                     st.markdown(f"""
                     <table class = "first-day">
-                      <tr style="color:#F0A23D ;background-color: white ;border-top: 0.3rem solid #F0A23D;">
-                        <th colspan="4"><span class="custom-ticket-font">Day 1, 08/13(일)</span></th>
+                      <tr style="color:#F0A23D ;background-color: white ;border-top: 0.3rem solid #F0A23D;font-family:Pacifico, Nanum Pen Script;">
+                        <th colspan="4"><span class="custom-ticket-font">Day 1, 08/13 주일</span></th>
                       </tr>
                       <tr>
                         <td><span class="custom-ticket-font">대전</span><br>
@@ -179,9 +179,10 @@ with C2:            #C2: body
                     with  st.expander("첫째 날, 동행", expanded = False):  
                         transports = [result['①교회-청주공항 버스'].values[0], airline, \
                                       result['③제주공항-숙소 버스'].values[0],result['④숙소명 층/호수'].values[0] ]
-                        for i, tab in enumerate(st.tabs(["교회-청주공항", "청주-제주공항", "제주공항-숙소","숙소 룸메이트"])):
+                        tab_name = ["교회-청주공항", "청주-제주공항", "제주공항-숙소","숙소 룸메이트"]
+                        for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
-                                st.write(f'{transports[i]}에 함께하는 영가족분들')
+                                st.markdown(f'<span class="name-font" style="font-size:1.6rem;">{tab_name[i]} ,{transports[i]} 명단</span>', unsafe_allow_html=True)
                                 mine = result.loc[name,df.columns[i]]
                                 data_array = np.array(df[df[df.columns[i]] == mine].index)
 
@@ -211,8 +212,8 @@ with C2:            #C2: body
                 with st.container():
                     st.markdown(f"""
                     <table class = "second-day">
-                      <tr style="color:#B57200 ;background-color: white ;border-top: 0.3rem solid #B57200;">
-                        <th colspan="4"><span class="custom-ticket-font">Day 2, 08/14(월)</span></th>
+                      <tr style="color:#B57200 ;background-color: white ;border-top: 0.3rem solid #B57200;font-family:Pacifico, Nanum Pen Script;">
+                        <th colspan="4"><span class="custom-ticket-font">Day 2, 08/14 월요일</span></th>
                       </tr>                        
                       <tr>
                         <td><span class="custom-ticket-font">숙소</span><br>
@@ -291,8 +292,8 @@ with C2:            #C2: body
 
                     st.markdown(f"""
                     <table class = "third-day">
-                      <tr style="color:#8B4600 ;background-color: white ;border-top: 0.3rem solid #8B4600;">
-                        <th colspan="4"><span class="custom-ticket-font">Day 3, 08/15(화)</span></th>
+                      <tr style="color:#8B4600 ;background-color: white ;border-top: 0.3rem solid #8B4600;font-family:Pacifico, Nanum Pen Script;">
+                        <th colspan="4"><span class="custom-ticket-font">Day 3, 08/15 화요일</span></th>
                       </tr>                       
                       <tr>
                         <td><span class="custom-ticket-font">숙소</span><br>
@@ -412,6 +413,8 @@ streamlit_style = """
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
     
     html, body, [class*="css"]  {
     font-family: Noto Sans KR,sans-serif;
@@ -440,6 +443,34 @@ streamlit_style = """
       font-size: 1.5rem;
       margin: 0;
     }    
+    
+    
+    .custom-font {
+        font-size: 1rem;
+    }
+    .custom-ticket-font {
+        font-size: 1rem;
+        text-align: center;
+    }
+    .custom-ticket-small-font1 {
+        font-size: 0.7rem;
+        text-align: center;
+        color: #F0A23D;
+    }
+    .custom-ticket-small-font2 {
+        font-size: 0.7rem;
+        text-align: center;
+        color: #B57200;
+    }
+    .custom-ticket-small-font3 {
+        font-size: 0.7rem;
+        text-align: center;
+        color: #8B4600;
+    }    
+    .name-font {
+        font-size: 1rem;
+        font-family: 'Nanum Pen Script', cursive;
+    }
 </style>
 """
 st.markdown(streamlit_style, unsafe_allow_html=True)
