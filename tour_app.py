@@ -557,7 +557,7 @@ st.markdown("""
     }
     .first-day td:nth-child(3), .first-day th:nth-child(3) { 
         width: 30% ;
-        border-right: 0.2rem double #F0A23D; 
+        border-right: 0.2rem double #F0F2F6; 
     }
     .first-day td:nth-child(4), .first-day th:nth-child(4) { 
         width: 30%;
@@ -599,7 +599,7 @@ st.markdown("""
     }
     .second-day td:nth-child(3), .second-day th:nth-child(3) { 
         width: 30% ;
-        border-right: 0.2rem double #B57200; 
+        border-right: 0.2rem double #F0F2F6; 
     }
     .second-day td:nth-child(4), .second-day th:nth-child(4) { 
         width: 30%;
@@ -645,7 +645,7 @@ st.markdown("""
     }
     .third-day td:nth-child(3), .third-day th:nth-child(3) { 
         width: 30% ;
-        border-right: 0.2rem double #8B4600; 
+        border-right: 0.2rem double #F0F2F6; 
     }
     .third-day td:nth-child(4), .third-day th:nth-child(4) { 
         width: 30%;
