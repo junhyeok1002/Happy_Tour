@@ -41,12 +41,13 @@ with C2:            #C2: body
         <a href="{url}" target="_blank" rel="noopener noreferrer">
             <div style="
                 width :100%;
-                font-family:Hahmlet;
+                font-family:Diphylleia;
                 display: inline-block;
                 padding: 0.3rem;
                 color: #F0A23D;
                 background-color: #ffffff;
                 border-radius: 0.5rem;
+                letter-spacing: -0.12rem;
                 border: 0.07rem solid #F0A23D;
                 text-decoration: none;
                 text-align: center;
