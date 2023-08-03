@@ -241,10 +241,10 @@ with C2:            #C2: body
                                 <div style="
                                     width :100%;
                                     display: inline-block;
-                                    padding: 0.3rem;
+                                    padding: 0.1rem;
                                     color: #B57200;
                                     font-family:Nanum Pen Script, Diphylleia;
-                                    font_size: 1.5rem;
+                                    font-size: 1.2rem;
                                     background-color: #ffffff;
                                     border-radius: 0.5rem;
                                     border: 0.07rem solid #B57200;
