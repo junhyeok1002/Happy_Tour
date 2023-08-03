@@ -51,7 +51,7 @@ with C2:            #C2: body
                 text-decoration: none;
                 text-align: center;
                 font-weight: bold;">
-                Tour 가이드 북
+                Tour 가이드북
             </div>
         </a>
     </div>
