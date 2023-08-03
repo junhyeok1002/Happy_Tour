@@ -190,7 +190,7 @@ with C2:            #C2: body
 
                                 n = 4  # 열 개수 (n) 설정
                                 loop = int(str(n-len(data_list)%n))
-                                for i in range(loop): data_list.append("")
+                                for j in range(loop): data_list.append("")
                                     
                                 sum_text = '' #HTML 텍스트 누적용
                                 temp = list() # 임시 리스드 생성
@@ -258,7 +258,7 @@ with C2:            #C2: body
 
                                 n = 4  # 열 개수 (n) 설정
                                 loop = int(str(n-len(data_list)%n))
-                                for i in range(loop): data_list.append("")
+                                for j in range(loop): data_list.append("")
                                     
                                 sum_text = '' #HTML 텍스트 누적용
                                 temp = list() # 임시 리스드 생성
@@ -275,13 +275,6 @@ with C2:            #C2: body
                                 </table>
                                 """, unsafe_allow_html=True)
                                 st.write("")
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                         
                         st.markdown(
                         f"""
@@ -308,15 +301,7 @@ with C2:            #C2: body
                         unsafe_allow_html=True)      
                         st.write('')
                         
-                        
-                        
-                        
-                        
-                    
-                    
-                    
-                    
-                    
+
                     
                 # 3일차
                 with st.container():
@@ -390,12 +375,56 @@ with C2:            #C2: body
                     </table>
                     """, unsafe_allow_html=True)
 
-                    with  st.expander("셋째 날, 동행", expanded = False):  
-                        st.write('dfdf')
-                    st.write('')                        
+                    with  st.expander("셋째 날, 동행", expanded = False): 
+                        transports = [result['⑦단체활동 버스'].values[0],bus_to_cju, result['⑧제주-청주 비행기'].values[0],result['⑨청주공항-교회 버스'].values[0]]
+                        tab_name = ["단체활동", "숙소-제주공항","제주-청주공항","청주공항-교회"]
+                        idx = [6,6.5,7,8]
+                        for i, tab in enumerate(st.tabs(tab_name)):
+                            with tab:
+                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]} ,{transports[i]} 명단</span>', unsafe_allow_html=True)
+                                
+                                
+                                if idx[i] ==6.5 and result.loc[name,df.columns[idx[2]]] == '개별': i = 2
+                                elif  idx[i] ==6.5 and result.loc[name,df.columns[idx[2]]] != '개별': i = 0
+                                    
+                                mine = result.loc[name,df.columns[idx[i]]]
+                                data_list = list(df[df[df.columns[idx[i]]] == mine].index)
+                                
+                                
+                                
+                                n = 4  # 열 개수 (n) 설정
+                                loop = int(str(n-len(data_list)%n))
+                                for j in range(loop): data_list.append("")
+                                    
+                                sum_text = '' #HTML 텍스트 누적용
+                                temp = list() # 임시 리스드 생성
+                                for temp_name in data_list:
+                                    temp.append(temp_name)
+                                    if len(temp) == n:
+                                        temp_text = f'<tr><td>{temp[0]}</td><td>{temp[1]}</td><td>{temp[2]}</td><td>{temp[3]}</td></tr>'
+                                        sum_text += temp_text
+                                        temp = list()
+                                        
+                                st.markdown(f"""
+                                <table class = "name" style="table-layout: fixed;border: 0rem solid #ffffff;border-top : 0.2rem solid #F0F2F6;">
+                                  {sum_text}
+                                </table>
+                                """, unsafe_allow_html=True)
+                                st.write("")                        
+                        
+                        
+                        
+                        
+                        
+                        
                     
                     
-                st.write("메모 : 캡쳐 이미지 버튼 ")
+                    
+                    
+                    
+                    
+                    
+                st.write("메모 : 캡쳐 이미지 버튼 만들기, api로 실시간 db연결 , 검색창 흐름제어 다시고민 ,최적화하기 ")
                 
                 st.warning("메모 : 모두처리 했지만 이동시 개인별 예외케이스가 다양해서 혹시 실수가 없는지 더 집중적으로 교차검증이 필요할 것 같습니다!! 특히 시간 처리에 유의! 개별이동은 시간처리를 하이픈(-)로 하였음")
     else :
