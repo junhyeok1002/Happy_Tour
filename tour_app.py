@@ -129,8 +129,8 @@ with C2:            #C2: body
 
                     st.markdown(f"""
                     <table class = "first-day">
-                      <tr>
-                        <th colspan="4"><span class="custom-ticket-font" style="color:black;">Day 1, 08/13(일)</span></th>
+                      <tr style="color:white ;background-color: #F0A23D;border: 0.3rem solid #F0A23D">
+                        <th colspan="4"><span class="custom-ticket-font">Day 1, 08/13(일)</span></th>
                       </tr>
                       <tr>
                         <td><span class="custom-ticket-font">대전</span><br>
@@ -211,8 +211,8 @@ with C2:            #C2: body
                 with st.container():
                     st.markdown(f"""
                     <table class = "second-day">
-                      <tr>
-                        <th colspan="4"><span class="custom-ticket-font" style="color:black;">Day 2, 08/14(월)</span></th>
+                      <tr style="color:white ;background-color: #B57200;border: 0.3rem solid #B57200">
+                        <th colspan="4"><span class="custom-ticket-font">Day 2, 08/14(월)</span></th>
                       </tr>                        
                       <tr>
                         <td><span class="custom-ticket-font">숙소</span><br>
@@ -290,8 +290,8 @@ with C2:            #C2: body
 
                     st.markdown(f"""
                     <table class = "third-day">
-                      <tr>
-                        <th colspan="4"><span class="custom-ticket-font" style="color:black;">Day 3, 08/15(화)</span></th>
+                      <tr style="color:white ;background-color: #8B4600;border: 0.3rem solid #8B4600">
+                        <th colspan="4"><span class="custom-ticket-font">Day 3, 08/15(화)</span></th>
                       </tr>                       
                       <tr>
                         <td><span class="custom-ticket-font">숙소</span><br>
@@ -658,4 +658,4 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# #8B4600 #D08523 
+# #D08523  #B57200
