@@ -41,13 +41,13 @@ with C2:            #C2: body
         <a href="{url}" target="_blank" rel="noopener noreferrer">
             <div style="
                 width :100%;
-                font-family:Diphylleia;
+                font-family:Hahmlet, Diphylleia;
                 display: inline-block;
                 padding: 0.3rem;
                 color: #F0A23D;
                 background-color: #ffffff;
                 border-radius: 0.5rem;
-                letter-spacing: -0.12rem;
+                letter-spacing: -0.13rem;
                 border: 0.07rem solid #F0A23D;
                 text-decoration: none;
                 text-align: center;
@@ -132,7 +132,7 @@ with C2:            #C2: body
                     st.markdown(f"""
                     <table class = "first-day">
                       <tr style="color:#F0A23D ;background-color: white ;border-top: 0.3rem solid #F0A23D;font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;">
-                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.12rem;">Day 1, 08/13 주일</span></th>
+                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.13rem;">Day 1, 08/13 주일</span></th>
                       </tr>
                       <tr>
                         <td><span class="custom-ticket-font">대전</span><br>
@@ -168,7 +168,7 @@ with C2:            #C2: body
                         <td><span class="custom-ticket-font">숙소</span><br>
                             <span class="custom-ticket-small-font1">ROOM</span></td>
                         <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F3E0;</p><br>
-                            <span class="custom-ticket-small-font1" style="color:black; letter-spacing: -0.12rem;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>                                
+                            <span class="custom-ticket-small-font1" style="color:black; letter-spacing: -0.13rem;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>                                
                         <td><span class="custom-ticket-font">방 번호</span><br>
                             <span class="custom-ticket-small-font1">NO.</span></td>
                         <td><span class="custom-ticket-font" style="color: #F0A23D;font-size: 0.9rem;">{result['④숙소명 층/호수'].values[0].split()[0]}</span><br>
@@ -230,7 +230,7 @@ with C2:            #C2: body
                     st.markdown(f"""
                     <table class = "second-day">
                       <tr style="color:#B57200 ;background-color: white ;border-top: 0.3rem solid #B57200;font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;">
-                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.12rem;">Day 2, 08/14 월요일</span></th>
+                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.13rem;">Day 2, 08/14 월요일</span></th>
                       </tr>                        
                       <tr>
                         <td><span class="custom-ticket-font">숙소</span><br>
