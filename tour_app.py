@@ -199,11 +199,11 @@ with C2:            #C2: body
                     
                 
                 # 2일차
-                theme_url = {'물놀이' : ['https://sandy-ear-231.notion.site/c8730b2e5d2f4636962550f876747bee?pvs=4',"오후 5:00"],
-                             '액티비티' : ['https://sandy-ear-231.notion.site/92670ed2db424e8089bb93d68eed64d4?pvs=4',"오후 5:30"],
-                             '인생샷' : ['https://sandy-ear-231.notion.site/9ca017fc6f9c40f1badab4192e2ce4a1?pvs=4',"오후 5:20"],
-                             '자연' : ['https://sandy-ear-231.notion.site/6a061529159d467587eab7a90d2c1896?pvs=4',"오후 5:00"],
-                             '힐링' : ['https://sandy-ear-231.notion.site/becd45dddbee435aacecf49ba776a8ed?pvs=4',"오후 5:30"],
+                theme_url = {'물놀이' : ['https://sandy-ear-231.notion.site/c8730b2e5d2f4636962550f876747bee?pvs=4',"오후 05:00"],
+                             '액티비티' : ['https://sandy-ear-231.notion.site/92670ed2db424e8089bb93d68eed64d4?pvs=4',"오후 05:30"],
+                             '인생샷' : ['https://sandy-ear-231.notion.site/9ca017fc6f9c40f1badab4192e2ce4a1?pvs=4',"오후 05:20"],
+                             '자연' : ['https://sandy-ear-231.notion.site/6a061529159d467587eab7a90d2c1896?pvs=4',"오후 05:00"],
+                             '힐링' : ['https://sandy-ear-231.notion.site/becd45dddbee435aacecf49ba776a8ed?pvs=4',"오후 05:30"],
                              '의전' : ['http://www.sja21.com/main/main.html',"-"]
                             }
 
@@ -381,35 +381,6 @@ with C2:            #C2: body
 
 
 # 커스텀 component 만들기 위한 코드
-custom_style = """
-    <style>
-        .custom-font {
-            font-size: 1rem;
-        }
-        .custom-ticket-font {
-            font-size: 1rem;
-            text-align: center;
-        }
-        .custom-ticket-small-font1 {
-            font-size: 0.7rem;
-            text-align: center;
-            color: #F0A23D;
-        }
-        .custom-ticket-small-font2 {
-            font-size: 0.7rem;
-            text-align: center;
-            color: #B57200;
-        }
-        .custom-ticket-small-font3 {
-            font-size: 0.7rem;
-            text-align: center;
-            color: #8B4600;
-        }        
-    </style>
-"""
-st.markdown(custom_style, unsafe_allow_html=True) # 커스텀 스타일을 적용
-
-
 # 폰트 지정
 streamlit_style = """
 <style>
@@ -546,6 +517,14 @@ div[data-testid="stExpander"] div[role="button"] p {
 }
 div[data-testid="stExpander"]{
     border-left : 0.3rem solid #F0F2F6;
+}
+
+div[data-baseweb="tab-panel"]{
+    padding-top:0.5rem;
+}
+div[data-testid="stMarkdownContainer"] p{
+    margin-block-start: 0rem;
+    margin-block-end: 0rem;
 }
 
 
@@ -706,3 +685,4 @@ st.markdown("""
 
 # #D08523  #B57200
 #F97602
+
