@@ -41,7 +41,7 @@ with C2:            #C2: body
         <a href="{url}" target="_blank" rel="noopener noreferrer">
             <div style="
                 width :100%;
-                font-family:Diphylleia;
+                font-family:Hahmlet;
                 display: inline-block;
                 padding: 0.3rem;
                 color: #F0A23D;
@@ -250,7 +250,7 @@ with C2:            #C2: body
                                     text-decoration: none;
                                     text-align: center;
                                     font-weight: bold;">
-                                    {theme} 즐기기 TIP
+                                    {theme} 테마 TIP
                                 </div>
                             </a>
                         </div>
