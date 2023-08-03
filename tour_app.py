@@ -131,7 +131,7 @@ with C2:            #C2: body
                     st.markdown(f"""
                     <table class = "first-day">
                       <tr style="color:#F0A23D ;background-color: white ;border-top: 0.3rem solid #F0A23D;font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;">
-                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1.1rem;letter-spacing: -0.12rem;">Day 1, 08/13 주일</span></th>
+                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.12rem;">Day 1, 08/13 주일</span></th>
                       </tr>
                       <tr>
                         <td><span class="custom-ticket-font">대전</span><br>
@@ -229,7 +229,7 @@ with C2:            #C2: body
                     st.markdown(f"""
                     <table class = "second-day">
                       <tr style="color:#B57200 ;background-color: white ;border-top: 0.3rem solid #B57200;font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;">
-                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1.1rem;">Day 2, 08/14 월요일</span></th>
+                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.12rem;">Day 2, 08/14 월요일</span></th>
                       </tr>                        
                       <tr>
                         <td><span class="custom-ticket-font">숙소</span><br>
@@ -344,7 +344,7 @@ with C2:            #C2: body
                     st.markdown(f"""
                     <table class = "third-day">
                       <tr style="color:#8B4600 ;background-color: white ;border-top: 0.3rem solid #8B4600;font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;">
-                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1.1rem;">Day 3, 08/15 화요일</span></th>
+                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.12rem;">Day 3, 08/15 화요일</span></th>
                       </tr>                       
                       <tr>
                         <td><span class="custom-ticket-font">숙소</span><br>
