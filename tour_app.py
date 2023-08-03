@@ -41,6 +41,7 @@ with C2:            #C2: body
         <a href="{url}" target="_blank" rel="noopener noreferrer">
             <div style="
                 width :100%;
+                font-family:Diphylleia;
                 display: inline-block;
                 padding: 0.3rem;
                 color: #F0A23D;
@@ -129,7 +130,7 @@ with C2:            #C2: body
 
                     st.markdown(f"""
                     <table class = "first-day">
-                      <tr style="color:#F0A23D ;background-color: white ;border-top: 0.3rem solid #F0A23D;font-family:Pacifico, Nanum Pen Script;">
+                      <tr style="color:#F0A23D ;background-color: white ;border-top: 0.3rem solid #F0A23D;font-family:Diphylleia;">
                         <th colspan="4"><span class="custom-ticket-font">Day 1, 08/13 주일</span></th>
                       </tr>
                       <tr>
@@ -182,7 +183,7 @@ with C2:            #C2: body
                         tab_name = ["교회-청주공항", "청주-제주공항", "제주공항-숙소","숙소 룸메이트"]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
-                                st.markdown(f'<span class="name-font" style="font-size:1.6rem;">{tab_name[i]} ,{transports[i]} 명단</span>', unsafe_allow_html=True)
+                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]} ,{transports[i]} 명단</span>', unsafe_allow_html=True)
                                 mine = result.loc[name,df.columns[i]]
                                 data_array = np.array(df[df[df.columns[i]] == mine].index)
 
@@ -212,7 +213,7 @@ with C2:            #C2: body
                 with st.container():
                     st.markdown(f"""
                     <table class = "second-day">
-                      <tr style="color:#B57200 ;background-color: white ;border-top: 0.3rem solid #B57200;font-family:Pacifico, Nanum Pen Script;">
+                      <tr style="color:#B57200 ;background-color: white ;border-top: 0.3rem solid #B57200;font-family:Diphylleia;">
                         <th colspan="4"><span class="custom-ticket-font">Day 2, 08/14 월요일</span></th>
                       </tr>                        
                       <tr>
@@ -242,13 +243,14 @@ with C2:            #C2: body
                                     display: inline-block;
                                     padding: 0.3rem;
                                     color: #B57200;
+                                    font-family:Diphylleia;
                                     background-color: #ffffff;
                                     border-radius: 0.5rem;
                                     border: 0.07rem solid #B57200;
                                     text-decoration: none;
                                     text-align: center;
                                     font-weight: bold;">
-                                    {theme} TIP
+                                    {theme} 즐기기 TIP
                                 </div>
                             </a>
                         </div>
@@ -292,7 +294,7 @@ with C2:            #C2: body
 
                     st.markdown(f"""
                     <table class = "third-day">
-                      <tr style="color:#8B4600 ;background-color: white ;border-top: 0.3rem solid #8B4600;font-family:Pacifico, Nanum Pen Script;">
+                      <tr style="color:#8B4600 ;background-color: white ;border-top: 0.3rem solid #8B4600;font-family:Diphylleia;">
                         <th colspan="4"><span class="custom-ticket-font">Day 3, 08/15 화요일</span></th>
                       </tr>                       
                       <tr>
@@ -415,6 +417,7 @@ streamlit_style = """
     @import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap');
     
     html, body, [class*="css"]  {
     font-family: Noto Sans KR,sans-serif;
