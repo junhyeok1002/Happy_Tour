@@ -418,9 +418,10 @@ streamlit_style = """
     @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Hahmlet&display=swap');
     
     html, body, [class*="css"]  {
-    font-family: Noto Sans KR,sans-serif;
+    font-family: Hahmlet,sans-serif;
     }
     
    
