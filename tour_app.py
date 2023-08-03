@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import streamlit as st
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
@@ -6,10 +7,11 @@ from PIL import Image
 
 
 # XLS 파일 읽기
-df = pd.read_excel('./data/행복투어 샘플.xls', index_col = 0 )
+df = pd.read_excel('./data/제주수양회 총괄시트.xlsx', sheet_name='홈페이지 DB',index_col = 0 )
+# test =  pd.read_excel('./data/행복투어 샘플.xls',index_col = 0 )
 
 # 바뀐 엑셀 형식에 맞추어 전처리
-df = df.T.set_index('이름').T
+df = df.T.set_index('#').T.set_index('이름')
 
 # 이름 목록
 names = list(df.index)
@@ -101,158 +103,247 @@ with C2:            #C2: body
                 # 아래 대형 공사중 : metric 사용하지 않고, html/css로 디자인하기
                 # st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중, 글짜 크기키우기, 배치 디자인 다시, 이모지 너무 유치해보이는데 고급스럽게 바꿀 방법찾기, 등등.... </div>', unsafe_allow_html=True)
                 
-                with st.expander("Day 1, 08/13(일)", expanded = True):
-                    with st.container():
-                            st.markdown(f"""
-                            <table class = "first-day">
-                              <tr>
-                                <td><span class="custom-ticket-font">대전</span><br>
-                                    <span class="custom-ticket-small-font">DNCC</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
-                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
-                                <td><span class="custom-ticket-font">청주공항</span><br>
-                                    <span class="custom-ticket-small-font">CJJ</span></td>
-                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['교회-청주공항 (버스)'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font" style="color: black;">오후 2:30</span></td>
-                              </tr>
-                              <tr>
-                                <td><span class="custom-ticket-font">청주공항</span><br>
-                                    <span class="custom-ticket-small-font">CJJ</span></td>
-                                <td ><p class="symbola-emoji" style = "font-size:1.4rem;"><br>&#x2708;</p><br>
-                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td> 
-                                <td><span class="custom-ticket-font">제주공항</span><br>
-                                    <span class="custom-ticket-small-font">CJU</span></td>
-                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['청주공항-제주공항 (비행기)'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font" style="color: black;">오후 5:00</span></td>
-                              </tr>                              
-                              <tr>
-                                <td><span class="custom-ticket-font">제주공항</span><br>
-                                    <span class="custom-ticket-small-font">CJU</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
-                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
-                                <td><span class="custom-ticket-font">식당/숙소</span><br>
-                                    <span class="custom-ticket-small-font"  style="letter-spacing: -0.05rem;">MEAL/ROOM</span></td>
-                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['제주공항-숙소 (버스)'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font" style="color: black;">오후 7:00</span></td>
-                              </tr>                              
-                              <tr>
-                                <td><span class="custom-ticket-font">숙소</span><br>
-                                    <span class="custom-ticket-small-font">ROOM</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F3E0;</p><br>
-                                    <span class="custom-ticket-small-font" style="color:black">{result['숙소 동 호수'].values[0].split()[1]}</span></td>                                
-                                <td><span class="custom-ticket-font">방 번호</span><br>
-                                    <span class="custom-ticket-small-font">NO.</span></td>
-                                <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['숙소 동 호수'].values[0].split()[0]}</span><br>
-                                    <span class="custom-ticket-small-font" style="font-size: 1rem; color: black;">{result['숙소 동 호수'].values[0].split()[1]}</span></td>
-                              </tr>                              
-                            </table>
-                            """, unsafe_allow_html=True)
-                    st.write('')
-                
-                with st.expander("Day 2, 08/14(월)", expanded = True):
-                    theme_url = {'물놀이' : 'https://sandy-ear-231.notion.site/c8730b2e5d2f4636962550f876747bee?pvs=4',
-                                 '액티비티' : 'https://sandy-ear-231.notion.site/92670ed2db424e8089bb93d68eed64d4?pvs=4',
-                                 '인생샷' : 'https://sandy-ear-231.notion.site/9ca017fc6f9c40f1badab4192e2ce4a1?pvs=4',
-                                 '자연' : 'https://sandy-ear-231.notion.site/6a061529159d467587eab7a90d2c1896?pvs=4',
-                                 '힐링' : 'https://sandy-ear-231.notion.site/becd45dddbee435aacecf49ba776a8ed?pvs=4'
-                                }
-                    
-                    theme = result.loc[name,'테마']                    
-                    url = theme_url[theme]
-                    st.markdown(
-                    f"""
-                    <div style="padding: 0px 0px 8px 0px;">
-                        <a href="{url}" target="_blank" rel="noopener noreferrer">
-                            <div style="
-                                width :100%;
-                                display: inline-block;
-                                padding: 0.3rem;
-                                color: #ffffff;
-                                background-color: #B57200;
-                                border-radius: 0.5rem;
-                                border: 0.07rem solid #B57200;
-                                text-decoration: none;
-                                text-align: center;
-                                font-weight: bold;">
-                                {theme} Tip !
-                            </div>
-                        </a>
-                    </div>
-                    """,
-                    unsafe_allow_html=True)    
-                    
-                    # 삭제 요망
-#                     st.button(f"{theme} Tip !" ,use_container_width=True)
-#                     st.write('위 버튼 클릭하면 모바일에서 아래 링크가 열리도록')  
-#                     st.markdown(f'<a href="{url}" target="_blank" rel="noopener noreferrer">{theme} Tip !</a>', unsafe_allow_html=True)
 
-                    with st.container():
-                            st.markdown(f"""
-                            <table class = "second-day">
-                              <tr>
-                                <td><span class="custom-ticket-font">숙소</span><br>
-                                    <span class="custom-ticket-small-font">ROOM</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
-                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#x21C4;</p></td>
-                                <td><span class="custom-ticket-font">{theme}</span><br>
-                                    <span class="custom-ticket-small-font">THEME</span></td>
-                                <td><span class="custom-ticket-font" style="color: #B57200;">{result['테마별 버스'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font" style="color: black;">오후 12:00<br>오후 17:00</span></td>
-                              </tr>                           
-                            </table> 
-                            """, unsafe_allow_html=True)
-                    st.write('')                    
+                with st.container():
+                    # ①교회-청주공항 버스 : 개인이동, 선발대 처리
+                    if result['①교회-청주공항 버스'].values[0] in ('개인이동','선발대'): boarding_time1 = "-"
+                    else : boarding_time1 = "오후 2:30"
+
+                    # ②청주-제주 비행기 : 비행기 시간 처리
+                    info_air = result['②청주-제주 비행기'].values[0].replace("pm"," ")
+                    try:
+                        day, airline, time = info_air.split()
+                        if day != '13일' : boarding_time2 = f'{day} {time}'
+                        elif int(time[:2]) < 12: boarding_time2 = f'오전 {time}'
+                        elif int(time[:2]) == 12: boarding_time2 = f'오후 {time}'
+                        elif int(time[:2]) > 12: boarding_time2 = f'오후 {int(time[:2])-12}:{time[3:5]}'
+
+                    except :
+                        airline = info_air
+                        boarding_time2 = "-"
+
+                    # ③제주공항-숙소 : 버스 개인이동 수양관   
+                    if result['③제주공항-숙소 버스'].values[0] in ('개인이동','수양관'): boarding_time3 = "-"
+                    else : boarding_time3 = "오후 7:00"                        
+
+
+                    st.markdown(f"""
+                    <table class = "first-day">
+                      <tr>
+                        <th colspan="4"><span class="custom-ticket-font" style="color:black;">Day 1, 08/13(일)</span></th>
+                      </tr>
+                      <tr>
+                        <td><span class="custom-ticket-font">대전</span><br>
+                            <span class="custom-ticket-small-font">DNCC</span></td>
+                        <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
+                            <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
+                        <td><span class="custom-ticket-font">청주공항</span><br>
+                            <span class="custom-ticket-small-font">CJJ</span></td>
+                        <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['①교회-청주공항 버스'].values[0]}</span><br>
+                            <span class="custom-ticket-small-font" style="color: black;">{boarding_time1}</span></td>
+                      </tr>
+                      <tr>
+                        <td><span class="custom-ticket-font">청주공항</span><br>
+                            <span class="custom-ticket-small-font">CJJ</span></td>
+                        <td ><p class="symbola-emoji" style = "font-size:1.4rem;"><br>&#x2708;</p><br>
+                            <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td> 
+                        <td><span class="custom-ticket-font">제주공항</span><br>
+                            <span class="custom-ticket-small-font">CJU</span></td>
+                        <td><span class="custom-ticket-font" style="color: #F0A23D;">{airline}</span><br>
+                            <span class="custom-ticket-small-font" style="color: black;">{boarding_time2}</span></td>
+                      </tr>                              
+                      <tr>
+                        <td><span class="custom-ticket-font">제주공항</span><br>
+                            <span class="custom-ticket-small-font">CJU</span></td>
+                        <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
+                            <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
+                        <td><span class="custom-ticket-font">식당/숙소</span><br>
+                            <span class="custom-ticket-small-font"  style="letter-spacing: -0.05rem;">MEAL/ROOM</span></td>
+                        <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['③제주공항-숙소 버스'].values[0]}</span><br>
+                            <span class="custom-ticket-small-font" style="color: black;">{boarding_time3}</span></td>
+                      </tr>                              
+                      <tr>
+                        <td><span class="custom-ticket-font">숙소</span><br>
+                            <span class="custom-ticket-small-font">ROOM</span></td>
+                        <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F3E0;</p><br>
+                            <span class="custom-ticket-small-font" style="color:black">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>                                
+                        <td><span class="custom-ticket-font">방 번호</span><br>
+                            <span class="custom-ticket-small-font">NO.</span></td>
+                        <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['④숙소명 층/호수'].values[0].split()[0]}</span><br>
+                            <span class="custom-ticket-small-font" style="font-size: 1rem; color: black;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>
+                      </tr>                              
+                    </table>
+                    """, unsafe_allow_html=True)
                     
-                with st.expander("Day 3, 08/15(화)", expanded = True):
-                    with st.container():
-                            st.markdown(f"""
-                            <table class = "third-day">
-                              <tr>
-                                <td><span class="custom-ticket-font">숙소</span><br>
-                                    <span class="custom-ticket-small-font">ROOM</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
-                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#x21C4;</p></td>
-                                <td><span class="custom-ticket-font">단체관광</span><br>
-                                    <span class="custom-ticket-small-font">TOUR</span></td>
-                                <td><span class="custom-ticket-font" style="color: #8B4600;">{result['단체 활동 버스'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font" style="color: black;">???</span></td>
-                              </tr>
-                              <tr>
-                                <td><span class="custom-ticket-font">숙소</span><br>
-                                    <span class="custom-ticket-small-font">ROOM</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
-                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
-                                <td><span class="custom-ticket-font">제주공항</span><br>
-                                    <span class="custom-ticket-small-font">CJU</span></td>
-                                <td><span class="custom-ticket-font" style="color: #8B4600;">{result['단체 활동 버스'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font" style="color: black;">???</span></td>
-                              </tr>                              
-                              <tr>
-                                <td><span class="custom-ticket-font">제주공항</span><br>
-                                    <span class="custom-ticket-small-font">CJU</span></td>
-                                <td ><p class="symbola-emoji" style = "font-size:1.4rem;"><br>&#x2708;</p><br>
-                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>                                
-                                <td><span class="custom-ticket-font">청주공항</span><br>
-                                    <span class="custom-ticket-small-font">CJJ</span></td>
-                                <td><span class="custom-ticket-font" style="color: #8B4600;">{result['제주공항-청주공항 (비행기)'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font" style="color: black;">???</span></td>
-                              </tr>                              
-                              <tr>
-                                <td><span class="custom-ticket-font">청주공항</span><br>
-                                    <span class="custom-ticket-small-font">CJJ</span></td>
-                                <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
-                                    <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
-                                <td><span class="custom-ticket-font">대전</span><br>
-                                    <span class="custom-ticket-small-font">DNCC</span></td>
-                                <td><span class="custom-ticket-font" style="color: #8B4600;">{result['청주공항-교회 (버스)'].values[0]}</span><br>
-                                    <span class="custom-ticket-small-font" style="color: black;">???</span></td>
-                              </tr>                           
-                            </table>
-                            """, unsafe_allow_html=True)
-                    st.write('')                    
+                    
+                    with  st.expander("첫째 날, 동행", expanded = False):  
+                        transports = [result['①교회-청주공항 버스'].values[0], airline, \
+                                      result['③제주공항-숙소 버스'].values[0],result['④숙소명 층/호수'].values[0] ]
+                        for i, tab in enumerate(st.tabs(["교회-청주공항", "청주-제주공항", "제주공항-숙소","숙소 룸메이트"])):
+                            with tab:
+                                st.write(f'{transports[i]}에 함께하는 영가족분들')
+                                mine = result.loc[name,df.columns[i]]
+                                data_array = np.array(df[df[df.columns[i]] == mine].index)
+
+                                n = 4  # 열 개수 (n) 설정
+
+                                loop = int(str(n-len(data_array)%n))
+                                for i in range(loop): data_array = np.append(data_array, "")
+                                row = len(data_array) // n
+                                with_df = pd.DataFrame(data_array.reshape(row, n))
+                                st.table(with_df)
+                            
+
+                    
+                
+                # 2일차
+                theme_url = {'물놀이' : ['https://sandy-ear-231.notion.site/c8730b2e5d2f4636962550f876747bee?pvs=4',"오후 5:00"],
+                             '액티비티' : ['https://sandy-ear-231.notion.site/92670ed2db424e8089bb93d68eed64d4?pvs=4',"오후 5:30"],
+                             '인생샷' : ['https://sandy-ear-231.notion.site/9ca017fc6f9c40f1badab4192e2ce4a1?pvs=4',"오후 5:20"],
+                             '자연' : ['https://sandy-ear-231.notion.site/6a061529159d467587eab7a90d2c1896?pvs=4',"오후 5:00"],
+                             '힐링' : ['https://sandy-ear-231.notion.site/becd45dddbee435aacecf49ba776a8ed?pvs=4',"오후 5:30"],
+                             '의전' : ['http://www.sja21.com/main/main.html',"-"]
+                            }
+
+                theme = result.loc[name,'⑤테마']                    
+                url = theme_url[theme][0]
+
+                with st.container():
+                    st.markdown(f"""
+                    <table class = "second-day">
+                      <tr>
+                        <th colspan="4"><span class="custom-ticket-font" style="color:black;">Day 2, 08/14(월)</span></th>
+                      </tr>                        
+                      <tr>
+                        <td><span class="custom-ticket-font">숙소</span><br>
+                            <span class="custom-ticket-small-font">ROOM</span></td>
+                        <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
+                            <p class="symbola-emoji" style = "font-size:1.2rem;">&#x21C4;</p></td>
+                        <td><span class="custom-ticket-font">{theme}</span><br>
+                            <span class="custom-ticket-small-font">THEME</span></td>
+                        <td><span class="custom-ticket-font" style="color: #B57200;">{result['⑥테마별 버스'].values[0]}</span><br>
+                            <span class="custom-ticket-small-font" style="color: black;">오후 12:00<br>{theme_url[theme][1]}</span></td>
+                      </tr>                           
+                    </table> 
+                    """, unsafe_allow_html=True)
+                    
+                      
+            
+                    with st.expander("둘째 날, 동행", expanded = False):  
+                        st.write('dfdf')
+                        
+                        st.markdown(
+                        f"""
+                        <div style="padding: 0px 0px 0px 0px;">
+                            <a href="{url}" target="_blank" rel="noopener noreferrer">
+                                <div style="
+                                    width :100%;
+                                    display: inline-block;
+                                    padding: 0.3rem;
+                                    color: #ffffff;
+                                    background-color: #B57200;
+                                    border-radius: 0.5rem;
+                                    text-decoration: none;
+                                    text-align: center;
+                                    font-weight: bold;">
+                                    {theme} Tip !
+                                </div>
+                            </a>
+                        </div>
+                        """,
+                        unsafe_allow_html=True)      
+                        st.write('')
+                        
+                        
+                        
+                        
+                        
                     
                     
-                st.write("메모 : 같은 차에 누구누구타고 누가 책임자인지 비상연락망 등등 정보, 대략적인 일정표와 플랜? 정보, 테마여행 장소별 안내사항/멤버/즐길거리 정보 등등, 전체 여행일정 중요한 사전 공지 및 안내사항, 캡쳐 이미지 버튼 ")
+                    
+                    
+                    
+                    
+                # 3일차
+                with st.container():
+                    bus_to_cju = result['⑦단체활동 버스'].values[0]
+                    bus_to_cju_time = '오후 6:30'
+
+                    # ⑧제주-청주 비행기 : 비행기 시간 처리
+                    info_air2 = result['⑧제주-청주 비행기'].values[0].replace("pm"," ")
+
+                    try:
+                        day2, airline2, time2 = info_air2.split()  
+                        boarding_time4 = f'오후 {int(time2[:2])-12}:{time2[3:5]}'
+
+                    except :
+                        airline2 = info_air2
+                        boarding_time4 = "-"
+                        bus_to_cju = info_air2
+                        bus_to_cju_time = '-'
+
+                    #
+                    bus_to_dncc_time = '-'
+                    if result['⑨청주공항-교회 버스'].values[0] =='개인이동' : bus_to_dncc_time = '-'
+                    elif airline2 in ('아시아나'):bus_to_dncc_time = '오후 10:00'
+                    elif airline2 in ('이스타','진에어'):bus_to_dncc_time = '오후 11:00'
+
+                    st.markdown(f"""
+                    <table class = "third-day">
+                      <tr>
+                        <th colspan="4"><span class="custom-ticket-font" style="color:black;">Day 3, 08/15(화)</span></th>
+                      </tr>                       
+                      <tr>
+                        <td><span class="custom-ticket-font">숙소</span><br>
+                            <span class="custom-ticket-small-font">ROOM</span></td>
+                        <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
+                            <p class="symbola-emoji" style = "font-size:1.2rem;">&#x21C4;</p></td>
+                        <td><span class="custom-ticket-font">단체관광</span><br>
+                            <span class="custom-ticket-small-font">TOUR</span></td>
+                        <td><span class="custom-ticket-font" style="color: #8B4600;">{result['⑦단체활동 버스'].values[0]}</span><br>
+                            <span class="custom-ticket-small-font" style="color: black;">오후 12:00</span></td>
+                      </tr>
+                      <tr>
+                        <td><span class="custom-ticket-font">숙소</span><br>
+                            <span class="custom-ticket-small-font">ROOM</span></td>
+                        <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
+                            <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
+                        <td><span class="custom-ticket-font">제주공항</span><br>
+                            <span class="custom-ticket-small-font">CJU</span></td>
+                        <td><span class="custom-ticket-font" style="color: #8B4600;">{bus_to_cju}</span><br>
+                            <span class="custom-ticket-small-font" style="color: black;">{bus_to_cju_time}</span></td>
+                      </tr>                              
+                      <tr>
+                        <td><span class="custom-ticket-font">제주공항</span><br>
+                            <span class="custom-ticket-small-font">CJU</span></td>
+                        <td ><p class="symbola-emoji" style = "font-size:1.4rem;"><br>&#x2708;</p><br>
+                            <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>                                
+                        <td><span class="custom-ticket-font">청주공항</span><br>
+                            <span class="custom-ticket-small-font">CJJ</span></td>
+                        <td><span class="custom-ticket-font" style="color: #8B4600;">{airline2}</span><br>
+                            <span class="custom-ticket-small-font" style="color: black;">{boarding_time4}</span></td>
+                      </tr>                              
+                      <tr>
+                        <td><span class="custom-ticket-font">청주공항</span><br>
+                            <span class="custom-ticket-small-font">CJJ</span></td>
+                        <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F68C;</p><br>
+                            <p class="symbola-emoji" style = "font-size:1.2rem;">&#8594;</p></td>
+                        <td><span class="custom-ticket-font">대전</span><br>
+                            <span class="custom-ticket-small-font">DNCC</span></td>
+                        <td><span class="custom-ticket-font" style="color: #8B4600;">{result['⑨청주공항-교회 버스'].values[0]}</span><br>
+                            <span class="custom-ticket-small-font" style="color: black;">{bus_to_dncc_time}</span></td>
+                      </tr>                           
+                    </table>
+                    """, unsafe_allow_html=True)
+
+                    with  st.expander("셋째 날, 동행", expanded = False):  
+                        st.write('dfdf')
+                    st.write('')                        
+                    
+                    
+                st.write("메모 : 같은 차에 누구누구타고 멤버 누가 책임자인지 비상연락망 등등 정보, , 캡쳐 이미지 버튼 ")
+                
+                st.warning("메모 : 모두처리 했지만 이동시 개인별 예외케이스가 다양해서 혹시 실수가 없는지 더 집중적으로 교차검증이 필요할 것 같습니다!! 특히 시간 처리에 유의! 개별이동은 시간처리를 -로 하였음")
     else :
         st.markdown(multibox_blank_case, unsafe_allow_html=True)
         pass
@@ -383,26 +474,34 @@ st.markdown('''
 
 button[title="View fullscreen"]{visibility: hidden;}
 
-div[data-testid="stExpander"] div[role="button"] p {
-    font-size: 1rem;
-}
-
-ul.streamlit-expander {
-    border-top-left-radius: 1rem solid #F0F2F6;
-    border-top-right-radius: 1rem solid #F0F2F6;
-    border: 0.1rem solid #F0F2F6;
+.streamlit-expander{
+    border-radius: 0rem;
+    border-top: 0rem solid #F0F2F6;
+    border-bottom: 0.2rem solid #F0F2F6;
+    border-right: 0.2rem solid #F0F2F6;
+    border-left : 0rem ;
 }
 .streamlit-expanderHeader {
     background-color: white;
+    display: flex;
+    justify-content: right;
     color: black;
-    padding: 8px;
-
+    padding: 4px 8px;
 }
 .streamlit-expanderContent {
     background-color: white;
     color: black; 
     padding: 0px 8px 8px 8px;
+    
 }
+div[data-testid="stExpander"] div[role="button"] p {
+    font-size: 0.8rem;
+    font-weight: 100;
+}
+div[data-testid="stExpander"]{
+    border-left : 0.3rem solid #F0F2F6;
+}
+
 
 [data-testid="column"]:nth-child(1){
     width: calc(7.5% - 1rem) !important;
@@ -435,6 +534,7 @@ st.markdown("""
         width: 100%;
         border-spacing: 0;
         border-right : 0.2rem solid #F0F2F6;
+        border-top: 0.2rem solid #F0F2F6;
     }
     .css-5rimss th, .css-5rimss td{
         padding: 0px 0px 0px 0px;
