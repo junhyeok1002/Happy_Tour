@@ -43,8 +43,8 @@ with C2:            #C2: body
                 width :100%;
                 display: inline-block;
                 padding: 0.3rem;
-                color: #ffffff;
-                background-color: #F0A23D;
+                color: #F0A23D;
+                background-color: #ffffff;
                 border-radius: 0.5rem;
                 border: 0.07rem solid #F0A23D;
                 text-decoration: none;
@@ -129,7 +129,7 @@ with C2:            #C2: body
 
                     st.markdown(f"""
                     <table class = "first-day">
-                      <tr style="color:white ;background-color: #F0A23D;border: 0.3rem solid #F0A23D">
+                      <tr style="color:#F0A23D ;background-color: white ;border-top: 0.3rem solid #F0A23D;">
                         <th colspan="4"><span class="custom-ticket-font">Day 1, 08/13(일)</span></th>
                       </tr>
                       <tr>
@@ -166,12 +166,12 @@ with C2:            #C2: body
                         <td><span class="custom-ticket-font">숙소</span><br>
                             <span class="custom-ticket-small-font">ROOM</span></td>
                         <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F3E0;</p><br>
-                            <span class="custom-ticket-small-font" style="color:black">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>                                
+                            <span class="custom-ticket-small-font" style="color:black; letter-spacing: -0.12rem;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>                                
                         <td><span class="custom-ticket-font">방 번호</span><br>
                             <span class="custom-ticket-small-font">NO.</span></td>
                         <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['④숙소명 층/호수'].values[0].split()[0]}</span><br>
                             <span class="custom-ticket-small-font" style="font-size: 1rem; color: black;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>
-                      </tr>                              
+                      </tr>                          
                     </table>
                     """, unsafe_allow_html=True)
                     
@@ -211,7 +211,7 @@ with C2:            #C2: body
                 with st.container():
                     st.markdown(f"""
                     <table class = "second-day">
-                      <tr style="color:white ;background-color: #B57200;border: 0.3rem solid #B57200">
+                      <tr style="color:#B57200 ;background-color: white ;border-top: 0.3rem solid #B57200;">
                         <th colspan="4"><span class="custom-ticket-font">Day 2, 08/14(월)</span></th>
                       </tr>                        
                       <tr>
@@ -240,13 +240,14 @@ with C2:            #C2: body
                                     width :100%;
                                     display: inline-block;
                                     padding: 0.3rem;
-                                    color: #ffffff;
-                                    background-color: #B57200;
+                                    color: #B57200;
+                                    background-color: #ffffff;
                                     border-radius: 0.5rem;
+                                    border: 0.07rem solid #B57200;
                                     text-decoration: none;
                                     text-align: center;
                                     font-weight: bold;">
-                                    {theme} Tip !
+                                    {theme} TIP
                                 </div>
                             </a>
                         </div>
@@ -290,7 +291,7 @@ with C2:            #C2: body
 
                     st.markdown(f"""
                     <table class = "third-day">
-                      <tr style="color:white ;background-color: #8B4600;border: 0.3rem solid #8B4600">
+                      <tr style="color:#8B4600 ;background-color: white ;border-top: 0.3rem solid #8B4600;">
                         <th colspan="4"><span class="custom-ticket-font">Day 3, 08/15(화)</span></th>
                       </tr>                       
                       <tr>
