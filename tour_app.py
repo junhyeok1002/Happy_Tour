@@ -170,8 +170,8 @@ with C2:            #C2: body
                             <span class="custom-ticket-small-font1" style="color:black; letter-spacing: -0.12rem;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>                                
                         <td><span class="custom-ticket-font">방 번호</span><br>
                             <span class="custom-ticket-small-font1">NO.</span></td>
-                        <td><span class="custom-ticket-font" style="color: #F0A23D;">{result['④숙소명 층/호수'].values[0].split()[0]}</span><br>
-                            <span class="custom-ticket-small-font1" style="font-size: 1rem; color: black;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>
+                        <td><span class="custom-ticket-font" style="color: #F0A23D;font-size: 0.9rem;">{result['④숙소명 층/호수'].values[0].split()[0]}</span><br>
+                            <span class="custom-ticket-small-font1" style="font-size: 0.8rem; color: black;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>
                       </tr>                          
                     </table>
                     """, unsafe_allow_html=True)
