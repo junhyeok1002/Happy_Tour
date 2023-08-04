@@ -275,7 +275,7 @@ table {
   border-spacing: 0;
 }
 .css-5rimss th, .css-5rimss td{
-  padding: 0px 0px 0px 0px;
+  padding: 0.3rem 0rem 0.3rem 0rem ;
 }
 .name td, .name th {
   text-align: center;
