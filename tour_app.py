@@ -184,7 +184,7 @@ with C2:            #C2: body
                         tab_name = ["교회-청주공항", "청주-제주공항", "제주공항-숙소","숙소 룸메이트"]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
-                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]} ,{transports[i]} 명단</span>', unsafe_allow_html=True)
+                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]}, {transports[i]} 명단</span>', unsafe_allow_html=True)
                                 mine = result.loc[name,df.columns[i]]
                                 data_list = list(df[df[df.columns[i]] == mine].index)
 
@@ -252,7 +252,7 @@ with C2:            #C2: body
                         tab_name = [f"테마여행", f"숙소-{theme} 장소"]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
-                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]} ,{transports[i]} 명단</span>', unsafe_allow_html=True)
+                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]}, {transports[i]} 명단</span>', unsafe_allow_html=True)
                                 mine = result.loc[name,df.columns[i+4]]
                                 data_list = list(df[df[df.columns[i+4]] == mine].index)
 
@@ -381,7 +381,8 @@ with C2:            #C2: body
                         idx = [6,6.5,7,8]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
-                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]} ,{transports[i]} 명단</span>', unsafe_allow_html=True)
+                                transports
+                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]}, {transports[i]} 명단</span>', unsafe_allow_html=True)
                                 
                                 
                                 if idx[i] ==6.5 and result.loc[name,df.columns[idx[2]]] == '개별': i = 2
