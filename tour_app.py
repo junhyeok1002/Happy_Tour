@@ -381,7 +381,6 @@ with C2:            #C2: body
                         idx = [6,6.5,7,8]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
-                                transports
                                 st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]}, {transports[i]} 명단</span>', unsafe_allow_html=True)
                                 
                                 
