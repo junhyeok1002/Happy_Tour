@@ -197,10 +197,24 @@ with C2:            #C2: body
                                 for temp_name in data_list:
                                     temp.append(temp_name)
                                     if len(temp) == n:
-                                        temp_text = f'<tr><td>{temp[0]}</td><td>{temp[1]}</td><td>{temp[2]}</td><td>{temp[3]}</td></tr>'
+                                        temp_text = f'''<tr>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[0]}</span></label></td>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[1]}</span></label></td>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[2]}</span></label></td>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[3]}</span></label></td>
+                                        </tr>'''
+                                        
                                         sum_text += temp_text
                                         temp = list()
-                                        
+                                  
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 st.markdown(f"""
                                 <table class = "name" style="table-layout: fixed;border: 0rem solid #ffffff;border-top : 0.2rem solid #F0F2F6;">
                                   {sum_text}
@@ -265,7 +279,12 @@ with C2:            #C2: body
                                 for temp_name in data_list:
                                     temp.append(temp_name)
                                     if len(temp) == n:
-                                        temp_text = f'<tr><td>{temp[0]}</td><td>{temp[1]}</td><td>{temp[2]}</td><td>{temp[3]}</td></tr>'
+                                        temp_text = f'''<tr>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[0]}</span></label></td>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[1]}</span></label></td>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[2]}</span></label></td>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[3]}</span></label></td>
+                                        </tr>'''
                                         sum_text += temp_text
                                         temp = list()
                                         
@@ -401,7 +420,12 @@ with C2:            #C2: body
                                 for temp_name in data_list:
                                     temp.append(temp_name)
                                     if len(temp) == n:
-                                        temp_text = f'<tr><td>{temp[0]}</td><td>{temp[1]}</td><td>{temp[2]}</td><td>{temp[3]}</td></tr>'
+                                        temp_text = f'''<tr>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[0]}</span></label></td>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[1]}</span></label></td>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[2]}</span></label></td>
+                                        <td><label class="clickable-text"><input type="checkbox"><span>{temp[3]}</span></label></td>
+                                        </tr>'''                                        
                                         sum_text += temp_text
                                         temp = list()
                                         
@@ -607,6 +631,22 @@ div[data-testid="stMarkdownContainer"] p{
 }
 
 
+.clickable-text {
+    color: black;
+    cursor: pointer;
+}
+.clickable-text input[type="checkbox"] {
+    display: none;
+}
+.clickable-text input[type="checkbox"] + span {
+    color: black;
+}
+.clickable-text input[type="checkbox"]:checked + span {
+    color: #F0A23D;
+}
+
+
+
 [data-testid="column"]:nth-child(1){
     width: calc(7.5% - 1rem) !important;
     flex: 1 1 calc(7.5% - 1rem) !important;
@@ -781,34 +821,3 @@ st.markdown("""
 #F97602
 
 
-
-
-st.markdown("""
-<html>
-<head>
-    <title>Text Color Toggle</title>
-    <style>
-        .clickable-text {
-            color: black;
-            cursor: pointer;
-        }
-        .clickable-text input[type="checkbox"] {
-            display: none;
-        }
-
-        .clickable-text input[type="checkbox"] + span {
-            color: yellow;
-        }
-        .clickable-text input[type="checkbox"]:checked + span {
-            color: black;
-        }
-    </style>
-</head>
-<body>
-    <label class="clickable-text">
-        <input type="checkbox">
-        <span>클릭하여 색 바꾸기</span>
-    </label>
-</body>
-</html>
-""", unsafe_allow_html=True)
