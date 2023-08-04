@@ -1,87 +1,286 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@400;700&display=swap");
-.ticketObject {
-  width: 30em;
-  height: min-content;
-  display: grid;
-  grid-template-areas: 'contentSecond action';
-  grid-template-columns: auto min-content;
-  border-radius: 0.25em;
-  overflow: hidden;
-  background-color: #f3f4f6;
-  border: 1px solid #dfe1e6;
-  padding: 0.5em 1em;
-  padding-left: 1.5em;
-  position: relative;
-  cursor: pointer;
-  box-sizing: border-box;
-  transition: 0.4s;
+
+/* ####### 파트1 : 글자 및 이모지 폰트 스타일 ####### */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet&display=swap');
+
+html, body, [class*="css"]  {
+font-family: Hahmlet,sans-serif;
 }
-.ticketObject:hover {
-  border: 1px solid #bbc1cc;
+
+@font-face {
+  font-family: Symbola;
+
+  src: 
+  url('./fonts/symbola-font.ttf') format('truetype'),
+  url('./fonts/Symbola-Emoji.woff') format('woff'),
+  url('path/to/Symbola-Emoji.eot?#iefix') format('embedded-opentype');
 }
-.ticketObject:before {
-  position: absolute;
-  left: 0.25rem;
-  top: 0.25rem;
-  height: calc(100% - 0.5rem);
-  border-radius: 0.125rem;
-  width: 0.75rem;
-  background-color: #bbc1cc;
+.flipped-symbola-emoji {
+  font-family: Noto Emoji, sans-serif;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0;
+  transform: scaleX(-1);
+}
+.symbola-emoji {
+  font-family: Noto Emoji, sans-serif;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0;
+}    
+
+
+.custom-font {
+    font-size: 1rem;
+}
+.custom-ticket-font {
+    font-size: 1rem;
+    text-align: center;
+}
+.custom-ticket-small-font1 {
+    font-size: 0.7rem;
+    text-align: center;
+    color: #F0A23D;
+}
+.custom-ticket-small-font2 {
+    font-size: 0.7rem;
+    text-align: center;
+    color: #B57200;
+}
+.custom-ticket-small-font3 {
+    font-size: 0.7rem;
+    text-align: center;
+    color: #8B4600;
+}    
+.name-font {
+    font-size: 1rem;
+    font-family: 'Nanum Pen Script', cursive;
+}
+
+
+
+/* ####### 파트2 : streamlit 커스텀 스타일 ####### */
+
+/* # 상하좌우 여백 제거 + max-width: 100% 뺴면 PC버전에서도 알맞게 보임 */
+.appview-container .main .block-container {
+  padding-top: 0rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  padding-bottom: 0rem;
+}
+
+/* # 툴바 없애기 */
+#MainMenu, header , footer {visibility: hidden;}
+
+/* # 이미지 확대 버튼 숨기기 -> 자연스러운 UI/UX를 위함 : 확대 버튼이 width layout을 해치는 문제가 있었음  */
+button[title="View fullscreen"]{visibility: hidden;}
+
+/* # expander 스타일 설정 */
+.streamlit-expander{
+  border-radius: 0rem;
+  border-top: 0rem solid #F0F2F6;
+  border-bottom: 0.2rem solid #F0F2F6;
+  border-right: 0.2rem solid #F0F2F6;
+  border-left : 0rem ;
+}
+.streamlit-expanderHeader {
+  background-color: white;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-size: 0.7em;
-  font-family: 'Noto Sans KR';
-  content: '';
+  justify-content: right;
+  color: black;
+  padding: 4px 8px;
 }
-.ticketObject__line {
+.streamlit-expanderContent {
+  background-color: white;
+  color: black; 
+  padding: 0px 8px 8px 8px;
+  
+}
+div[data-testid="stExpander"] div[role="button"] p {
+  font-size: 0.8rem;
+  font-weight: 100;
+}
+div[data-testid="stExpander"]{
+  border-left : 0.3rem solid #F0F2F6;
+}
+
+/* 기타 컨테이너 간격 설정용 */
+div[data-baseweb="tab-panel"]{
+  padding-top:0.5rem;
+}
+div[data-testid="stMarkdownContainer"] p{
+  margin-block-start: 0rem;
+  margin-block-end: 0rem;
+}
+
+/* 출석체크용 명단이름 클릭시 색 전환 */
+.clickable-text {
+  color: black;
+  cursor: pointer;
+}
+.clickable-text input[type="checkbox"] {
+  display: none;
+}
+.clickable-text input[type="checkbox"] + span {
+  color: black;
+}
+.clickable-text input[type="checkbox"]:checked + span {
+  color: #F0A23D;
+}
+
+/* # 화면 너비의 비율%설정으로 모바일에서 깨지는 현상 해결하기 */
+[data-testid="column"]:nth-child(1){
+  width: calc(7.5% - 1rem) !important;
+  flex: 1 1 calc(7.5% - 1rem) !important;
+  max-width: calc(7.5% - 1rem) !important;
+  min-width: calc(7% - 1rem) !important;}
+[data-testid="column"]:nth-child(2){
+  width: calc(85% - 1rem) !important;
+  flex: 1 1 calc(85% - 1rem) !important;
+  min-width: calc(85% - 1rem) !important;
+  max-width: calc(90% - 1rem) !important;}
+[data-testid="column"]:nth-child(3){
+  width: calc(7.5% - 1rem) !important;
+  flex: 1 1 calc(7.5% - 1rem) !important;
+  max-width: calc(7.5% - 1rem) !important;
+  min-width: calc(7% - 1rem) !important;}
+
+
+/* ####### 파트3 : TABLE 스타일 ####### */
+/* table : first-day */
+table {
   width: 100%;
-  height: min-content;
-  display: flex;
-  justify-content: space-between;
+  border-spacing: 0;
 }
-.ticketObject__line--second {
-  grid-area: contentSecond;
+.css-5rimss th, .css-5rimss td{
+  padding: 0px 0px 0px 0px;
 }
-.ticketObject__actionbar {
-  grid-area: action;
-  width: min-content;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  grid-gap: 0.5em;
-  border-left: 1px dotted #b9bdc8;
-  padding-left: 1em;
+.first-day td, .first-day th {
+  text-align: center;
+  border-bottom: 0.15rem dashed #F0F2F6;
+  border-top: 0.15rem dashed #F0F2F6;
+  border-right : 0.2rem solid #F0F2F6;
 }
-.actionbar__button {
-  width: 0.7em;
-  height: 0.7em;
-  background-color: #afb7c3;
-  border-radius: 0.35em;
-  cursor: pointer;
-  border-box: box-sizing;
+.first-day td:nth-child(1), .first-day th:nth-child(1) { 
+  width: 30% ;
+  border-left: 0.3rem solid #F0A23D;
+  border-right: 1px solid #ffffff; 
 }
-.ticketObject__type {
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #505050;
-  font-size: 0.85rem;
+.first-day td:nth-child(2), .first-day th:nth-child(2) { 
+  width: 6%; 
+  border-right: 1px solid #ffffff; 
+  line-height: 0.5rem;
 }
-.ticketObject__ticket {
-  word-break: break-all;
-  text-align: justify;
+.first-day td:nth-child(3), .first-day th:nth-child(3) { 
+  width: 30% ;
+  border-right: 0.2rem double #F0F2F6; 
 }
-.ticketObject--notassign {
-  border-color: #f48c06;
+.first-day td:nth-child(4), .first-day th:nth-child(4) { 
+  width: 30%;
+  color: #D67D3E;
+  font-weight: bold;
+  background-color: #ffffff;
 }
-.ticketObject--notassign:hover {
-  border-color: #f48c06;
+.first-day td:nth-child(2):first-line {
+line-height: 0.7rem;
 }
-.ticketObject--notassign:before {
-  background-color: #f48c06;
-  content: 'BUS';
+
+/* table : secong-day */
+table {
+  width: 100%;
+  border-spacing: 0;
 }
+.css-5rimss th, .css-5rimss td{
+  padding: 0px 0px 0px 0px;
+}
+.second-day td, .second-day th {
+  text-align: center;
+  border-bottom: 0.15rem dashed #F0F2F6;
+  border-top: 0.15rem dashed #F0F2F6;
+  border-right : 0.2rem solid #F0F2F6;
+}
+.second-day td:nth-child(1), .second-day th:nth-child(1) { 
+  width: 30% ;
+  border-left: 0.3rem solid #B57200;
+  border-right: 1px solid #ffffff; 
+}
+.second-day td:nth-child(2), .second-day th:nth-child(2) { 
+  width: 6%; 
+  border-right: 1px solid #ffffff; 
+  line-height: 0.5rem;
+}
+.second-day td:nth-child(3), .second-day th:nth-child(3) { 
+  width: 30% ;
+  border-right: 0.2rem double #F0F2F6; 
+}
+.second-day td:nth-child(4), .second-day th:nth-child(4) { 
+  width: 30%;
+  color: #D67D3E;
+  font-weight: bold;
+  background-color: #ffffff;
+  line-height: 0.75rem;
+}
+.second-day td:nth-child(2):first-line {
+line-height: 0.4rem;
+}
+.second-day td:nth-child(4):first-line {
+line-height: 1.5rem;
+}
+
+/* table : third-day */
+table {
+  width: 100%;
+  border-spacing: 0;
+}
+.css-5rimss th, .css-5rimss td{
+  padding: 0px 0px 0px 0px;
+}
+.third-day td, .third-day th {
+  text-align: center;
+  border-bottom: 0.15rem dashed #F0F2F6;
+  border-right : 0.2rem solid #F0F2F6;
+  border-top: 0.15rem dashed #F0F2F6;
+}
+.third-day td:nth-child(1), .third-day th:nth-child(1) { 
+  width: 30% ;
+  border-left: 0.3rem solid #8B4600;
+  border-right: 1px solid #ffffff; 
+}
+.third-day td:nth-child(2), .third-day th:nth-child(2) { 
+  width: 6%; 
+  border-right: 1px solid #ffffff;
+  line-height: 0.5rem;
+}
+.third-day td:nth-child(3), .third-day th:nth-child(3) { 
+  width: 30% ;
+  border-right: 0.2rem double #F0F2F6; 
+}
+.third-day td:nth-child(4), .third-day th:nth-child(4) { 
+  width: 30%;
+  color: #D67D3E;
+  font-weight: bold;
+  background-color: #ffffff;
+}
+.third-day td:nth-child(2):first-line {
+line-height: 0.7rem;
+}
+
+/* table : name-table */
+table {
+  width: 100%;
+  border-spacing: 0;
+}
+.css-5rimss th, .css-5rimss td{
+  padding: 0px 0px 0px 0px;
+}
+.name td, .name th {
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+/* 예비용 칼라 */
+/* # #D08523 #B57200 #F97602 */
