@@ -376,7 +376,7 @@ with C2:            #C2: body
                     """, unsafe_allow_html=True)
 
                     with  st.expander("셋째 날, 동행", expanded = False): 
-                        transports = [result['⑦단체활동 버스'].values[0],bus_to_cju, result['⑧제주-청주 비행기'].values[0],result['⑨청주공항-교회 버스'].values[0]]
+                        transports = [result['⑦단체활동 버스'].values[0],bus_to_cju, airline2 ,result['⑨청주공항-교회 버스'].values[0]]
                         tab_name = ["단체활동", "숙소-제주공항","제주-청주공항","청주공항-교회"]
                         idx = [6,6.5,7,8]
                         for i, tab in enumerate(st.tabs(tab_name)):
