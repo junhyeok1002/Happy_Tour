@@ -780,3 +780,35 @@ st.markdown("""
 # #D08523  #B57200
 #F97602
 
+
+
+
+st.markdown("""
+<html>
+<head>
+    <title>Text Color Toggle</title>
+    <style>
+        .clickable-text {
+            color: black;
+            cursor: pointer;
+        }
+        .clickable-text input[type="checkbox"] {
+            display: none;
+        }
+
+        .clickable-text input[type="checkbox"] + span {
+            color: yellow;
+        }
+        .clickable-text input[type="checkbox"]:checked + span {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <label class="clickable-text">
+        <input type="checkbox">
+        <span>클릭하여 색 바꾸기</span>
+    </label>
+</body>
+</html>
+""", unsafe_allow_html=True)
