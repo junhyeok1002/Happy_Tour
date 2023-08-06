@@ -5,7 +5,6 @@ from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from PIL import Image
 import gspread
-import pyautogui
 
 # # 로컬 DB연결용 코드
 # # XLS 파일 읽기
