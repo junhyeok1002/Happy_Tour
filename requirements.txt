@@ -133,7 +133,7 @@ trio==0.22.0
 trio-websocket==0.10.2
 typing_extensions==4.5.0
 tzdata==2023.3
-tzlocal==5.0.1
+tzlocal==4.3.0
 uri-template==1.2.0
 urllib3==1.26.15
 validators==0.20.0

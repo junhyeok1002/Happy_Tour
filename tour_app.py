@@ -4,6 +4,7 @@ import streamlit as st
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from PIL import Image
+import gspread
 
 
 # XLS 파일 읽기
