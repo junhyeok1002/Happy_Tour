@@ -199,14 +199,6 @@ with C2:            #C2: body
                                         sum_text += temp_text
                                         temp = list()
                                   
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
                                 st.markdown(f"""
                                 <table class = "name" style="table-layout: fixed;border: 0rem solid #ffffff;border-top : 0.2rem solid #F0F2F6;">
                                   {sum_text}
@@ -255,7 +247,7 @@ with C2:            #C2: body
             
                     with st.expander("둘째 날, 동행", expanded = False):  
                         transports = [result['⑤테마'].values[0], result['⑥테마별 버스'].values[0]]
-                        tab_name = [f"테마여행", f"숙소-{theme} 장소"]
+                        tab_name = [f"테마여행", f"숙소-{theme}"]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
                                 st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]}, {transports[i]} 명단</span>', unsafe_allow_html=True)
@@ -388,7 +380,7 @@ with C2:            #C2: body
 
                     with  st.expander("셋째 날, 동행", expanded = False): 
                         transports = [result['⑦단체활동 버스'].values[0],bus_to_cju, airline2 ,result['⑨청주공항-교회 버스'].values[0]]
-                        tab_name = ["단체활동", "숙소-제주공항","제주-청주공항","청주공항-교회"]
+                        tab_name = ["단체활동", "숙소-공항","제주-청주","청주-교회"]
                         idx = [6,6.5,7,8]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
