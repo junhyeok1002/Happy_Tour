@@ -173,7 +173,7 @@ with C2:            #C2: body
                     with  st.expander("첫째 날, 동행", expanded = False):  
                         transports = [result['①교회-청주공항 버스'].values[0], airline, \
                                       result['③제주공항-숙소 버스'].values[0],result['④숙소명 층/호수'].values[0] ]
-                        tab_name = ["교회-청주", "청주-제주공항", "제주공항-숙소","룸메이트"]
+                        tab_name = ["교회-청주", "청주-제주", "공항-숙소","룸메이트"]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
                                 st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]}, {transports[i]} 명단</span>', unsafe_allow_html=True)
