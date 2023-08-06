@@ -111,7 +111,6 @@ with C2:            #C2: body
 
     # 초기 흐름 제어 : 검색하면 처리하도록
     if len(name_list) > 0:
-        pyautogui.click(10, 300)
         
         # 띄어쓰기 처리
         name_list = [name.replace(" ","") for name in name_list] 
