@@ -25,8 +25,6 @@ st.image(image,use_column_width  = True)# caption='Sunrise by the mountains')
 side_gap = 0.75
 body_gap = 10-2*side_gap
 
-
-
 # C1: left blank, C2: body, C3: right blank
 C1, C2, C3 = st.columns([side_gap, body_gap ,side_gap])
 with C1: pass # C1: left blank
@@ -59,24 +57,17 @@ with C2:            #C2: body
     """,
     unsafe_allow_html=True)  
     
-    # 멀티셀렉트 박스
-    # multibox_control
-    multibox_blank_case = """
-    <style>
-    div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2){
-        visibility: hidden;
-    }
-    div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2):before {
-        content: "성함을 입력해주세요."; visibility: visible;
-    }    
-    </style>
-    """    
+    def change():
+        pass
     
-    name_list = st.multiselect('검색',\
-                               names,max_selections=None,label_visibility = 'collapsed')
+    # 멀티셀렉트 박스
+    name_list = st.multiselect('검색',names, placeholder = "성함을 입력해주세요.", label_visibility = 'collapsed',\
+                              on_change=change())
 
     # 초기 흐름 제어 : 검색하면 처리하도록
     if len(name_list) > 0:
+        st.session_state.disable_opt = True
+#         st.session_state.disable_opt = False
         # 띄어쓰기 처리
         name_list = [name.replace(" ","") for name in name_list] 
 
@@ -181,7 +172,7 @@ with C2:            #C2: body
                     with  st.expander("첫째 날, 동행", expanded = False):  
                         transports = [result['①교회-청주공항 버스'].values[0], airline, \
                                       result['③제주공항-숙소 버스'].values[0],result['④숙소명 층/호수'].values[0] ]
-                        tab_name = ["교회-청주공항", "청주-제주공항", "제주공항-숙소","숙소 룸메이트"]
+                        tab_name = ["교회-청주", "청주-제주공항", "제주공항-숙소","룸메이트"]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
                                 st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]}, {transports[i]} 명단</span>', unsafe_allow_html=True)
@@ -437,11 +428,11 @@ with C2:            #C2: body
                                 st.write("")                        
                         
  
-              #  st.write("메모 : 캡쳐 이미지 버튼 만들기, api로 실시간 db연결 , 검색창 흐름제어 다시고민 ,최적화하기 ")
+                # st.write("메모 :, api로 실시간 db연결 ,최적화하기 ")
                 
-              #  st.warning("메모 : 모두처리 했지만 이동시 개인별 예외케이스가 다양해서 혹시 실수가 없는지 더 집중적으로 교차검증이 필요할 것 같습니다!! 특히 시간 처리에 유의! 개별이동은 시간처리를 하이픈(-)로 하였음")
+#                 st.warning("메모 : 모두처리 했지만 이동시 개인별 예외케이스가 다양해서 혹시 실수가 없는지 더 집중적으로 교차검증이 필요할 것 같습니다!! 특히 시간 처리에 유의! 개별이동은 시간처리를 하이픈(-)로 하였음")
+
     else :
-        st.markdown(multibox_blank_case, unsafe_allow_html=True)
         pass
 
 
@@ -449,3 +440,18 @@ with C2:            #C2: body
 with open('style.css', encoding = "utf-8")as f:
     style = f.read()
 st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
+
+
+# 필요 없지만 언제 쓸지 모르는 코드
+# multibox_control
+# multibox_blank_case = """
+# <style>
+# div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2){
+#     visibility: hidden;
+# }
+# div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2):before {
+#     content: "성함을 입력해주세요."; visibility: visible;
+# }    
+# </style>
+# """    
+# st.markdown(multibox_blank_case, unsafe_allow_html=True)
