@@ -6,15 +6,46 @@ from fuzzywuzzy import process
 from PIL import Image
 import gspread
 
+# # 로컬 DB연결용 코드
+# # XLS 파일 읽기
+# df = pd.read_excel('./data/제주수양회 총괄시트.xlsx', sheet_name='홈페이지 DB',index_col = 0 )
+# # 바뀐 엑셀 형식에 맞추어 전처리
+# df = df.T.set_index('#').T.set_index('이름')
 
-# XLS 파일 읽기
-df = pd.read_excel('./data/제주수양회 총괄시트.xlsx', sheet_name='홈페이지 DB',index_col = 0 )
-# test =  pd.read_excel('./data/행복투어 샘플.xls',index_col = 0 )
 
-# 바뀐 엑셀 형식에 맞추어 전처리
-df = df.T.set_index('#').T.set_index('이름')
+# 구글 시트 DB연결 코드
+# session_state를 사용하여 앱로딩시 db를 전부호출하여 cache에 놔두기 위함 : api호출수를 많이 줄일 수 있음
+if 'google_sheet' not in st.session_state:
+    # API-KEY SECRET처리
+    credentials = {
+      "type": st.secrets["type"],
+      "project_id":  st.secrets["project_id"],
+      "private_key_id":  st.secrets["private_key_id"],
+      "private_key":  st.secrets["private_key"],
+      "client_email":  st.secrets["client_email"],
+      "client_id":  st.secrets["client_id"],
+      "auth_uri":  st.secrets["auth_uri"],
+      "token_uri":  st.secrets["token_uri"],
+      "auth_provider_x509_cert_url":  st.secrets["auth_provider_x509_cert_url"],
+      "client_x509_cert_url": st.secrets["client_x509_cert_url"],
+      "universe_domain": st.secrets["universe_domain"],
+    }
+
+    gc = gspread.service_account_from_dict(credentials)
+    spreadsheet_url = "https://docs.google.com/spreadsheets/d/13xD8Ngbw0fA0PMoocNnouRbVNzldUhuPapgW47miPOg/edit#gid=1109817334"
+    doc = gc.open_by_url(spreadsheet_url)
+    worksheet = doc.worksheet("홈페이지 DB")
+
+    # 시트 데이터를 가져오기
+    data = worksheet.get_all_values()
+
+    df = pd.DataFrame(data[2:], columns=data[1])
+    df.drop(columns='#', inplace=True)
+    df.set_index('이름', inplace=True)
+    st.session_state['google_sheet'] = df
 
 # 이름 목록
+df = st.session_state['google_sheet']
 names = list(df.index)
 
 # 디자인 이미지 호출하여 삽입
@@ -58,20 +89,33 @@ with C2:            #C2: body
     """,
     unsafe_allow_html=True)  
     
-    def change():
-        pass
+
+#     hidden = """
+#     <style>
+#     div[data-baseweb="popover"]{
+#       visibility: hidden;
+#     }"""
+
+#     visible = """
+#     <style>
+#     div[data-baseweb="popover"]{
+#       visibility: visible;
+#     }"""
+#     option = hidden
+#     st.markdown(hidden, unsafe_allow_html=True)  
+        
+
     
     # 멀티셀렉트 박스
-    name_list = st.multiselect('검색',names, placeholder = "성함을 입력해주세요.", label_visibility = 'collapsed',\
-                              on_change=change())
+    name_list = st.multiselect('검색',names, placeholder = "성함을 입력해주세요.", label_visibility = 'collapsed')
 
     # 초기 흐름 제어 : 검색하면 처리하도록
     if len(name_list) > 0:
-        st.session_state.disable_opt = True
-#         st.session_state.disable_opt = False
+        st.experimental_set_query_params(multiselect_closed=True)
+        
         # 띄어쓰기 처리
         name_list = [name.replace(" ","") for name in name_list] 
-
+        
         # 탭 나누기
         tabs= st.tabs(name_list)
         for i, name in enumerate(name_list):
@@ -421,7 +465,7 @@ with C2:            #C2: body
                                 st.write("")                        
                         
  
-                # st.write("메모 :, api로 실시간 db연결 ,최적화하기 ")
+                # st.write("메모 :, api로 실시간 db연결 ,코드최적화하기 ")
                 
 #                 st.warning("메모 : 모두처리 했지만 이동시 개인별 예외케이스가 다양해서 혹시 실수가 없는지 더 집중적으로 교차검증이 필요할 것 같습니다!! 특히 시간 처리에 유의! 개별이동은 시간처리를 하이픈(-)로 하였음")
 
