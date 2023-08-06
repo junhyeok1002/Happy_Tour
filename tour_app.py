@@ -32,7 +32,7 @@ if 'google_sheet' not in st.session_state:
     }
 
     gc = gspread.service_account_from_dict(credentials)
-    spreadsheet_url = "https://docs.google.com/spreadsheets/d/13xD8Ngbw0fA0PMoocNnouRbVNzldUhuPapgW47miPOg/edit#gid=1109817334"
+    spreadsheet_url = "https://docs.google.com/spreadsheets/d/1XH6tveL3sTkwGjZLgsm9pCzZacd0b9VPVVX2FhuOVSw/edit#gid=1959638981"
     doc = gc.open_by_url(spreadsheet_url)
     worksheet = doc.worksheet("홈페이지 DB")
 
