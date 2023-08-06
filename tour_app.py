@@ -5,6 +5,7 @@ from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from PIL import Image
 import gspread
+import pyautogui
 
 # # 로컬 DB연결용 코드
 # # XLS 파일 읽기
@@ -111,7 +112,7 @@ with C2:            #C2: body
 
     # 초기 흐름 제어 : 검색하면 처리하도록
     if len(name_list) > 0:
-        st.experimental_set_query_params(multiselect_closed=True)
+        pyautogui.click(10, 300)
         
         # 띄어쓰기 처리
         name_list = [name.replace(" ","") for name in name_list] 
@@ -463,12 +464,6 @@ with C2:            #C2: body
                                 </table>
                                 """, unsafe_allow_html=True)
                                 st.write("")                        
-                        
- 
-                # st.write("메모 :, api로 실시간 db연결 ,코드최적화하기 ")
-                
-#                 st.warning("메모 : 모두처리 했지만 이동시 개인별 예외케이스가 다양해서 혹시 실수가 없는지 더 집중적으로 교차검증이 필요할 것 같습니다!! 특히 시간 처리에 유의! 개별이동은 시간처리를 하이픈(-)로 하였음")
-
     else :
         pass
 
