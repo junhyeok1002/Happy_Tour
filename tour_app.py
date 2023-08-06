@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
 from PIL import Image
 import gspread
 
@@ -30,23 +28,25 @@ if 'google_sheet' not in st.session_state:
       "client_x509_cert_url": st.secrets["client_x509_cert_url"],
       "universe_domain": st.secrets["universe_domain"],
     }
-
+    
+    # 구글 스프레드 시트를 받아오기
     gc = gspread.service_account_from_dict(credentials)
     spreadsheet_url = "https://docs.google.com/spreadsheets/d/1XH6tveL3sTkwGjZLgsm9pCzZacd0b9VPVVX2FhuOVSw/edit#gid=1959638981"
     doc = gc.open_by_url(spreadsheet_url)
     worksheet = doc.worksheet("홈페이지 DB")
-
-    # 시트 데이터를 가져오기
-    data = worksheet.get_all_values()
-
+    
+    #받아온 시트를 DataFrame으로 가공하는 작업
+    data = worksheet.get_all_values() 
     df = pd.DataFrame(data[2:], columns=data[1])
     df.drop(columns='#', inplace=True)
     df.set_index('이름', inplace=True)
-    st.session_state['google_sheet'] = df
+    st.session_state['google_sheet'] = df 
+
+# session_state에서 df로 데이터 받아오기 : 세션스테이트를 두는 이유는 앱첫실행시 api를 한번만 호출하기 위함
+df = st.session_state['google_sheet']
 
 # 이름 목록
-df = st.session_state['google_sheet']
-names = list(df.index)
+names = list(df.index) 
 
 # 디자인 이미지 호출하여 삽입
 image_path = './image/design.jpg'
@@ -61,7 +61,7 @@ body_gap = 10-2*side_gap
 C1, C2, C3 = st.columns([side_gap, body_gap ,side_gap])
 with C1: pass # C1: left blank
 with C3: pass # C3: right blank
-with C2:            #C2: body
+with C2:      # C2: body
     
     # 가이드북
     url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4"
@@ -105,43 +105,21 @@ with C2:            #C2: body
 #     st.markdown(hidden, unsafe_allow_html=True)  
         
 
-    
-    # 멀티셀렉트 박스
+    # 검색창 : MultiSelect-Box
     name_list = st.multiselect('검색',names, placeholder = "성함을 입력해주세요.", label_visibility = 'collapsed')
 
     # 초기 흐름 제어 : 검색하면 처리하도록
-    if len(name_list) > 0:
-        
-        # 띄어쓰기 처리
-        name_list = [name.replace(" ","") for name in name_list] 
-        
-        # 탭 나누기
+    if len(name_list) > 0:        
+        # 검색된 사람 별로 탭 나누기
         tabs= st.tabs(name_list)
         for i, name in enumerate(name_list):
             with tabs[i]:
-                # 이름에 오타가 났을때 db저장된 이름과 유사도를 확인하여 찾으시는 이름을 제시해주는 코드 
-                # multiselect search 방식을 바꾸면서 아래의 if문 블럭은 현재 필요없는 코드임
-                if (name not in df.index) or (list(df.index).count(name) > 1) : #이름이 DB목록에 없을 경우 발동
-                    # 유사한 결과 찾기
-                    matches = process.extract(name, names, scorer=fuzz.token_set_ratio, limit=500)
-
-                    # 뒤의 숫자가 0인 요소 제거 후 내림차순으로 정렬하여 연관도 Top 5만 선정
-                    matches = [(name, score) for name, score in matches if score != 0]
-                    matches = sorted(matches, key=lambda x: x[1], reverse=True)[:5]
-                    matches_list = [name for name, score in matches]
-
-                    wrong_name = name[:]
-                    name = st.radio(f"찾으시는 성함을 클릭해주세요. 아래에도 없을 경우 이주노 전도사님께 문의부탁드립니다", matches_list)
-                
                 # 검색된 name을 가진 사람의 정보를 1행 DataFrame으로 만든 변수 : result
                 result = df[df.index == name]
-                
-              
-                # 아래 대형 공사중 : metric 사용하지 않고, html/css로 디자인하기
-                # st.markdown('<div class="rounded-text-box"> 아래 부분 디자인 갈아 엎는중, 글짜 크기키우기, 배치 디자인 다시, 이모지 너무 유치해보이는데 고급스럽게 바꿀 방법찾기, 등등.... </div>', unsafe_allow_html=True)
-                
 
+                # 1일차
                 with st.container():
+                    ### 1,2,3 예외처리
                     # ①교회-청주공항 버스 : 개인이동, 선발대 처리
                     if result['①교회-청주공항 버스'].values[0] in ('개인이동','선발대'): boarding_time1 = "-"
                     else : boarding_time1 = "오후 2:30"
@@ -154,7 +132,6 @@ with C2:            #C2: body
                         elif int(time[:2]) < 12: boarding_time2 = f'오전 {time}'
                         elif int(time[:2]) == 12: boarding_time2 = f'오후 {time}'
                         elif int(time[:2]) > 12: boarding_time2 = f'오후 {int(time[:2])-12}:{time[3:5]}'
-
                     except :
                         airline = info_air
                         boarding_time2 = "-"
@@ -162,12 +139,14 @@ with C2:            #C2: body
                     # ③제주공항-숙소 : 버스 개인이동 수양관   
                     if result['③제주공항-숙소 버스'].values[0] in ('개인이동','수양관'): boarding_time3 = "-"
                     else : boarding_time3 = "오후 7:00"                        
-
-
+                    
+                    
+                    ### 본격적인 첫날 티켓테이블
                     st.markdown(f"""
                     <table class = "first-day">
-                      <tr style="color:#F0A23D ;background-color: white ;border-top: 0.3rem solid #F0A23D;font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;">
-                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.13rem;">Day 1, 08/13 주일</span></th>
+                      <tr style="color:#F0A23D ;background-color: white ;border-top: 0.3rem solid #F0A23D;
+                        font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;"><th colspan="4">
+                        <span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.13rem;">Day 1, 08/13 주일</span></th>
                       </tr>
                       <tr>
                         <td><span class="custom-ticket-font">대전</span><br>
@@ -203,23 +182,27 @@ with C2:            #C2: body
                         <td><span class="custom-ticket-font">숙소</span><br>
                             <span class="custom-ticket-small-font1">ROOM</span></td>
                         <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F3E0;</p><br>
-                            <span class="custom-ticket-small-font1" style="color:black; letter-spacing: -0.13rem;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>                                
+                            <span class="custom-ticket-small-font1" style="color:black; 
+                            letter-spacing: -0.13rem;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>                               
                         <td><span class="custom-ticket-font">방 번호</span><br>
                             <span class="custom-ticket-small-font1">NO.</span></td>
-                        <td><span class="custom-ticket-font" style="color: #F0A23D;font-size: 0.9rem;">{result['④숙소명 층/호수'].values[0].split()[0]}</span><br>
-                            <span class="custom-ticket-small-font1" style="font-size: 0.8rem; color: black;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>
+                        <td><span class="custom-ticket-font" style="color: #F0A23D;
+                            font-size: 0.9rem;">{result['④숙소명 층/호수'].values[0].split()[0]}</span><br>
+                            <span class="custom-ticket-small-font1" style="font-size: 0.8rem;
+                            color: black;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>
                       </tr>                          
                     </table>
                     """, unsafe_allow_html=True)
                     
-                    
+                    ### 첫째 날, 동행 파트
                     with  st.expander("첫째 날, 동행", expanded = False):  
                         transports = [result['①교회-청주공항 버스'].values[0], airline, \
                                       result['③제주공항-숙소 버스'].values[0],result['④숙소명 층/호수'].values[0] ]
                         tab_name = ["교회-청주", "청주-제주", "공항-숙소","룸메이트"]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
-                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]}, {transports[i]} 명단</span>', unsafe_allow_html=True)
+                                st.markdown(f'''<span class="name-font" style="font-size:1.5rem;">
+                                    {tab_name[i]}, {transports[i]} 명단</span>''', unsafe_allow_html=True)
                                 mine = result.loc[name,df.columns[i]]
                                 data_list = list(df[df[df.columns[i]] == mine].index)
 
@@ -238,7 +221,6 @@ with C2:            #C2: body
                                         <td><label class="clickable-text"><input type="checkbox"><span>{temp[2]}</span></label></td>
                                         <td><label class="clickable-text"><input type="checkbox"><span>{temp[3]}</span></label></td>
                                         </tr>'''
-                                        
                                         sum_text += temp_text
                                         temp = list()
                                   
@@ -249,12 +231,7 @@ with C2:            #C2: body
                                 """, unsafe_allow_html=True)
                                 st.write("")
                             
-                            
-                            
-                            
-                            
-                    
-                
+
                 # 2일차
                 theme_url = {'물놀이' : ['https://sandy-ear-231.notion.site/c8730b2e5d2f4636962550f876747bee?pvs=4',"오후 05:00"],
                              '액티비티' : ['https://sandy-ear-231.notion.site/92670ed2db424e8089bb93d68eed64d4?pvs=4',"오후 05:30"],
@@ -270,8 +247,10 @@ with C2:            #C2: body
                 with st.container():
                     st.markdown(f"""
                     <table class = "second-day">
-                      <tr style="color:#B57200 ;background-color: white ;border-top: 0.3rem solid #B57200;font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;">
-                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.13rem;">Day 2, 08/14 월요일</span></th>
+                      <tr style="color:#B57200 ;background-color: white ;border-top: 0.3rem solid #B57200;
+                        font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;">
+                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;
+                        letter-spacing: -0.13rem;">Day 2, 08/14 월요일</span></th>
                       </tr>                        
                       <tr>
                         <td><span class="custom-ticket-font">숙소</span><br>
@@ -293,7 +272,8 @@ with C2:            #C2: body
                         tab_name = [f"테마여행", f"숙소-{theme}"]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
-                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]}, {transports[i]} 명단</span>', unsafe_allow_html=True)
+                                st.markdown(f'''<span class="name-font" style="font-size:1.5rem;">
+                                    {tab_name[i]}, {transports[i]} 명단</span>''', unsafe_allow_html=True)
                                 mine = result.loc[name,df.columns[i+4]]
                                 data_list = list(df[df[df.columns[i+4]] == mine].index)
 
@@ -322,6 +302,7 @@ with C2:            #C2: body
                                 """, unsafe_allow_html=True)
                                 st.write("")
                         
+                        ### 테마활동 TIP 페이지 링크연결
                         st.markdown(
                         f"""
                         <div style="padding: 0px 0px 0px 0px;">
@@ -375,8 +356,10 @@ with C2:            #C2: body
 
                     st.markdown(f"""
                     <table class = "third-day">
-                      <tr style="color:#8B4600 ;background-color: white ;border-top: 0.3rem solid #8B4600;font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;">
-                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;letter-spacing: -0.12rem;">Day 3, 08/15 화요일</span></th>
+                      <tr style="color:#8B4600 ;background-color: white ;border-top: 0.3rem solid #8B4600;
+                        font-family:Diphylleia;border-right : 0.2rem solid #F0F2F6;">
+                        <th colspan="4"><span class="custom-ticket-font" style="font-size:1rem;
+                        letter-spacing: -0.12rem;">Day 3, 08/15 화요일</span></th>
                       </tr>                       
                       <tr>
                         <td><span class="custom-ticket-font">숙소</span><br>
@@ -427,16 +410,14 @@ with C2:            #C2: body
                         idx = [6,6.5,7,8]
                         for i, tab in enumerate(st.tabs(tab_name)):
                             with tab:
-                                st.markdown(f'<span class="name-font" style="font-size:1.5rem;">{tab_name[i]}, {transports[i]} 명단</span>', unsafe_allow_html=True)
-                                
+                                st.markdown(f'''<span class="name-font" style="font-size:1.5rem;">
+                                    {tab_name[i]}, {transports[i]} 명단</span>''', unsafe_allow_html=True)
                                 
                                 if idx[i] ==6.5 and result.loc[name,df.columns[idx[2]]] == '개별': i = 2
                                 elif  idx[i] ==6.5 and result.loc[name,df.columns[idx[2]]] != '개별': i = 0
                                     
                                 mine = result.loc[name,df.columns[idx[i]]]
                                 data_list = list(df[df[df.columns[idx[i]]] == mine].index)
-                                
-                                
                                 
                                 n = 4  # 열 개수 (n) 설정
                                 loop = int(str(n-len(data_list)%n))
@@ -462,26 +443,12 @@ with C2:            #C2: body
                                 </table>
                                 """, unsafe_allow_html=True)
                                 st.write("")                        
-    else :
-        pass
+    
+    # 검색X시 흐름제어를 위한 부분
+    else : pass
 
 
 # HTML에 CSS-STYLE 지정
 with open('style.css', encoding = "utf-8")as f:
     style = f.read()
 st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
-
-
-# 필요 없지만 언제 쓸지 모르는 코드
-# multibox_control
-# multibox_blank_case = """
-# <style>
-# div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2){
-#     visibility: hidden;
-# }
-# div[class="row-widget stMultiSelect"]:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2):before {
-#     content: "성함을 입력해주세요."; visibility: visible;
-# }    
-# </style>
-# """    
-# st.markdown(multibox_blank_case, unsafe_allow_html=True)
