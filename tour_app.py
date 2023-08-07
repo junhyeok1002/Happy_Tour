@@ -130,7 +130,7 @@ with C2:      # C2: body
                 with st.container():
                     ### 1,2,3 예외처리
                     # ①교회-청주공항 버스 : 개인이동, 선발대 처리
-                    if result['①교회-청주공항 버스'].values[0] in ('개인이동','선발대'): boarding_time1 = "-"
+                    if result['①교회-청주공항 버스'].values[0] in ('개인이동','선발대','개별'): boarding_time1 = "-"
                     else : boarding_time1 = "오후 2:30"
 
                     # ②청주-제주 비행기 : 비행기 시간 처리
@@ -146,12 +146,12 @@ with C2:      # C2: body
                         boarding_time2 = "-"
 
                     # ③제주공항-숙소 : 버스 개인이동 수양관   
-                    if result['③제주공항-숙소 버스'].values[0] in ('개인이동','수양관'): boarding_time3 = "-"
+                    if result['③제주공항-숙소 버스'].values[0] in ('개인이동','수양관','개별'): boarding_time3 = "-"
                     else : boarding_time3 = "오후 7:00"                        
                     
                     # ④숙소명 층/호수 : 예외처리  
                     if result['④숙소명 층/호수'].values[0] in ('개별'):
-                        floor = "-" ; room_num = '-'
+                        floor = result['④숙소명 층/호수'].values[0] ; room_num = '-'
                     else : 
                         floor = result['④숙소명 층/호수'].values[0].split()[0]
                         room_num = result['④숙소명 층/호수'].values[0].split()[1]                   
