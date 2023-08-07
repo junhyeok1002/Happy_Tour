@@ -106,19 +106,16 @@ with C2:      # C2: body
         
     
     # 검색창 : MultiSelect-Box
-#     if 'name_list' not in st.session_state: st.session_state['name_list'] = list()
-#     def call_back():
-#         st.session_state['name_list'] = name_list
-        
-#     for k in range(2):
-#         name_list = st.multiselect('검색',names, placeholder = "성함을 입력해주세요.",on_change=call_back, \
-#                                    default = st.session_state['name_list'],label_visibility = 'collapsed', key = f'{k}')
+    # 하나 입력 시 dropdown이 닫히도록 설계
+    def call_back(): emp = st.container() 
+    
+    if 'name_list' not in st.session_state: st.session_state['name_list'] = list()
+    name_list = st.multiselect('검색', names, placeholder="성함을 입력해주세요.", label_visibility='collapsed',\
+                           default = st.session_state['name_list'], on_change = call_back)
 
-    name_list = st.multiselect('검색',names, placeholder = "성함을 입력해주세요.",label_visibility = 'collapsed')
-
+    
     # 초기 흐름 제어 : 검색하면 처리하도록
     if len(name_list) > 0:        
-        #st.session_state['name_list'] = name_list
         # 검색된 사람 별로 탭 나누기
         tabs= st.tabs(name_list)
         for i, name in enumerate(name_list):
@@ -130,7 +127,7 @@ with C2:      # C2: body
                 with st.container():
                     ### 1,2,3 예외처리
                     # ①교회-청주공항 버스 : 개인이동, 선발대 처리
-                    if result['①교회-청주공항 버스'].values[0] in ('개인이동','선발대','개별'): boarding_time1 = "-"
+                    if result['①교회-청주공항 버스'].values[0] in ('개인이동','선발대','개별',None, ''): boarding_time1 = "-"
                     else : boarding_time1 = "오후 2:30"
 
                     # ②청주-제주 비행기 : 비행기 시간 처리
@@ -146,11 +143,11 @@ with C2:      # C2: body
                         boarding_time2 = "-"
 
                     # ③제주공항-숙소 : 버스 개인이동 수양관   
-                    if result['③제주공항-숙소 버스'].values[0] in ('개인이동','수양관','개별'): boarding_time3 = "-"
+                    if result['③제주공항-숙소 버스'].values[0] in ('개인이동','수양관','개별',None, ''): boarding_time3 = "-"
                     else : boarding_time3 = "오후 7:00"                        
                     
                     # ④숙소명 층/호수 : 예외처리  
-                    if result['④숙소명 층/호수'].values[0] in ('개별'):
+                    if result['④숙소명 층/호수'].values[0] in ('개별',None, ''):
                         floor = result['④숙소명 층/호수'].values[0] ; room_num = '-'
                     else : 
                         floor = result['④숙소명 층/호수'].values[0].split()[0]
@@ -348,6 +345,11 @@ with C2:      # C2: body
                     
                 # 3일차
                 with st.container():
+                    # 숙소 - 단체활동 처리
+                    if result['⑦단체활동 버스'].values[0] in ('개별',None,''): group_tour_time = '-'
+                    else : group_tour_time = '오후 12:00'
+                    
+                    # 숙소 제주공항용 처리
                     bus_to_cju = result['⑦단체활동 버스'].values[0]
                     bus_to_cju_time = '오후 6:30'
 
@@ -366,7 +368,7 @@ with C2:      # C2: body
 
                     #
                     bus_to_dncc_time = '-'
-                    if result['⑨청주공항-교회 버스'].values[0] =='개인이동' : bus_to_dncc_time = '-'
+                    if result['⑨청주공항-교회 버스'].values[0] in ('개인이동','개별',None, '') : bus_to_dncc_time = '-'
                     elif airline2 in ('아시아나'):bus_to_dncc_time = '오후 10:00'
                     elif airline2 in ('이스타','진에어'):bus_to_dncc_time = '오후 11:00'
 
@@ -385,7 +387,7 @@ with C2:      # C2: body
                         <td><span class="custom-ticket-font">단체관광</span><br>
                             <span class="custom-ticket-small-font3">TOUR</span></td>
                         <td><span class="custom-ticket-font" style="color: #8B4600;">{result['⑦단체활동 버스'].values[0]}</span><br>
-                            <span class="custom-ticket-small-font3" style="color: black;">오후 12:00</span></td>
+                            <span class="custom-ticket-small-font3" style="color: black;">{group_tour_time}</span></td>
                       </tr>
                       <tr>
                         <td><span class="custom-ticket-font">숙소</span><br>
