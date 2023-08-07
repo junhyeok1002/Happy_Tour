@@ -4,12 +4,6 @@ import streamlit as st
 from PIL import Image
 import gspread
 
-# HTML에 CSS-STYLE 지정
-with open('style.css', encoding = "utf-8")as f:
-    style = f.read()
-    st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
-
-
 # # 로컬 DB연결용 코드
 # # XLS 파일 읽기
 # df = pd.read_excel('./data/제주수양회 총괄시트.xlsx', sheet_name='홈페이지 DB',index_col = 0 )
@@ -92,6 +86,8 @@ with C2:      # C2: body
     </div>
     """,
     unsafe_allow_html=True)  
+    
+
     
     # 검색창 : MultiSelect-Box
     # 하나 입력 시 dropdown이 닫히도록 설계
@@ -453,3 +449,8 @@ with C2:      # C2: body
     
     # 검색X시 흐름제어를 위한 부분
     else : pass
+    
+# HTML에 CSS-STYLE 지정
+with open('style.css', encoding = "utf-8")as f:
+    style = f.read()
+    st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
