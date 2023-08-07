@@ -7,7 +7,8 @@ import gspread
 # 사용자 정의 함수들 import
 from user_functions.Jeju_Femilesion_Festival import *
 
-
+# CSS style입히기
+Apply_CSS_Style()
 
 # 구글 시트 DB연결 코드 : session_state를 사용하여 db를 cache에 놔두기 위함 : api호출 수 감소목적
 if 'google_sheet' not in st.session_state:
@@ -102,9 +103,7 @@ with body:
     
     # 검색 흐름 제어 : 검색하면 안하면 pass 처리하도록
     else : pass
-
-# CSS style입히기
-Apply_CSS_Style()
+    
     
 # STAND BY
 ### 테마활동 TIP 페이지 링크 연결 박스
