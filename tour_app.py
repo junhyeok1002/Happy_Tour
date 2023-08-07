@@ -104,12 +104,21 @@ with C2:      # C2: body
 #     option = hidden
 #     st.markdown(hidden, unsafe_allow_html=True)  
         
-
+    
     # 검색창 : MultiSelect-Box
-    name_list = st.multiselect('검색',names, placeholder = "성함을 입력해주세요.", label_visibility = 'collapsed')
+#     if 'name_list' not in st.session_state: st.session_state['name_list'] = list()
+#     def call_back():
+#         st.session_state['name_list'] = name_list
+        
+#     for k in range(2):
+#         name_list = st.multiselect('검색',names, placeholder = "성함을 입력해주세요.",on_change=call_back, \
+#                                    default = st.session_state['name_list'],label_visibility = 'collapsed', key = f'{k}')
+
+    name_list = st.multiselect('검색',names, placeholder = "성함을 입력해주세요.",label_visibility = 'collapsed')
 
     # 초기 흐름 제어 : 검색하면 처리하도록
     if len(name_list) > 0:        
+        #st.session_state['name_list'] = name_list
         # 검색된 사람 별로 탭 나누기
         tabs= st.tabs(name_list)
         for i, name in enumerate(name_list):
@@ -139,6 +148,13 @@ with C2:      # C2: body
                     # ③제주공항-숙소 : 버스 개인이동 수양관   
                     if result['③제주공항-숙소 버스'].values[0] in ('개인이동','수양관'): boarding_time3 = "-"
                     else : boarding_time3 = "오후 7:00"                        
+                    
+                    # ④숙소명 층/호수 : 예외처리  
+                    if result['④숙소명 층/호수'].values[0] in ('개별'):
+                        floor = "-" ; room_num = '-'
+                    else : 
+                        floor = result['④숙소명 층/호수'].values[0].split()[0]
+                        room_num = result['④숙소명 층/호수'].values[0].split()[1]                   
                     
                     
                     ### 본격적인 첫날 티켓테이블
@@ -183,13 +199,13 @@ with C2:      # C2: body
                             <span class="custom-ticket-small-font1">ROOM</span></td>
                         <td ><p class="flipped-symbola-emoji" style = "font-size:1.4rem;"><br>&#x1F3E0;</p><br>
                             <span class="custom-ticket-small-font1" style="color:black; 
-                            letter-spacing: -0.13rem;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>                               
+                            letter-spacing: -0.13rem;">{room_num}</span></td>                               
                         <td><span class="custom-ticket-font">방 번호</span><br>
                             <span class="custom-ticket-small-font1">NO.</span></td>
                         <td><span class="custom-ticket-font" style="color: #F0A23D;
-                            font-size: 0.9rem;">{result['④숙소명 층/호수'].values[0].split()[0]}</span><br>
+                            font-size: 0.9rem;">{floor}</span><br>
                             <span class="custom-ticket-small-font1" style="font-size: 0.8rem;
-                            color: black;">{result['④숙소명 층/호수'].values[0].split()[1]}</span></td>
+                            color: black;">{room_num}</span></td>
                       </tr>                          
                     </table>
                     """, unsafe_allow_html=True)
