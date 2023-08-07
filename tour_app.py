@@ -4,12 +4,17 @@ import streamlit as st
 from PIL import Image
 import gspread
 
+# HTML에 CSS-STYLE 지정
+with open('style.css', encoding = "utf-8")as f:
+    style = f.read()
+    st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
+
+
 # # 로컬 DB연결용 코드
 # # XLS 파일 읽기
 # df = pd.read_excel('./data/제주수양회 총괄시트.xlsx', sheet_name='홈페이지 DB',index_col = 0 )
 # # 바뀐 엑셀 형식에 맞추어 전처리
 # df = df.T.set_index('#').T.set_index('이름')
-
 
 # 구글 시트 DB연결 코드
 # session_state를 사용하여 앱로딩시 db를 전부호출하여 cache에 놔두기 위함 : api호출수를 많이 줄일 수 있음
@@ -62,7 +67,6 @@ C1, C2, C3 = st.columns([side_gap, body_gap ,side_gap])
 with C1: pass # C1: left blank
 with C3: pass # C3: right blank
 with C2:      # C2: body
-    
     # 가이드북
     url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4"
     st.markdown(
@@ -89,25 +93,10 @@ with C2:      # C2: body
     """,
     unsafe_allow_html=True)  
     
-
-#     hidden = """
-#     <style>
-#     div[data-baseweb="popover"]{
-#       visibility: hidden;
-#     }"""
-
-#     visible = """
-#     <style>
-#     div[data-baseweb="popover"]{
-#       visibility: visible;
-#     }"""
-#     option = hidden
-#     st.markdown(hidden, unsafe_allow_html=True)  
-        
-    
     # 검색창 : MultiSelect-Box
     # 하나 입력 시 dropdown이 닫히도록 설계
-    def call_back(): emp = st.container() 
+    def call_back(): 
+        with st.container(): pass
     
     if 'name_list' not in st.session_state: st.session_state['name_list'] = list()
     name_list = st.multiselect('검색', names, placeholder="성함을 입력해주세요.", label_visibility='collapsed',\
@@ -464,9 +453,3 @@ with C2:      # C2: body
     
     # 검색X시 흐름제어를 위한 부분
     else : pass
-
-
-# HTML에 CSS-STYLE 지정
-with open('style.css', encoding = "utf-8")as f:
-    style = f.read()
-st.markdown(f"<style>{style}</style>", unsafe_allow_html = True)
