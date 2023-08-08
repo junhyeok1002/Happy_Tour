@@ -43,7 +43,7 @@ def SpreadSheet_to_Dataframe(spreadsheet_url, sheet_name):
     df.loc[df['⑧제주-청주 비행기'].isin(['개별']), '숙소-제주공항'] = "개별"
     df.loc[df['⑧제주-청주 비행기'].isin(['개인이동', '선발대', None,'-']), '숙소-제주공항'] = "-"
     df.loc[~df['⑧제주-청주 비행기'].isin(['개인이동', '선발대', '개별', None,'-']), '숙소-제주공항'] = df['⑦단체활동 버스']    
-
+    
     return df
 
 def URL_Box(url, color, fonts, font_size, lettering):
@@ -74,6 +74,8 @@ def URL_Box(url, color, fonts, font_size, lettering):
     
 def call_back(): # 하나 입력 시 dropdown이 닫히도록 call_back 설계
     with st.container(): pass
+    with st.container(): pass
+    # with st.container(): pass
     
 
 # 첫날 예외처리
@@ -324,3 +326,4 @@ def together_tab(tab_name, transports, df, name, cols):
             data_list = list(df[df[cols[i]] == mine].index)
 
             together_list(data_list) 
+                

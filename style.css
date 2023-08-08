@@ -76,6 +76,14 @@ font-family: Hahmlet,sans-serif;
 /* # 툴바 없애기 */
 #MainMenu, header , footer {visibility: hidden;}
 
+/* 사이드바 숨기기 */
+section[data-testid="stSidebar"]{
+  visibility: collapse;
+}
+div[data-testid="collapsedControl"]{
+  visibility: collapse;
+}
+
 /* # 이미지 확대 버튼 숨기기 -> 자연스러운 UI/UX를 위함 : 확대 버튼이 width layout을 해치는 문제가 있었음  */
 button[title="View fullscreen"]{visibility: hidden;}
 
