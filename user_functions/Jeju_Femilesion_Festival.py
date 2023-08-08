@@ -47,7 +47,7 @@ def SpreadSheet_to_Dataframe(spreadsheet_url, sheet_name):
     
     return df
 
-def URL_Box(url, color, fonts, font_size, lettering):
+def URL_Box(url, color, fonts, font_size, lettering, letter_spacing):
     st.markdown(
     f"""
     <div style="padding: 0px 0px 8px 0px;">
@@ -61,7 +61,7 @@ def URL_Box(url, color, fonts, font_size, lettering):
                 color: {color};
                 background-color: #ffffff;
                 border-radius: 0.5rem;
-                letter-spacing: -0.13rem;
+                letter-spacing: {letter_spacing};
                 border: 0.07rem solid {color};
                 text-decoration: none;
                 text-align: center;
@@ -195,7 +195,7 @@ def Second_Day_Ticket(result, theme, theme_bus):
         theme_s_time = '오후 12:00'
         theme_e_time = theme_url[theme][1]
     except:  
-        url = theme_url['예외']
+        url = theme_url['예외'][0]
         theme_s_time = '-'
         theme_e_time = '-'
 
@@ -218,6 +218,7 @@ def Second_Day_Ticket(result, theme, theme_bus):
       </tr>                           
     </table> 
     """, unsafe_allow_html=True)
+    return url
     
 # 셋째 날 예외처리
 def Third_Day_Exception_Handling(result):
