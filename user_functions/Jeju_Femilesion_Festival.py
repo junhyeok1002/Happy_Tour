@@ -76,7 +76,8 @@ def URL_Box(url, color, fonts, font_size, lettering):
 def call_back(): # 하나 입력 시 dropdown이 닫히도록 call_back 설계
     time.sleep(0.3)
     with st.container(): pass  
-
+    time.sleep(0.1)
+    with st.container(): pass  
     
 
 
