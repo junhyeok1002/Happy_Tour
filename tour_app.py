@@ -41,7 +41,7 @@ with body:
     # 검색창 : MultiSelect-Box = 하나 입력 시 dropdown이 닫히도록 설계    
     if 'name_list' not in st.session_state: st.session_state['name_list'] = list()
     name_list = st.multiselect('검색', list(df.index), placeholder="성함을 입력해주세요.", label_visibility='collapsed',\
-                           default = st.session_state['name_list'])#, on_change = call_back)
+                           default = st.session_state['name_list'], on_change = call_back)
 
     # 검색 흐름 제어 : 검색하면 처리하도록
     if len(name_list) > 0:        
@@ -104,15 +104,6 @@ with body:
     
 # CSS style입히기
 Apply_CSS_Style()
-
-st.markdown("""
-<style>
-#root > div:nth-child(2) > div > div > div > div > div > div > ul {
-    height: 100px;
-}
-</style>
-""", unsafe_allow_html=True)
-
     
 # STAND BY
 ### 테마활동 TIP 페이지 링크 연결 박스
