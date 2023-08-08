@@ -15,7 +15,7 @@ if 'google_sheet' not in st.session_state:
     
     # 스프레드시트URL, 시트명으로 함수(시트 -> 데이터프레임) 호출하여 session_state에 할당
     st.session_state['google_sheet'] = SpreadSheet_to_Dataframe(url, sheet_name)
-
+    
 # session_state에서 df로 데이터 받아오기 : 세션스테이트를 두는 이유는 앱첫실행시 api를 한번만 호출하기 위함
 df = st.session_state['google_sheet']
 
@@ -27,7 +27,7 @@ st.image(image,use_column_width  = True)
 # 디자인 layout 나누기 : 좌우 여백 추가 left_blank = 7.5%, body = 85%, right_blank = 7.5% 
 side_gap = 0.75 ; body_gap = 10-2*side_gap
 left_blank, body, right_blank = st.columns([side_gap, body_gap ,side_gap])
-with left_blank : pass 
+with left_blank : Apply_CSS_Style() 
 with right_blank: pass 
 with body:     
     # 가이드북 링크 연결 박스
@@ -103,7 +103,7 @@ with body:
     else : pass
     
 # CSS style입히기
-Apply_CSS_Style()
+
     
 # STAND BY
 ### 테마활동 TIP 페이지 링크 연결 박스
