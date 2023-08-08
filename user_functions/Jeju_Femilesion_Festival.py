@@ -3,6 +3,7 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 import gspread
+import time
 
 # style.css 파일에 구현한 스타일을 적용하는 코드
 def Apply_CSS_Style():
@@ -73,15 +74,9 @@ def URL_Box(url, color, fonts, font_size, lettering):
     unsafe_allow_html=True)    
     
 def call_back(): # 하나 입력 시 dropdown이 닫히도록 call_back 설계
+    time.sleep(0.3)
     with st.container(): pass  
-#     with st.container(): pass
-#     with st.container(): pass
-#     with st.container(): pass
-#     with st.container(): pass
-#     with st.container(): pass
-#     with st.container(): pass
-#     with st.container(): pass
-    # with st.container(): pass
+
     
 
 

@@ -4,6 +4,7 @@ import streamlit as st
 from PIL import Image
 import gspread
 from streamlit.components.v1 import html
+import time
 
 # 사용자 정의 함수들 import
 from user_functions.Jeju_Femilesion_Festival import *
