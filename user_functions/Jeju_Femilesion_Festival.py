@@ -78,7 +78,7 @@ def call_back(): # 하나 입력 시 dropdown이 닫히도록 call_back 설계
 
 # 첫날 예외처리
 def First_Day_Exception_Handling(result):
-    Exception = ('개인이동','선발대','개별',None, '','-')
+    Exception = ('개인이동','선발대','개별',None, '','-','자택')
     
     # ①교회-청주공항 버스 : 개인이동, 선발대 처리
     dncc_to_cjj = result['①교회-청주공항 버스'].values[0]
@@ -103,12 +103,13 @@ def First_Day_Exception_Handling(result):
     else : boarding_time3 = "오후 7:00"                        
 
     # ④숙소명 층/호수 : 예외처리  
-    if result['④숙소명 층/호수'].values[0] in Exception:
-        floor = result['④숙소명 층/호수'].values[0] 
+    room_info = result['④숙소명 층/호수'].values[0]
+    if room_info in Exception:
+        floor = room_info
         room_num = '-'
     else : 
-        floor = result['④숙소명 층/호수'].values[0].split()[0]
-        room_num = result['④숙소명 층/호수'].values[0].split()[1]       
+        floor = room_info.split()[0]
+        room_num = room_info.split()[1]       
         
     return dncc_to_cjj, boarding_time1, airline, boarding_time2, cju_to_room, boarding_time3, floor, room_num
     
@@ -228,7 +229,7 @@ def Third_Day_Exception_Handling(result):
     bus_to_dncc = result['⑨청주공항-교회 버스'].values[0]
     if bus_to_dncc in Exception : bus_to_dncc_time = '-'
     elif airline2 in ('아시아나'):bus_to_dncc_time = '오후 10:00'
-    elif airline2 in ('이스타','진에어'):bus_to_dncc_time = '오후 11:00'
+    elif airline2 in ('이스타','진에어','에어로케이'):bus_to_dncc_time = '오후 11:00'
     else : bus_to_dncc_time = '-'
         
     return group_tour_bus, group_tour_time, bus_to_cju, bus_to_cju_time, airline2, boarding_time4, bus_to_dncc, bus_to_dncc_time

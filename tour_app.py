@@ -3,12 +3,10 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 import gspread
+from streamlit.components.v1 import html
 
 # 사용자 정의 함수들 import
 from user_functions.Jeju_Femilesion_Festival import *
-
-# CSS style입히기
-Apply_CSS_Style()
 
 # 구글 시트 DB연결 코드 : session_state를 사용하여 db를 cache에 놔두기 위함 : api호출 수 감소목적
 if 'google_sheet' not in st.session_state:
@@ -103,6 +101,28 @@ with body:
     
     # 검색 흐름 제어 : 검색하면 안하면 pass 처리하도록
     else : pass
+    
+# CSS style입히기
+Apply_CSS_Style()
+    
+# # Define your javascript
+# my_js = """
+# var multiselect = document.querySelector('.multiselect');
+
+# multiselect.addEventListener('change', function() {
+#     this.querySelector('.multiselect__dropdown').classList.remove('multiselect__dropdown--open');
+#     });
+# """
+# # closeAfterSelecting
+
+# # Wrapt the javascript as html code
+# my_html = f"<script>{my_js}</script>"
+
+# # Execute your app
+# html(my_html)    
+    
+    
+    
     
     
 # STAND BY
