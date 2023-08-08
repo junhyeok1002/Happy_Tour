@@ -87,8 +87,8 @@ def First_Day_Exception_Handling(result):
     
     # ①교회-청주공항 버스 : 개인이동, 선발대 처리
     dncc_to_cjj = result['①교회-청주공항 버스'].values[0]
-    if dncc_to_cjj in Exception: boarding_time1 = "-"
-    else : boarding_time1 = "오후 2:30"
+    if dncc_to_cjj.endswith('호차') : boarding_time1 = "오후 2:30"
+    else : boarding_time1 = "-"
 
     # ②청주-제주 비행기 : 비행기 시간 처리
     info_air = result['②청주-제주 비행기'].values[0].replace("pm"," ")
@@ -104,17 +104,21 @@ def First_Day_Exception_Handling(result):
 
     # ③제주공항-숙소 : 버스 개인이동 수양관   
     cju_to_room = result['③제주공항-숙소 버스'].values[0]
-    if cju_to_room in Exception: boarding_time3 = "-"
-    else : boarding_time3 = "오후 7:00"                        
+    if (cju_to_room.endswith('호차')) or (cju_to_room in ('수양관','스타리아','카니발')): boarding_time3 = "오후 7:00"
+    else : boarding_time3 = "-"                        
 
     # ④숙소명 층/호수 : 예외처리  
     room_info = result['④숙소명 층/호수'].values[0]
-    if room_info in Exception:
+    try:
+        if room_info in Exception:
+            floor = room_info
+            room_num = '-'
+        else : 
+            floor = room_info.split()[0]
+            room_num = room_info.split()[1] 
+    except:
         floor = room_info
-        room_num = '-'
-    else : 
-        floor = room_info.split()[0]
-        room_num = room_info.split()[1]       
+        room_num = "-"
         
     return dncc_to_cjj, boarding_time1, airline, boarding_time2, cju_to_room, boarding_time3, floor, room_num
     
@@ -175,16 +179,25 @@ def First_Day_Ticket(dncc_to_cjj, boarding_time1, airline, boarding_time2, cju_t
     </table>
     """, unsafe_allow_html=True)    
 
-# 둘째 날 티켓 디자인 html생성 : 둘째날은 예외처리가 없음
+# 둘째 날 티켓 디자인 html생성 
 def Second_Day_Ticket(result, theme, theme_bus):
     theme_url = {'물놀이' : ['https://sandy-ear-231.notion.site/c8730b2e5d2f4636962550f876747bee?pvs=4',"오후 05:00"],
                  '액티비티' : ['https://sandy-ear-231.notion.site/92670ed2db424e8089bb93d68eed64d4?pvs=4',"오후 05:30"],
                  '인생샷' : ['https://sandy-ear-231.notion.site/9ca017fc6f9c40f1badab4192e2ce4a1?pvs=4',"오후 05:20"],
                  '자연' : ['https://sandy-ear-231.notion.site/6a061529159d467587eab7a90d2c1896?pvs=4',"오후 05:00"],
                  '힐링' : ['https://sandy-ear-231.notion.site/becd45dddbee435aacecf49ba776a8ed?pvs=4',"오후 05:30"],
-                 '의전' : ['http://www.sja21.com/main/main.html',"-"]
+                 '예외' : ['http://www.sja21.com/main/main.html',"-"]
                 }     
-    url = theme_url[theme][0]                    
+    
+    # 둘째날은 예외처리
+    try: 
+        url = theme_url[theme][0]  
+        theme_s_time = '오후 12:00'
+        theme_e_time = theme_url[theme][1]
+    except:  
+        url = theme_url['예외']
+        theme_s_time = '-'
+        theme_e_time = '-'
 
     st.markdown(f"""
     <table class = "second-day">
@@ -201,7 +214,7 @@ def Second_Day_Ticket(result, theme, theme_bus):
         <td><span class="custom-ticket-font">{theme}</span><br>
             <span class="custom-ticket-small-font2">THEME</span></td>
         <td><span class="custom-ticket-font" style="color: #B57200;">{theme_bus}</span><br>
-            <span class="custom-ticket-small-font2" style="color: black;">오후 12:00<br>{theme_url[theme][1]}</span></td>
+            <span class="custom-ticket-small-font2" style="color: black;">{theme_s_time}<br>{theme_e_time}</span></td>
       </tr>                           
     </table> 
     """, unsafe_allow_html=True)
@@ -212,13 +225,13 @@ def Third_Day_Exception_Handling(result):
     
     # 숙소 - 단체활동 처리
     group_tour_bus = result['⑦단체활동 버스'].values[0]
-    if group_tour_bus in Exception: group_tour_time = '-'
-    else : group_tour_time = '오후 12:00'
+    if (group_tour_bus.endswith('호차')) or (group_tour_bus in ('스타리아','카니발')): group_tour_time = '오후 12:00'
+    else : group_tour_time = '-'
 
     # 숙소-제주공항, 제주-청주 비행기 처리
     bus_to_cju = result['숙소-제주공항'].values[0]
-    if bus_to_cju in Exception: bus_to_cju_time = '-'
-    else: bus_to_cju_time = '오후 6:30'
+    if (bus_to_cju.endswith('호차')) or (bus_to_cju in ('스타리아','카니발')): bus_to_cju_time = '오후 6:30'
+    else : bus_to_cju_time = '-'    
 
     info_air2 = result['⑧제주-청주 비행기'].values[0].replace("pm"," ")
     try: # 단체 이동 
@@ -233,7 +246,7 @@ def Third_Day_Exception_Handling(result):
     # 청주공항-교회 버스 처리
     bus_to_dncc = result['⑨청주공항-교회 버스'].values[0]
     if bus_to_dncc in Exception : bus_to_dncc_time = '-'
-    elif airline2 in ('아시아나'):bus_to_dncc_time = '오후 10:00'
+    elif airline2 in ('아시아나',):bus_to_dncc_time = '오후 10:00'
     elif airline2 in ('이스타','진에어','에어로케이'):bus_to_dncc_time = '오후 11:00'
     else : bus_to_dncc_time = '-'
         
