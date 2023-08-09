@@ -40,13 +40,13 @@ try:
     with left_blank : pass
     with right_blank: pass 
     with body:     
-        # 가이드북 링크 연결 박스
-        URL_Box(url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4",
-                color = "#F0A23D",
-                fonts = "Hahmlet, Diphylleia",
-                font_size = "1rem",
-                lettering = "Tour 가이드북",
-                letter_spacing =  '-0.13rem')
+#         # 가이드북 링크 연결 박스
+#         URL_Box(url = "https://sandy-ear-231.notion.site/Jeju-Femilesian-Festival-6a151c8c1eeb475ca1bc1d7557fbc4a2?pvs=4",
+#                 color = "#F0A23D",
+#                 fonts = "Hahmlet, Diphylleia",
+#                 font_size = "1rem",
+#                 lettering = "Tour 가이드북",
+#                 letter_spacing =  '-0.13rem')
 
 
         # 검색창 : MultiSelect-Box = 하나 입력 시 dropdown이 닫히도록 설계    
@@ -93,14 +93,14 @@ try:
                             cols = df.columns[4:6]
                             together_tab(tab_name, transports, df, name, cols) 
                             
-                            ## 테마활동 TIP 페이지 링크 연결 박스
-                            URL_Box(url =  url,
-                                   color = "#B57200",
-                                   fonts = "Nanum Pen Script, Diphylleia",
-                                   font_size = "1.2rem",
-                                   lettering = f"{theme} 테마 TIP",
-                                   letter_spacing = '0rem')
-                            st.write('')
+#                             ## 테마활동 TIP 페이지 링크 연결 박스
+#                             URL_Box(url =  url,
+#                                    color = "#B57200",
+#                                    fonts = "Nanum Pen Script, Diphylleia",
+#                                    font_size = "1.2rem",
+#                                    lettering = f"{theme} 테마 TIP",
+#                                    letter_spacing = '0rem')
+#                             st.write('')
 
                     # 3일차
                     with st.container():
