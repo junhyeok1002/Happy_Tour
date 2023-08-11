@@ -8,24 +8,45 @@ import time
 
 # 사용자 정의 함수들 import
 from user_functions.Jeju_Femilesion_Festival import *
-
-if 'capture_mode' not in st.session_state:
-    st.session_state['capture_mode'] = False  
         
 # 사이드바 환경설정용
 st.set_page_config(initial_sidebar_state='collapsed')
 with st.sidebar: 
     st.subheader('환경설정')
-    mode = st.select_slider(
+    
+    #캡쳐모드 세션스테이트
+    if 'capture_mode' not in st.session_state:
+        st.session_state['capture_mode'] = False      
+    
+    # 캡쳐모드 셀렉터
+    cap_mode = st.select_slider(
     '화면 선택',
     options=['일반화면','캡쳐용화면'],
     help = "캡쳐용화면을 선택하시면 스크롤 없이 한눈에 배정표를 확인하고 캡쳐할 수 있습니다. 하지만 동행하시는 분들의 명단은 일반화면에서만 확인할 수 있습니다.")
     
-    if mode == '일반화면': st.session_state['capture_mode'] = False
-    elif mode == '캡쳐용화면' : st.session_state['capture_mode'] = True
+    #캡쳐모드 셀렉팅 값 세션스테이트 부여
+    if cap_mode == '일반화면': st.session_state['capture_mode'] = False
+    elif cap_mode == '캡쳐용화면' : st.session_state['capture_mode'] = True
     else : pass
     
-    Apply_CSS_Style() # CSS 스타일
+    
+    #드랍다운모드 세션스테이트
+    if 'dropdown_mode' not in st.session_state:
+        st.session_state['dropdown_mode'] = False      
+    
+    # 캡쳐모드 셀렉터
+    dropdown_mode = st.select_slider(
+    '드랍다운 선택',
+    options=['자동닫기','열어두기'],
+    help = "열어두기 옵션을 선택하시면 이름을 입력하신 후 자동으로 새로고침이되면서 드랍다운(이름목록)이 닫히는 현상이 사라집니다. 열어두기 옵션에서 드랍다운(이름목록)을 닫으시려면 빈화면을 클릭해주시기 바랍니다")
+    
+    #캡쳐모드 셀렉팅 값 세션스테이트 부여
+    if dropdown_mode == '자동닫기': st.session_state['capture_mode'] = False
+    elif dropdown_mode == '열어두기' : st.session_state['dropdown_mode'] = True
+    else : pass
+
+    # CSS 스타일 설정
+    Apply_CSS_Style() 
 
 try:
     # 구글 시트 DB연결 코드 : session_state를 사용하여 db를 cache에 놔두기 위함 : api호출 수 감소목적
@@ -65,8 +86,11 @@ try:
 #                 lettering = "Tour 가이드북",
 #                 letter_spacing =  '-0.13rem')
 
-
-        # 검색창 : MultiSelect-Box = 하나 입력 시 dropdown이 닫히도록 설계    
+        
+        # 검색창 : MultiSelect-Box = 하나 입력 시 dropdown이 닫히도록 설계 
+        if st.session_state['dropdown_mode'] == False: call_back = call_back1
+        else : call_back = call_back2
+        
         if 'name_list' not in st.session_state: st.session_state['name_list'] = list()
         name_list = st.multiselect('검색', list(df.index), placeholder="성함을 입력해주세요.", label_visibility='collapsed',\
                                default = st.session_state['name_list'], on_change = call_back)
