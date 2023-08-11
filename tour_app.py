@@ -9,9 +9,23 @@ import time
 # 사용자 정의 함수들 import
 from user_functions.Jeju_Femilesion_Festival import *
 
-# 사이드바 접어놓기
+if 'capture_mode' not in st.session_state:
+    st.session_state['capture_mode'] = False  
+        
+# 사이드바 환경설정용
 st.set_page_config(initial_sidebar_state='collapsed')
-with st.sidebar: Apply_CSS_Style() # CSS 스타일
+with st.sidebar: 
+    st.subheader('환경설정')
+    mode = st.select_slider(
+    '화면 선택',
+    options=['일반화면','캡쳐용화면'],
+    help = "캡쳐용화면을 선택하시면 스크롤 없이 한눈에 배정표를 확인하고 캡쳐할 수 있습니다. 하지만 동행하시는 분들의 명단은 일반화면에서만 확인할 수 있습니다.")
+    
+    if mode == '일반화면': st.session_state['capture_mode'] = False
+    elif mode == '캡쳐용화면' : st.session_state['capture_mode'] = True
+    else : pass
+    
+    Apply_CSS_Style() # CSS 스타일
 
 try:
     # 구글 시트 DB연결 코드 : session_state를 사용하여 db를 cache에 놔두기 위함 : api호출 수 감소목적
@@ -27,9 +41,12 @@ try:
 
     # session_state에서 df로 데이터 받아오기 : 세션스테이트를 두는 이유는 앱첫실행시 api를 한번만 호출하기 위함
     df = st.session_state['google_sheet']
-
+    
+    
     # 디자인 상단 이미지 호출하여 삽입
-    image_path = './image/design.jpg'
+    if st.session_state['capture_mode']: image_path = './image/design_capture_mode.jpg'
+    else : image_path = './image/design.jpg'
+
     image = Image.open(image_path)
     st.image(image,use_column_width  = True)
 
@@ -62,6 +79,8 @@ try:
                 with tabs[i]:
                     # 검색된 name을 가진 사람의 정보를 1행 DataFrame으로 만든 변수 : result
                     result = df[df.index == name]
+                    
+                    st.write(f"{name} 님의 배정표입니다.")
 
                     # 1일차
                     with st.container():
@@ -73,12 +92,16 @@ try:
                         First_Day_Ticket(dncc_to_cjj, boarding_time1, airline, boarding_time2, cju_to_room, boarding_time3, floor, room_num)
 
                         # 첫째날, 동행 파트
-                        with  st.expander("첫째 날, 동행", expanded = False):  
-                            transports = [dncc_to_cjj, airline, cju_to_room, result['④숙소명 층/호수'].values[0]]
-                            tab_name = ["교회-청주", "청주-제주", "공항-숙소","룸메이트"]
-                            cols = df.columns[0:4]
-                            together_tab(tab_name, transports, df, name, cols)                     
-
+                        if st.session_state['capture_mode'] == False:
+                            with  st.expander("첫째 날, 동행", expanded = False):  
+                                transports = [dncc_to_cjj, airline, cju_to_room, result['④숙소명 층/호수'].values[0]]
+                                tab_name = ["교회-청주", "청주-제주", "공항-숙소","룸메이트"]
+                                cols = df.columns[0:4]
+                                together_tab(tab_name, transports, df, name, cols)    
+                        else : pass
+                            
+    
+                         
                     # 2일차
                     with st.container():
                         # 둘째날 테마별 티켓테이블 출력 : 둘째날은 예외없음
@@ -87,20 +110,22 @@ try:
                         url = Second_Day_Ticket(result, theme, theme_bus)
 
                         # 둘째날, 동행 파트
-                        with st.expander("둘째 날, 동행", expanded = False):  
-                            transports = [theme, theme_bus]
-                            tab_name = [f"테마여행", f"숙소-{theme}"]
-                            cols = df.columns[4:6]
-                            together_tab(tab_name, transports, df, name, cols) 
-                            
-#                             ## 테마활동 TIP 페이지 링크 연결 박스
-#                             URL_Box(url =  url,
-#                                    color = "#B57200",
-#                                    fonts = "Nanum Pen Script, Diphylleia",
-#                                    font_size = "1.2rem",
-#                                    lettering = f"{theme} 테마 TIP",
-#                                    letter_spacing = '0rem')
-#                             st.write('')
+                        if st.session_state['capture_mode'] == False:
+                            with st.expander("둘째 날, 동행", expanded = False):  
+                                transports = [theme, theme_bus]
+                                tab_name = [f"테마여행", f"숙소-{theme}"]
+                                cols = df.columns[4:6]
+                                together_tab(tab_name, transports, df, name, cols) 
+
+    #                             ## 테마활동 TIP 페이지 링크 연결 박스
+    #                             URL_Box(url =  url,
+    #                                    color = "#B57200",
+    #                                    fonts = "Nanum Pen Script, Diphylleia",
+    #                                    font_size = "1.2rem",
+    #                                    lettering = f"{theme} 테마 TIP",
+    #                                    letter_spacing = '0rem')
+    #                             st.write('')
+                        else : pass
 
                     # 3일차
                     with st.container():
@@ -113,11 +138,13 @@ try:
                                          airline2, boarding_time4, bus_to_dncc, bus_to_dncc_time)
 
                         # 셋째날, 동행 파트
-                        with  st.expander("셋째 날, 동행", expanded = False): 
-                            transports = [group_tour_bus, bus_to_cju, airline2, bus_to_dncc]
-                            tab_name = ["단체활동", "숙소-공항","제주-청주","청주-교회"]
-                            cols = df.columns[6:]
-                            together_tab(tab_name, transports, df, name, cols)
+                        if st.session_state['capture_mode'] == False:
+                            with  st.expander("셋째 날, 동행", expanded = False): 
+                                transports = [group_tour_bus, bus_to_cju, airline2, bus_to_dncc]
+                                tab_name = ["단체활동", "숙소-공항","제주-청주","청주-교회"]
+                                cols = df.columns[6:]
+                                together_tab(tab_name, transports, df, name, cols)
+                        else : pass
 
         # 검색 흐름 제어 : 검색하면 안하면 pass 처리하도록
         else : pass
