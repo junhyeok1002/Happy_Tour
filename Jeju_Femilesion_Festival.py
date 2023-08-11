@@ -73,13 +73,14 @@ def URL_Box(url, color, fonts, font_size, lettering, letter_spacing):
     """,
     unsafe_allow_html=True)    
     
-def call_back(): # 하나 입력 시 dropdown이 닫히도록 call_back 설계
+def call_back1(): # 하나 입력 시 dropdown이 닫히도록 call_back 설계
     time.sleep(0.3)
     with st.container(): pass  
     time.sleep(0.1)
     with st.container(): pass  
     
-
+def call_back2(): # 하나 입력 시 dropdown이 안 닫히도록 call_back 설계
+    pass
 
 # 첫날 예외처리
 def First_Day_Exception_Handling(result):
