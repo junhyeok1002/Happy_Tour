@@ -79,8 +79,6 @@ try:
                 with tabs[i]:
                     # 검색된 name을 가진 사람의 정보를 1행 DataFrame으로 만든 변수 : result
                     result = df[df.index == name]
-                    
-                    st.write(f"{name} 님의 배정표입니다.")
 
                     # 1일차
                     with st.container():
