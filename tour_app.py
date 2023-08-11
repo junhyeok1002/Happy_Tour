@@ -8,16 +8,20 @@ import time
 
 # 사용자 정의 함수들 import
 from user_functions.Jeju_Femilesion_Festival import *
-        
+
+#캡쳐모드 세션스테이트
+if 'capture_mode' not in st.session_state:
+    st.session_state['capture_mode'] = False    
+    
+#드랍다운모드 세션스테이트
+if 'dropdown_mode' not in st.session_state:
+    st.session_state['dropdown_mode'] = False     
+    
 # 사이드바 환경설정용
 st.set_page_config(initial_sidebar_state='collapsed')
 with st.sidebar: 
     st.subheader('환경설정')
-    
-    #캡쳐모드 세션스테이트
-    if 'capture_mode' not in st.session_state:
-        st.session_state['capture_mode'] = False      
-    
+   
     # 캡쳐모드 셀렉터
     cap_mode = st.select_slider(
     '화면 선택',
@@ -30,9 +34,7 @@ with st.sidebar:
     else : pass
     
     
-    #드랍다운모드 세션스테이트
-    if 'dropdown_mode' not in st.session_state:
-        st.session_state['dropdown_mode'] = False      
+ 
     
     # 캡쳐모드 셀렉터
     dropdown_mode = st.select_slider(
