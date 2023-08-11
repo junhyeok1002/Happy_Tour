@@ -17,6 +17,7 @@ if 'capture_mode' not in st.session_state:
 if 'dropdown_mode' not in st.session_state:
     st.session_state['dropdown_mode'] = False     
     
+    
 # 사이드바 환경설정용
 st.set_page_config(initial_sidebar_state='collapsed')
 with st.sidebar: 
@@ -43,7 +44,7 @@ with st.sidebar:
     help = "열어두기 옵션을 선택하시면 이름을 입력하신 후 자동으로 새로고침이되면서 드랍다운(이름목록)이 닫히는 현상이 사라집니다. 열어두기 옵션에서 드랍다운(이름목록)을 닫으시려면 빈화면을 클릭해주시기 바랍니다")
     
     #캡쳐모드 셀렉팅 값 세션스테이트 부여
-    if dropdown_mode == '자동닫기': st.session_state['capture_mode'] = False
+    if dropdown_mode == '자동닫기': st.session_state['dropdown_mode'] = False
     elif dropdown_mode == '열어두기' : st.session_state['dropdown_mode'] = True
     else : pass
 
